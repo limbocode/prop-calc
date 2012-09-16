@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import re
+from pyparsing import Literal,Word,ZeroOrMore,Forward,nums,oneOf,Group,srange
 
 class Prop():
     def __init__(self):
@@ -55,6 +56,16 @@ class Prop():
         str2 = self.strip_form(form1[a[0]+1:])
         
         return self.strip_form(form2) == str1 or self.strip_form(form2) == str2
+    
+    def conj(self, form1, form2, form3):
+        """
+        Conjunction is a very closely related to simplification. If form1 and
+        form2 can both be derived from form3 through simplification, then
+        it is a valid conjunction.
+        """
+        return self.simp(form3,form1) and self.simp(form3,form2)
+    
+    def ds(self, ):
         
     def find_main_op(self, form):
         """
@@ -89,6 +100,32 @@ class Prop():
         if form[0] == '(' and form[-1] == ')':
             form = form[1:-1]
         return form 
+    
+    def synatx(self):
+        """
+        Defines the syntax of a well formed formula. This method is used
+        by confirm_wff.
+        """
+        op = oneOf( '\/ -> * ::')
+        lpar  = Literal('(') .suppress()
+        rpar  = Literal( ')' ).suppress()
+        statement = Word(srange('[A-Z]'),srange('[a-z]'))
+        expr = Forward()
+        atom = statement | Group( lpar + expr + rpar )
+        expr << atom + ZeroOrMore( op + expr )
+        return expr
+    
+    def confirm_wff(self, form1):
+        """
+        Confims that the formula is indeed a well formed formula.
+        """
+        expr = self.synatx()
+        try:
+            expr.parseString(form1)
+            return True
+        except:
+            return False
+        
         
     def confirm_validity(self, file1):
         """
