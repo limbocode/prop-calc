@@ -65,8 +65,71 @@ class Prop():
         """
         return self.simp(form3,form1) and self.simp(form3,form2)
     
-    def ds(self, ):
+    def ds(self, form1, form2, form3):
+        """
+        Disjunction.
+        """
+        a = self.find_main_op(form1)
+        if a[1] != 'or':
+            return False
         
+        if form2[0] != '~':
+            return False
+        
+        str1 = self.strip_form(form1[:a[0]])
+        str2 = self.strip_form(form1[a[0]+2:])
+        str3 = self.strip_form(form2[1:])
+        str4 = self.strip_form(form3)
+        
+        if str3 != str1:
+            if str3 != str2:
+                return False
+            else:
+                return str1 == str4
+        
+        if str3 != str2:
+            if str3 != str1:
+                return False
+            else:
+                return str2 == str4
+            
+        return False
+        
+        
+    def add(self, form1, form2):
+        
+        a = self.find_main_op(form2)
+        
+        if a[1] != 'or':
+            return False
+        
+        lst1 = []
+        
+        lst1.append(self.strip_form(form2[:a[0]]))
+        lst1.append(self.strip_form(form2[a[0]+2:]))
+        
+        return self.strip_form(form1) in lst1
+        
+        
+    def split_form(self, form):
+        """
+        Takes as an argument a formula and splits this formula
+        into a tuple based on the main operator.
+        """    
+        a = self.find_main_op(self.strip_form(form))
+        if a[1] in ['or','imp','equiv']:
+            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+2:]))
+            
+        else:
+            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+1:]))
+            
+        return tuple1
+    
+    def dil(self, form1, form2, form3, form4):
+        dil_is_match
+        
+    
+    
     def find_main_op(self, form):
         """
         Finds the main operator of a formula (assuming no extra parentheses
@@ -142,7 +205,7 @@ class Prop():
         
 if __name__ == '__main__':
     a = Prop()
-    a.hs("(A\\/B)->(C*D)","(C*D)->(~E*F)","(A\\/B)->(~E*F)")
+    a.ds("(~A\\/(B->C))\\/~D","~(~D)","(~A\\/(B->C))")
     
         
     

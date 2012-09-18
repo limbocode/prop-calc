@@ -19,9 +19,16 @@ class TestProp(unittest.TestCase):
         
     def test_conj(self):
         self.assertTrue(self.prop.conj("A\\/B","~(C->D)","(A\\/B)*~(C->D)"))
+        
+    def test_ds(self):
+        self.assertTrue(self.prop.ds("(~A\\/(B->C))\\/~D","~(~A\\/(B->C))","~D"))
+        self.assertTrue(self.prop.ds("(~A\\/(B->C))\\/~D","~(~D)","(~A\\/(B->C))"))
     
     def test_hs(self):
         self.assertTrue(self.prop.hs("(A\\/B)->(C*D)","(C*D)->(~E*F)","(A\\/B)->(~E*F)"))
+        
+    def test_add(self):
+        self.assertTrue(self.prop.add("(A->B)","(A->B)\\/C"))
     
     def test_find_main_op(self):
         self.assertEqual(self.prop.find_main_op("(A\\/B)->~C"),(6,'imp'))
