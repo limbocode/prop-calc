@@ -235,12 +235,92 @@ class Prop():
         lines, then it will return that the proof is valid.
         """
         
+        lst1 = self.proof_to_list(file1)
+        
+        for element in lst1:
+            self.test(element)
+
+
+    def test(self, element):
+        """
+        The order of the list should be reason, referenced formulas, and
+        conclusion.
+        """
+        reason = element[0]
+        
+        if not reason == 'pr':
+            #str1 = 
+            return eval(str1)
+        return True
+        
+        
+        
+    def proof_to_list(self, file1):
+        """
+        Returns a list that is ready to be used with confirm_validity.
+        The order of the list returned should be reason, referenced formulas,
+        and conclusion. This will make it easy to use with the
+        other methods.
+        """
+        lst1 = []
+        for line in file1:
+            line = line.rstrip()
+            line = re.sub(r"\t+","\t",line)
+            line = re.sub(r".\t+","\t",line)
+            lst2 = line.split("\t")
+            lst2 = lst2[1:] 
+            lst2 = self.convert_ref_to_string(lst2)
+            lst2 = self.reorder_list(lst2)
+            lst1.append(lst2)
+        return lst1
+    
+    def convert_ref_to_string(self, lst1):
+        """
+        Takes a list in the form [conclusion, reason, refs]
+        and returns [conclusion, reason, forms].
+        """
+        lst2 = lst1[1].split(',')
+        if len(lst2) == 1:
+            return lst1
+        else:
+            
+    
+    def reason_to_list(self, reason):
+        
+        reason = reason.lower()
+        
+        if reason == 'pr':
+            return ['pr']
+        
+        if reason in ['simp']:
+            lst1 = reason.split(' ')
+            lst1[1] = int(lst1[1])
+            return lst1
+        
+        if reason in ['mp','conj']:
+            pass
+            
+            
+    def ref_to_string(self):
+        """
+        Takes the references of in the reasoning and returns
+        the actual strings.
+        """
+            
+            
+        
+        
+    def prompt_for_file(self):
+        """
+        Asks for a file to confirm the validity of and gives this
+        file to confirm_validity.
+        """
+        
 if __name__ == '__main__':
     a = Prop()
     a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
                                       "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
-    
-        
-    
+    file1 = open("proof.txt",'r')
+    a.confirm_validity(file1)
         
         
