@@ -131,6 +131,9 @@ class Prop():
         return tuple1
     
     def dil(self, form1, form2, form3, form4):
+        """
+        After we have exhausted all of the ways this can be False all we have is True.
+        """
         tup1 = self.split_form(form1)
         tup2 = self.split_form(form2)
         tup3 = self.split_form(form3)
@@ -141,16 +144,14 @@ class Prop():
             return False
         
         
-        if tup3[0] != tup1[0]:
-            if tup3[0] != tup2[0]:
-                return False
-            elif tup3[1] != tup1[0]:
-                return False
-            else:
-                
-        if tup3[0] != tup2[0]:
-             if 
+        if {tup3[0],tup3[1]} != {tup1[0],tup2[0]}:
+            return False
         
+        if {tup4[0],tup4[1]} != {tup1[1],tup2[1]}:
+            return False
+        
+
+        return True
     
     
     def find_main_op(self, form):
@@ -228,7 +229,8 @@ class Prop():
         
 if __name__ == '__main__':
     a = Prop()
-    a.ds("(~A\\/(B->C))\\/~D","~(~D)","(~A\\/(B->C))")
+    a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
+                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
     
         
     

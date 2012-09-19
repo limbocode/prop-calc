@@ -29,6 +29,13 @@ class TestProp(unittest.TestCase):
         
     def test_add(self):
         self.assertTrue(self.prop.add("(A->B)","(A->B)\\/C"))
+        
+    def test_dil(self):
+        self.assertTrue(self.prop.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
+                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)"))
+        
+    def test_split_form(self):
+        self.assertEqual(self.prop.split_form("(F::G)->(A->F)"), ("F::G","A->F",6,"imp"))
     
     def test_find_main_op(self):
         self.assertEqual(self.prop.find_main_op("(A\\/B)->~C"),(6,'imp'))
