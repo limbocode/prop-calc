@@ -191,7 +191,7 @@ class Prop():
             if char == ')':
                 depth -= 1
             if depth == 0 and i == len(form) -1:
-                form = form[1:-1]
+                return self.strip_form(form[1:-1])
             elif depth == 0:
                 break         
         return form 
