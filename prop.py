@@ -184,8 +184,16 @@ class Prop():
         Strips the formula of any whitespace and excessive parentheses.
         """
         form = re.sub(' ','',form)
-        if form[0] == '(' and form[-1] == ')':
-            form = form[1:-1]
+        depth = 0
+        for i,char in enumerate(form):
+            if char == '(':
+                depth += 1
+            if char == ')':
+                depth -= 1
+            if depth == 0 and i == len(form) -1:
+                form = form[1:-1]
+            elif depth == 0:
+                break         
         return form 
     
     def synatx(self):
