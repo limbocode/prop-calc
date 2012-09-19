@@ -114,19 +114,42 @@ class Prop():
     def split_form(self, form):
         """
         Takes as an argument a formula and splits this formula
-        into a tuple based on the main operator.
+        into a tuple based on the main operator with the first
+        two elements of the tuple being the two parts of the
+        formula and the last two elements being the main operator
+        name and its index.
         """    
         a = self.find_main_op(self.strip_form(form))
         if a[1] in ['or','imp','equiv']:
-            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+2:]))
+            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+2:]),
+                       a[0], a[1])
             
         else:
-            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+1:]))
+            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+1:]), 
+                       a[0], a[1])
             
         return tuple1
     
     def dil(self, form1, form2, form3, form4):
-        dil_is_match
+        tup1 = self.split_form(form1)
+        tup2 = self.split_form(form2)
+        tup3 = self.split_form(form3)
+        tup4 = self.split_form(form4)
+        
+        #Checks that the main operators of each formula are correct.
+        if (tup1[3], tup2[3], tup3[3], tup4[3]) != ('imp','imp','or','or'):
+            return False
+        
+        
+        if tup3[0] != tup1[0]:
+            if tup3[0] != tup2[0]:
+                return False
+            elif tup3[1] != tup1[0]:
+                return False
+            else:
+                
+        if tup3[0] != tup2[0]:
+             if 
         
     
     
