@@ -22,9 +22,24 @@ class Prop():
         str2 = self.strip_form(form1[a[0]+2:])
         
         return self.strip_form(form2) == str1 and self.strip_form(form3) == str2
+    
+    def mt(self, form1, form2, form3 ): # Modus Tollens
+        a = self.find_main_op(form1)
+        
+        if a[1] != 'imp':
+            return False
+        
+        str1 = self.strip_form(form1[:a[0]])
+        str2 = self.strip_form(form1[a[0]+2:])
+        
+        if (form2[0], form3[0]) != ('~','~'):
+            return False
+        
+        return self.strip_form(form2[1:]) == str2 and self.strip_form(form3[1:]) == str1
         
         
-    def hs(self, form1, form2, form3):
+        
+    def hs(self, form1, form2, form3): #Hypothetical Syllogism
         """
         Takes the first two formulas and compares it to the third.
         """ 
@@ -57,7 +72,7 @@ class Prop():
         
         return self.strip_form(form2) == str1 or self.strip_form(form2) == str2
     
-    def conj(self, form1, form2, form3):
+    def conj(self, form1, form2, form3): #Conjunction
         """
         Conjunction is a very closely related to simplification. If form1 and
         form2 can both be derived from form3 through simplification, then
@@ -65,7 +80,7 @@ class Prop():
         """
         return self.simp(form3,form1) and self.simp(form3,form2)
     
-    def ds(self, form1, form2, form3):
+    def ds(self, form1, form2, form3): #Disjunctive Syllogism
         """
         Disjunction.
         """
@@ -96,7 +111,7 @@ class Prop():
         return False
         
         
-    def add(self, form1, form2):
+    def add(self, form1, form2): #Addition
         
         a = self.find_main_op(form2)
         
@@ -140,18 +155,9 @@ class Prop():
         tup4 = self.split_form(form4)
         
         #Checks that the main operators of each formula are correct.
-        if (tup1[3], tup2[3], tup3[3], tup4[3]) != ('imp','imp','or','or'):
-            return False
-        
-        
-        if {tup3[0],tup3[1]} != {tup1[0],tup2[0]}:
-            return False
-        
-        if {tup4[0],tup4[1]} != {tup1[1],tup2[1]}:
-            return False
-        
-
-        return True
+        return ((tup1[3], tup2[3], tup3[3], tup4[3]) == ('imp','imp','or','or')
+                and {tup3[0],tup3[1]} == {tup1[0],tup2[0]}
+                and {tup4[0],tup4[1]} == {tup1[1],tup2[1]})
     
     
     def find_main_op(self, form):
@@ -363,9 +369,11 @@ if __name__ == '__main__':
     a = Prop()
 #    a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
 #                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
-    file1 = open("proof.txt",'r')
-    print a.confirm_validity(file1)
+#    file1 = open("proof.txt",'r')
+#    print a.confirm_validity(file1)
 #    a.confirm_validity(file1)
+
+    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
 
     
         

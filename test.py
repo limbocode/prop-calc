@@ -13,10 +13,14 @@ class TestProp(unittest.TestCase):
         self.assertTrue(self.prop.confirm_wff("(A\\/B) -> C"))
         self.assertFalse(self.prop.confirm_wff("A\\/B)"))
         
+    
     def test_mp(self):
         self.assertTrue(self.prop.mp("(A\\/B)->~C","A\\/B","~C"))
         self.assertTrue(self.prop.mp("(A\\/B)->~C","A\\/B","~C"))
         self.assertFalse(self.prop.mp("(A\\/B)->C","A\\/B","~C"))
+        
+    def test_mt(self):
+        self.assertTrue(self.prop.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za"))
         
     def test_conj(self):
         self.assertTrue(self.prop.conj("A\\/B","~(C->D)","(A\\/B)*~(C->D)"))
