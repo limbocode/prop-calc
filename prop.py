@@ -8,20 +8,20 @@ class Prop():
 
     def mp(self, form1, form2, form3): #Modus Ponens
         """
-        Takes three arguments, the implication (A), the conclusion (B), 
-        and the formula (A -> B). This method identifies the main
+        Takes three arguments, the formula (A->B), the implication (A),
+        and the conclusion (B), This method identifies the main
         operator in the formula and compares the strings to the implication
         and conclusion. It does not check to see if the formula
-        itself is valid. This is done by the is_valid_formula method.
+        itself is valid. This is done by the confirm_wff method.
         """
-        a = self.find_main_op(form3)
+        a = self.find_main_op(form1)
         if a[1] != 'imp':
             return False
         
-        str1 = self.strip_form(form3[:a[0]])
-        str2 = self.strip_form(form3[a[0]+2:])
+        str1 = self.strip_form(form1[:a[0]])
+        str2 = self.strip_form(form1[a[0]+2:])
         
-        return self.strip_form(form1) == str1 and self.strip_form(form2) == str2
+        return self.strip_form(form2) == str1 and self.strip_form(form3) == str2
         
         
     def hs(self, form1, form2, form3):
@@ -196,30 +196,32 @@ class Prop():
                 break         
         return form 
     
-    def synatx(self):
+    def syntax(self):
         """
         Defines the syntax of a well formed formula. This method is used
         by confirm_wff.
         """
-        op = oneOf( '\/ -> * ::')
-        lpar  = Literal('(') .suppress()
-        rpar  = Literal( ')' ).suppress()
+        op = oneOf( '\\/ -> * ::')
+        lpar  = Literal('(')
+        rpar  = Literal( ')' )
         statement = Word(srange('[A-Z]'),srange('[a-z]'))
         expr = Forward()
-        atom = statement | Group( lpar + expr + rpar )
+        atom = statement | lpar + expr + rpar
         expr << atom + ZeroOrMore( op + expr )
+        expr.setResultsName("expr")
         return expr
     
     def confirm_wff(self, form1):
         """
         Confims that the formula is indeed a well formed formula.
         """
-        expr = self.synatx()
+        expr = self.syntax()
+        form1 = self.strip_form(form1)
         try:
-            expr.parseString(form1)
-            return True
+            result = ''.join(list(expr.parseString(form1)))
         except:
-            return False
+            result = None
+        return result == form1
         
         
     def confirm_validity(self, file1):
@@ -236,21 +238,28 @@ class Prop():
         """
         
         lst1 = self.proof_to_list(file1)
-        
+        lst2 = []
         for element in lst1:
-            self.test(element)
+            lst2.append(self.test(element))
+        return all(lst2)
 
 
-    def test(self, element):
+    def test(self, lst1):
         """
-        The order of the list should be reason, referenced formulas, and
-        conclusion.
+        The order of the list should be conclusion, reason, and referenced
+        formulas.
         """
-        reason = element[0]
         
-        if not reason == 'pr':
-            #str1 = 
+        lst1[1]
+        lst2 = []
+        
+        if lst1[1] != 'pr':
+            str1 = "self." + lst1[1] + "(*lst2)"
+            for x in lst1[2:]:
+                lst2.append(x)
+            lst2.append(lst1[0])
             return eval(str1)
+        
         return True
         
         
@@ -263,26 +272,60 @@ class Prop():
         other methods.
         """
         lst1 = []
+        lst3 = []
         for line in file1:
             line = line.rstrip()
             line = re.sub(r"\t+","\t",line)
-            line = re.sub(r".\t+","\t",line)
+            line = re.sub(r"\.\t+","\t",line)
             lst2 = line.split("\t")
-            lst2 = lst2[1:] 
-            lst2 = self.convert_ref_to_string(lst2)
-            lst2 = self.reorder_list(lst2)
+            lst2 = lst2[1:]
+            lst2 = self.convert1(lst2)
             lst1.append(lst2)
-        return lst1
+        
+        for element in lst1:
+            lst2 = self.convert2(element, lst1)
+            lst2[1] = lst2[1].lower()
+            lst3.append(lst2)
+
+        return lst3
     
-    def convert_ref_to_string(self, lst1):
-        """
-        Takes a list in the form [conclusion, reason, refs]
-        and returns [conclusion, reason, forms].
-        """
-        lst2 = lst1[1].split(',')
-        if len(lst2) == 1:
-            return lst1
-        else:
+    
+    def flatten(self, x):
+
+        result = []
+        for el in x:
+            #if isinstance(el, (list, tuple)):
+            if hasattr(el, "__iter__") and not isinstance(el, basestring):
+                result.extend(self.flatten(el))
+            else:
+                result.append(el)
+        return result
+        
+    
+    def convert1(self, lst1):
+        
+        lst1[1] = lst1[1].split(' ')
+        try:
+            lst1[1][1] = lst1[1][1].split(',')
+        except:
+            pass
+        
+        lst1 = self.flatten(lst1)
+        
+        if len(lst1) > 2:
+            for i, x in enumerate(lst1[2:]):
+                lst1[i + 2] = int(x)
+                
+        return lst1
+        
+    def convert2(self, lst1, lst2):
+        if not len(lst1) == 2:
+            for i, x in enumerate(lst1[2:]):
+                lst1[i+2] = lst2[x - 1][0]
+            
+        return lst1
+#        print lst1
+#        print lst2
             
     
     def reason_to_list(self, reason):
@@ -315,12 +358,15 @@ class Prop():
         Asks for a file to confirm the validity of and gives this
         file to confirm_validity.
         """
-        
+    
 if __name__ == '__main__':
     a = Prop()
-    a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
-                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
+#    a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
+#                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
     file1 = open("proof.txt",'r')
-    a.confirm_validity(file1)
+    print a.confirm_validity(file1)
+#    a.confirm_validity(file1)
+
+    
         
         
