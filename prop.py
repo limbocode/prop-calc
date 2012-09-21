@@ -192,7 +192,10 @@ class Prop():
         lst2 = []
         for element in lst1:
             lst2.append(self.test(element))
-        return all(lst2)
+        if all(lst2):
+            return "Proof is correct."
+        else:
+            return "Error with lines " + str(lst2)
 
 
     def test(self, lst1):        
@@ -289,6 +292,7 @@ if __name__ == '__main__':
 #    a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
 #                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
     file1 = open("proof.txt",'r')
+    file1 = a.prompt_for_file()
     print a.confirm_validity(file1)
 #    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
 
