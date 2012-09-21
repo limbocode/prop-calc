@@ -1,0 +1,7 @@
+1.	P*Q					Pr
+2.	P->A				Pr
+3.	P					Simp 1
+4.	A					MP 2,3
+5.	Q					Simp 1
+6.	Q*A					Conj 4,5
+7.	(Q*A)*P				Conj 3,6

@@ -130,7 +130,35 @@ class Prop():
         return ((tup1[3], tup2[3], tup3[3], tup4[3]) == ('imp','imp','or','or')
                 and {tup3[0],tup3[1]} == {tup1[0],tup2[0]}
                 and {tup4[0],tup4[1]} == {tup1[1],tup2[1]})
-    
+
+
+    def dn(self, form1, form2):
+        return ((form1[:2] == '~~' and 
+                self.strip_form(form1[2:]) == self.strip_form(form2))
+                or
+                (form2[:2] == '~~' and 
+                self.strip_form(form2[2:]) == self.strip_form(form1))
+                )
+            
+            
+    def comm(self, form1, form2):
+        a = (self.find_main_op(form1)[0], self.find_main_op(form1)[1],
+             self.find_main_op(form2)[1])
+        
+        return ((a[1],a[2]) in [('or','or'),('and','and')] and 
+                 form1[a[0]+1:] + form1[a[0]] + form1[:a[0]] == form2)
+        
+        
+    def assoc(self,form1, form2):
+        pass
+    def dup(self, form1, form2):
+        pass
+#        if len(form1) < len(form2):
+#            a = self.find_main_op(form2)
+#            return 
+#        
+#        a = (self.find_main_op(form1), self.find_main_op(form2))
+#        if a[0][1] == 
     
     def find_main_op(self, form):
         subdepth = 0
@@ -192,10 +220,10 @@ class Prop():
         lst2 = []
         for element in lst1:
             lst2.append(self.test(element))
-        if all(lst2):
-            return "Proof is correct."
-        else:
-            return "Error with lines " + str(lst2)
+        return all(lst2)
+#            return "Proof is correct."
+#        else:
+#            return "Error with lines " + str(lst2)
 
 
     def test(self, lst1):        

@@ -60,6 +60,22 @@ class TestProp(unittest.TestCase):
         self.assertFalse(self.prop.simp("(A\\/B)*~C", "C"))
         self.assertTrue(self.prop.simp("(A\\/B)*~C", "~C"))
         
+    def test_dn(self):
+        self.assertTrue(self.prop.dn("A","~~A"))
+        self.assertTrue(self.prop.dn("~~A","A"))
+        self.assertTrue(self.prop.dn("~~(A->(B*C))","A->(B*C)"))
+        
+    def test_comm(self):
+        self.assertTrue(self.prop.comm("E*F","F*E"))
+        self.assertTrue(self.prop.comm("E*(F->G)","(F->G)*E"))
+        
+        
+        
+    def test_confirm_validity(self):
+        self.assertTrue(self.prop.confirm_validity(open("proof.txt",'r')))
+        self.assertTrue(self.prop.confirm_validity(open("proof2.txt",'r')))
+        self.assertTrue(self.prop.confirm_validity(open("./proofs/proof3.txt",'r')))
+        
 if __name__ == '__main__':
     unittest.main()
 
