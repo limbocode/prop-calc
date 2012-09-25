@@ -84,9 +84,15 @@ class TestProp(unittest.TestCase):
         self.assertTrue(self.prop.comm("E*(F->G)","(F->G)*E"))
         
 #    def test_assoc(self):
-#        self.assertTrue(self.prop.assoc("(A\\/B)\\/C","A\\/(B\\/C)"))
 #        self.assertTrue(self.prop.assoc("(A*B)*C","A*(B*C)"))
+#        self.assertTrue(self.prop.assoc("(A*B)*(C->D)","A*(B*(C->D))"))
+#        self.assertTrue(self.prop.assoc("(A*B)*(C*D)","A*(B*(C*D))"))
+#        self.assertTrue(self.prop.assoc("(A\\/B)\\/C","A\\/(B\\/C)"))
         
+        
+    def test_dup(self):
+        self.assertTrue(self.prop.dup("A","A*A"))
+        self.assertTrue(self.prop.dup("A","A\\/A"))
         
         
     def test_confirm_validity(self):

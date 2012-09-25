@@ -168,25 +168,57 @@ class Prop():
         
         a = self.split_form(form1)
         
-        
+        if a[2] == 'or':
+            return self.assocor(form1,form2)
+        else:
+            return self.assocand(form1,form2)
+            
+    def assocor(self, form1, form2):
+        pass
+    
+    def assocand(self, form1, form2):
         a = self.split_form(form1)
-        b = self.split_form(a[0])
-        c = self.split_form(form2)
-        d = self.split_form(c[0])
+        b = self.split_form(form2)
+        c = self.split_form(a[0])
         
+        if a[2] != 'and' or b[2] != 'and':
+            return False
         
+        if not c or c[2] != 'and':
+            pass
+            
+    def split_form_recursive(self, form1):
+        """
+        This method breaks a formula down into its
+        lowest terms. (A*B)*(C->D) produces 
+        [[A,B,'and'],[C,D,'imp'],'and'].
+        A*(B*(C->D)) produces
+        [A,[B,[C,D,'imp'],'and'],'and']
+        """
+        pass
+
+        
+    def breaks_down(self, form1, form2):
+        """
+        Instead of using the association rules, I will instead
+        check to see if the two formulas can be broken down by
+        the 'and' operation or the 'or' operation into the same
+        parts. For example (A*B)*(C*D) is equivalent to A*(B*(C*D)).
+        This is because, if we look at the main operator 'and' in
+        both cases and break the two formulas done according
+        to this operator we get A, B, C, and D connected by and.
+        Also, (A\\/B)\\/C is equivalent to A\\/(B\\/C).
+        """
         
 
 
 
     def dup(self, form1, form2): #Duplication
-        pass
-#        if len(form1) < len(form2):
-#            a = self.find_main_op(form2)
-#            return 
-#        
-#        a = (self.find_main_op(form1), self.find_main_op(form2))
-#        if a[0][1] == 
+        a = self.split_form(form2)
+        
+        return (self.conj(form1, form1, form2) or(
+                self.add(form1, form2) and
+                a[0] == a[1]))
     
     def find_main_op(self, form):
         """
