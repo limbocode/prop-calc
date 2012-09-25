@@ -26,10 +26,6 @@ class Prop():
         strip2 = self.strip_form(form2)
         strip3 = self.strip_form(form3)
         
-        print a
-        print strip2
-        print strip3
-        
         try:
             return (a[2] == 'imp' and
                     strip2[0] == '~' and
@@ -43,22 +39,21 @@ class Prop():
         
         
     def hs(self, form1, form2, form3): #Hypothetical Syllogism
-
-        a = self.find_main_op(form1)
-        b = self.find_main_op(form2)
-        c = self.find_main_op(form3)
         
-        if (a[1],b[1],c[1] ) != ('imp','imp','imp'):
+        a = self.split_form(form1)
+        b = self.split_form(form2)
+        c = self.split_form(form3)
+        
+        try:
+            return (a[2] == 'imp' and
+                    b[2] == 'imp' and
+                    c[2] == 'imp' and
+                    a[0] == c[0] and
+                    a[1] == b[0] and
+                    b[1] == c[1])
+            
+        except:
             return False
-        
-        str1 = self.strip_form(form1[:a[0]])
-        str2 = self.strip_form(form1[a[0]+2:])
-        str3 = self.strip_form(form2[:b[0]])
-        str4 = self.strip_form(form2[b[0]+2:])
-        str5 = self.strip_form(form3[:c[0]])
-        str6 = self.strip_form(form3[c[0]+2:])
-        
-        return str1 == str5 and str2 == str3 and str4 == str6
         
     def simp(self, form1, form2): #Simplification
         
