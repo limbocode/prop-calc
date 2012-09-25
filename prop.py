@@ -113,7 +113,8 @@ class Prop():
         and the third is the name of the main operator.
         """       
         
-        a = self.find_main_op(self.strip_form(form))
+        form = self.strip_form(form)
+        a = self.find_main_op(form)
         
         #checks for None
         if not a:
@@ -466,13 +467,15 @@ if __name__ == '__main__':
     a = Prop()
 #    a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
 #                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
-    file1 = open("proof.txt",'r')
-    file1 = a.prompt_for_file()
-    print a.confirm_validity(file1)
-#    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
-
+#    file1 = open("proof.txt",'r')
 #    file1 = a.prompt_for_file()
 #    print a.confirm_validity(file1)
+#    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
+#
+#    file1 = a.prompt_for_file()
+#    print a.confirm_validity(file1)
+
+    print a.split_form("(F::G) -> (A -> F )")
 
     
         
