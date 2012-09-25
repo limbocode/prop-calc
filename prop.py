@@ -111,7 +111,7 @@ class Prop():
         first part of the formula before the main operator, the second
         element is the second part of the formula after the main operator,
         and the third is the name of the main operator.
-        """       
+        """
         
         form = self.strip_form(form)
         a = self.find_main_op(form)
@@ -119,6 +119,9 @@ class Prop():
         #checks for None
         if not a:
             return None
+        
+        if a[1] == 'neg':
+            return (self.strip_form(form[1:]), 'neg')
         
         
         if a[1] in ['or','imp','equiv']:
@@ -295,9 +298,8 @@ class Prop():
         b = self.strip_form(form2)
         
         try:
-            print a
-            print b
-                        
+            if a[0] != '~':
+                return False           
         except:
             return False
     
@@ -307,6 +309,18 @@ class Prop():
         directly. Used as a helper function to split_form.
         """
         subdepth = 0
+        
+        try:
+            if form[0] == '~' and (len(form[1:]) == 1 or 
+                                   self.strip_form(form[1:]) == form[2:-1]):
+                return (0, 'neg')
+            
+        except:
+            pass
+                
+#        if form[0] == '~' and self.strip_form(form[1:]) == form[2:-1]:
+#            return (0, 'neg')
+        
         for i, char in enumerate(form):
             if char == '(':
                 subdepth += 1
