@@ -57,14 +57,17 @@ class Prop():
         
     def simp(self, form1, form2): #Simplification
         
-        a = self.find_main_op(form1)
-        if a[1] != 'and':
+        a = self.split_form(form1)
+        strip2 = self.strip_form(form2)
+        
+        try:
+            return (a[2] == 'and' and
+                    (a[0] == strip2 or
+                     a[1] == strip2)
+                    )
+            
+        except:
             return False
-        
-        str1 = self.strip_form(form1[:a[0]])
-        str2 = self.strip_form(form1[a[0]+1:])
-        
-        return self.strip_form(form2) == str1 or self.strip_form(form2) == str2
     
     def conj(self, form1, form2, form3): #Conjunction
         return self.simp(form3,form1) and self.simp(form3,form2)
