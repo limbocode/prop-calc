@@ -8,28 +8,37 @@ class Prop():
 
     def mp(self, form1, form2, form3): #Modus Ponens
 
-        a = self.find_main_op(form1)
-        if a[1] != 'imp':
+        a = self.split_form(form1)
+        
+        
+        try:
+            return (a[2] == 'imp' and
+                    self.strip_form(form2) == a[0] and
+                    self.strip_form(form3) == a[1])
+        except:
             return False
-        
-        str1 = self.strip_form(form1[:a[0]])
-        str2 = self.strip_form(form1[a[0]+2:])
-        
-        return self.strip_form(form2) == str1 and self.strip_form(form3) == str2
+
     
     def mt(self, form1, form2, form3 ): # Modus Tollens
-        a = self.find_main_op(form1)
         
-        if a[1] != 'imp':
+        a = self.split_form(form1)
+        
+        strip2 = self.strip_form(form2)
+        strip3 = self.strip_form(form3)
+        
+        print a
+        print strip2
+        print strip3
+        
+        try:
+            return (a[2] == 'imp' and
+                    strip2[0] == '~' and
+                    strip3[0] == '~' and
+                    a[0] == self.strip_form(strip3[1:]) and
+                    a[1] == self.strip_form(strip2[1:])
+                    )
+        except:
             return False
-        
-        str1 = self.strip_form(form1[:a[0]])
-        str2 = self.strip_form(form1[a[0]+2:])
-        
-        if (form2[0], form3[0]) != ('~','~'):
-            return False
-        
-        return self.strip_form(form2[1:]) == str2 and self.strip_form(form3[1:]) == str1
         
         
         
@@ -51,7 +60,7 @@ class Prop():
         
         return str1 == str5 and str2 == str3 and str4 == str6
         
-    def simp(self, form1, form2):
+    def simp(self, form1, form2): #Simplification
         
         a = self.find_main_op(form1)
         if a[1] != 'and':
@@ -110,14 +119,27 @@ class Prop():
         
         
     def split_form(self, form):
+        """
+        Splits a formula up into a tuple where the first element is the
+        first part of the formula before the main operator, the second
+        element is the second part of the formula after the main operator,
+        and the third is the name of the main operator.
+        """       
+        
         a = self.find_main_op(self.strip_form(form))
+        
+        #checks for None
+        if not a:
+            return None
+        
+        
         if a[1] in ['or','imp','equiv']:
             tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+2:]),
-                       a[0], a[1])
+                       a[1])
             
         else:
             tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+1:]), 
-                       a[0], a[1])
+                       a[1])
             
         return tuple1
     
@@ -127,12 +149,12 @@ class Prop():
         tup3 = self.split_form(form3)
         tup4 = self.split_form(form4)
 
-        return ((tup1[3], tup2[3], tup3[3], tup4[3]) == ('imp','imp','or','or')
+        return ((tup1[2], tup2[2], tup3[2], tup4[2]) == ('imp','imp','or','or')
                 and {tup3[0],tup3[1]} == {tup1[0],tup2[0]}
                 and {tup4[0],tup4[1]} == {tup1[1],tup2[1]})
 
 
-    def dn(self, form1, form2):
+    def dn(self, form1, form2): #Double Negation
         return ((form1[:2] == '~~' and 
                 self.strip_form(form1[2:]) == self.strip_form(form2))
                 or
@@ -141,7 +163,7 @@ class Prop():
                 )
             
             
-    def comm(self, form1, form2):
+    def comm(self, form1, form2): #Commutation
         a = (self.find_main_op(form1)[0], self.find_main_op(form1)[1],
              self.find_main_op(form2)[1])
         
@@ -149,9 +171,27 @@ class Prop():
                  form1[a[0]+1:] + form1[a[0]] + form1[:a[0]] == form2)
         
         
-    def assoc(self,form1, form2):
-        pass
-    def dup(self, form1, form2):
+    def assoc(self,form1, form2): #Association
+        """
+        First we will decide which way the association rule is applied.
+        Then we will apply it and finally we will decide if
+        it is valid.
+        """
+        
+        a = self.split_form(form1)
+        
+        
+        a = self.split_form(form1)
+        b = self.split_form(a[0])
+        c = self.split_form(form2)
+        d = self.split_form(c[0])
+        
+        
+        
+
+
+
+    def dup(self, form1, form2): #Duplication
         pass
 #        if len(form1) < len(form2):
 #            a = self.find_main_op(form2)
@@ -161,6 +201,10 @@ class Prop():
 #        if a[0][1] == 
     
     def find_main_op(self, form):
+        """
+        Takes a stripped formula as an argument. Not used
+        directly. Used as a helper function to split_form.
+        """
         subdepth = 0
         for i, char in enumerate(form):
             if char == '(':

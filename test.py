@@ -18,9 +18,12 @@ class TestProp(unittest.TestCase):
         self.assertTrue(self.prop.mp("(A\\/B)->~C","A\\/B","~C"))
         self.assertTrue(self.prop.mp("(A\\/B)->~C","A\\/B","~C"))
         self.assertFalse(self.prop.mp("(A\\/B)->C","A\\/B","~C"))
+        self.assertFalse(self.prop.mp("A","A\\/B","~C"))
         
     def test_mt(self):
         self.assertTrue(self.prop.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za"))
+        self.assertFalse(self.prop.mt("Za->(Ha*Wa)","Ha*Wa","~Za"))
+        self.assertFalse(self.prop.mt("Za","Ha*Wa","~Za"))
         
     def test_conj(self):
         self.assertTrue(self.prop.conj("A\\/B","~(C->D)","(A\\/B)*~(C->D)"))
@@ -41,7 +44,9 @@ class TestProp(unittest.TestCase):
                                       "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)"))
         
     def test_split_form(self):
-        self.assertEqual(self.prop.split_form("(F::G)->(A->F)"), ("F::G","A->F",6,"imp"))
+        self.assertEqual(self.prop.split_form("(F::G)->(A->F)"), ("F::G","A->F","imp"))
+        self.assertTrue(self.prop.split_form("A") == None)
+        
     
     def test_find_main_op(self):
         self.assertEqual(self.prop.find_main_op("(A\\/B)->~C"),(6,'imp'))
@@ -49,6 +54,8 @@ class TestProp(unittest.TestCase):
         self.assertEqual(self.prop.find_main_op("(A\\/B)*~C"),(6,'and'))
         self.assertEqual(self.prop.find_main_op("(A\\/B)\\/~C"),(6,'or'))
         self.assertEqual(self.prop.find_main_op("(A\\/B)::~C"),(6,'equiv'))
+        self.assertTrue(self.prop.find_main_op("A") == None)
+        self.assertTrue(self.prop.find_main_op("") == None)
         
     def test_strip_form(self):
         self.assertEqual(self.prop.strip_form("( A \\/ B ) -> ~C"),"(A\\/B)->~C")
@@ -68,6 +75,10 @@ class TestProp(unittest.TestCase):
     def test_comm(self):
         self.assertTrue(self.prop.comm("E*F","F*E"))
         self.assertTrue(self.prop.comm("E*(F->G)","(F->G)*E"))
+        
+#    def test_assoc(self):
+#        self.assertTrue(self.prop.assoc("(A\\/B)\\/C","A\\/(B\\/C)"))
+#        self.assertTrue(self.prop.assoc("(A*B)*C","A*(B*C)"))
         
         
         
