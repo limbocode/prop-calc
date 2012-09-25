@@ -52,6 +52,9 @@ class TestProp(unittest.TestCase):
         
     def test_split_form(self):
         self.assertEqual(self.prop.split_form("(F::G)->(A->F)"), ("F::G","A->F","imp"))
+        self.assertEqual(self.prop.split_form("(F::G)->(A ->F)"), ("F::G","A->F","imp"))
+#        self.assertEqual(self.prop.split_form("(F::G) -> (A -> F )"), ("F::G","A->F","imp"))
+#        self.assertEqual(self.prop.split_form("~(A*B) -> C"), ("~(A*B)","C","imp"))
         self.assertTrue(self.prop.split_form("A") == None)
         
     
@@ -68,6 +71,7 @@ class TestProp(unittest.TestCase):
         self.assertEqual(self.prop.strip_form("( A \\/ B ) -> ~C"),"(A\\/B)->~C")
         self.assertEqual(self.prop.strip_form(" ( ( A \\/ B ) -> ~C ) "),"(A\\/B)->~C")
         self.assertEqual(self.prop.strip_form(" ( ( A \\/ B )) "),"A\\/B")
+        self.assertEqual(self.prop.strip_form("(F::G) -> (A -> F )"),"(F::G)->(A->F)")
         
     def test_simp(self):
         self.assertFalse(self.prop.simp("(A\\/B)->~C", "~C"))
@@ -108,6 +112,10 @@ class TestProp(unittest.TestCase):
     def test_dup(self):
         self.assertTrue(self.prop.dup("A","A*A"))
         self.assertTrue(self.prop.dup("A","A\\/A"))
+        
+        
+#    def test_dem(self):
+#        self.assertTrue(self.prop.dem("~(A*B)","~A\\/~B"))
         
         
     def test_confirm_validity(self):

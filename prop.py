@@ -274,6 +274,31 @@ class Prop():
         except:
             return False
             
+            
+    def dem(self, form1, form2): #DeMorgan's
+        try:
+            if self.split_form(form1)[2] == 'and':
+                return self.demand(form1,form2)
+            else:
+                return self.demor(form1,form2)
+            
+        except:
+            return False
+        
+    def demor(self, form1, form2):
+        pass
+        
+    def demand(self, form1, form2):
+        
+        a = self.strip_form(form1)
+        b = self.strip_form(form2)
+        
+        try:
+            print a
+            print b
+                        
+        except:
+            return False
     
     def find_main_op(self, form):
         """
