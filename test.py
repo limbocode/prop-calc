@@ -31,6 +31,8 @@ class TestProp(unittest.TestCase):
     def test_ds(self):
         self.assertTrue(self.prop.ds("(~A\\/(B->C))\\/~D","~(~A\\/(B->C))","~D"))
         self.assertTrue(self.prop.ds("(~A\\/(B->C))\\/~D","~(~D)","(~A\\/(B->C))"))
+        self.assertFalse(self.prop.ds("(~A\\/(B->C))\\/~D","(~D)","(~A\\/(B->C))"))
+        self.assertFalse(self.prop.ds("A","(~D)","(~A\\/(B->C))"))
     
     def test_hs(self):
         self.assertTrue(self.prop.hs("(A\\/B)->(C*D)","(C*D)->(~E*F)","(A\\/B)->(~E*F)"))

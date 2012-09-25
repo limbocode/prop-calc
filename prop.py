@@ -73,31 +73,48 @@ class Prop():
         return self.simp(form3,form1) and self.simp(form3,form2)
     
     def ds(self, form1, form2, form3): #Disjunctive Syllogism
-        a = self.find_main_op(form1)
-        if a[1] != 'or':
-            return False
         
-        if form2[0] != '~':
-            return False
+        a = self.split_form(form1)
+        strip2 = self.strip_form(form2)
+        strip3 = self.strip_form(form3)
         
-        str1 = self.strip_form(form1[:a[0]])
-        str2 = self.strip_form(form1[a[0]+2:])
-        str3 = self.strip_form(form2[1:])
-        str4 = self.strip_form(form3)
-        
-        if str3 != str1:
-            if str3 != str2:
-                return False
-            else:
-                return str1 == str4
-        
-        if str3 != str2:
-            if str3 != str1:
-                return False
-            else:
-                return str2 == str4
+        try:
+            return (a[2] == 'or' and
+                    strip2[0] == '~' and
+                    ((strip3 == a[0] and
+                    a[1] == self.strip_form(strip2[1:]))
+                    or
+                    (strip3 == a[1] and
+                    a[0] == self.strip_form(strip2[1:])))
+                    )
             
-        return False
+        except:
+            return False
+#        a = self.find_main_op(form1)
+#        if a[1] != 'or':
+#            return False
+#        
+#        if form2[0] != '~':
+#            return False
+#        
+#        str1 = self.strip_form(form1[:a[0]])
+#        str2 = self.strip_form(form1[a[0]+2:])
+#        str3 = self.strip_form(form2[1:])
+#        str4 = self.strip_form(form3)
+#        
+#        if str3 != str1:
+#            if str3 != str2:
+#                return False
+#            else:
+#                return str1 == str4
+#        
+#        if str3 != str2:
+#            if str3 != str1:
+#                return False
+#            else:
+#                return str2 == str4
+#            
+#        return False
         
         
     def add(self, form1, form2): #Addition
