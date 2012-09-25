@@ -44,6 +44,7 @@ class TestProp(unittest.TestCase):
     def test_add(self):
         self.assertTrue(self.prop.add("(A->B)","(A->B)\\/C"))
         self.assertTrue(self.prop.add("((((A\\/B)\\/C)\\/D)\\/E)\\/F","(((((A\\/B)\\/C)\\/D)\\/E)\\/F)\\/G"))
+        self.assertFalse(self.prop.add("(B)","(A)"))
         
     def test_dil(self):
         self.assertTrue(self.prop.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
