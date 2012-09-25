@@ -90,9 +90,11 @@ class TestProp(unittest.TestCase):
         
         
     def test_confirm_validity(self):
-        self.assertTrue(self.prop.confirm_validity(open("proof.txt",'r')))
-        self.assertTrue(self.prop.confirm_validity(open("proof2.txt",'r')))
+        self.assertTrue(self.prop.confirm_validity(open("./proofs/proof.txt",'r')))
+        self.assertTrue(self.prop.confirm_validity(open("./proofs/proof2.txt",'r')))
         self.assertTrue(self.prop.confirm_validity(open("./proofs/proof3.txt",'r')))
+        self.assertFalse(self.prop.confirm_validity(open("./proofs/proof4.txt",'r')))
+        self.assertFalse(self.prop.confirm_validity(open("./proofs/proof5.txt",'r')))
         
 if __name__ == '__main__':
     unittest.main()

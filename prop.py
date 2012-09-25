@@ -151,6 +151,7 @@ class Prop():
             
             
     def comm(self, form1, form2): #Commutation
+        
         a = (self.find_main_op(form1)[0], self.find_main_op(form1)[1],
              self.find_main_op(form2)[1])
         
@@ -266,7 +267,10 @@ class Prop():
             for x in lst1[2:]:
                 lst2.append(x)
             lst2.append(lst1[0])
-            return eval(str1)
+            try:
+                return eval(str1)
+            except:
+                return False
         
         return True
         
