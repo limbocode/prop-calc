@@ -258,6 +258,22 @@ class Prop():
         return (self.conj(form1, form1, form2) or(
                 self.add(form1, form2) and
                 a[0] == a[1]))
+        
+        
+    def contra(self, form1, form2): #Contraposition
+        
+        a = self.split_form(form1)
+        b = self.split_form(form2)
+        
+        try:
+            return (self.strip_form(b[0][1:]) == a[1] and
+                    self.strip_form(b[1][1:]) == a[0] and
+                    a[2] == 'imp' and
+                    b[2] == 'imp')
+
+        except:
+            return False
+            
     
     def find_main_op(self, form):
         """

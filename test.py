@@ -100,6 +100,10 @@ class TestProp(unittest.TestCase):
         self.assertFalse(self.prop.assoc("(A\\/B)*C","A\\/(B\\/C)"))
         
         
+    def test_contra(self):
+        self.assertTrue(self.prop.contra("A->B","~B->~A"))
+        
+        
         
     def test_dup(self):
         self.assertTrue(self.prop.dup("A","A*A"))
