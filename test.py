@@ -83,11 +83,22 @@ class TestProp(unittest.TestCase):
         self.assertTrue(self.prop.comm("E*F","F*E"))
         self.assertTrue(self.prop.comm("E*(F->G)","(F->G)*E"))
         
-#    def test_assoc(self):
-#        self.assertTrue(self.prop.assoc("(A*B)*C","A*(B*C)"))
-#        self.assertTrue(self.prop.assoc("(A*B)*(C->D)","A*(B*(C->D))"))
-#        self.assertTrue(self.prop.assoc("(A*B)*(C*D)","A*(B*(C*D))"))
-#        self.assertTrue(self.prop.assoc("(A\\/B)\\/C","A\\/(B\\/C)"))
+    def test_assoc(self):
+        self.assertTrue(self.prop.assoc("(A*B)*C","A*(B*C)"))
+        self.assertTrue(self.prop.assoc("(A*B)*(C->D)","A*(B*(C->D))"))
+        self.assertTrue(self.prop.assoc("(A*B)*(C*D)","A*(B*(C*D))"))
+        self.assertTrue(self.prop.assoc("(A\\/B)\\/C","A\\/(B\\/C)"))
+
+    def test_assocand(self):
+        self.assertTrue(self.prop.assocand("(A*B)*C","A*(B*C)"))
+        self.assertTrue(self.prop.assocand("A*(B*C)","(A*B)*C"))
+        self.assertTrue(self.prop.assocand("(A*B)*(C->D)","A*(B*(C->D))"))
+        
+        
+    def test_assocor(self):
+        self.assertTrue(self.prop.assoc("(A\\/B)\\/C","A\\/(B\\/C)"))
+        self.assertFalse(self.prop.assoc("(A\\/B)*C","A\\/(B\\/C)"))
+        
         
         
     def test_dup(self):

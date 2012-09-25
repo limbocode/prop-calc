@@ -165,7 +165,7 @@ class Prop():
         Then we will apply it and finally we will decide if
         it is valid.
         """
-        
+                
         a = self.split_form(form1)
         
         if a[2] == 'or':
@@ -174,44 +174,83 @@ class Prop():
             return self.assocand(form1,form2)
             
     def assocor(self, form1, form2):
-        pass
+                
+                
+        try:
+            a = self.split_form(form1)
+            b = self.split_form(form2)
+            c = self.split_form(a[0])
+            d = self.split_form(b[1])
+            
+            if (a[1] == d[1] and
+                b[0] == c[0] and
+                c[1] == d[0] and
+                (a[2],b[2],c[2],d[2]) ==
+                ('or','or','or','or')):
+                
+                return True
+            
+        except:
+            pass
+        
+        try:
+            a = self.split_form(form1)
+            b = self.split_form(form2)
+            c = self.split_form(a[1])
+            d = self.split_form(b[0])
+            
+            
+            if (a[0] == d[0] and
+                b[1] == c[1] and
+                c[0] == d[1] and
+                (a[2],b[2],c[2],d[2]) ==
+                ('or','or','or','or')):
+                
+                return True
+            
+        except:
+            pass
+        
+        return False
     
     def assocand(self, form1, form2):
-        a = self.split_form(form1)
-        b = self.split_form(form2)
-        c = self.split_form(a[0])
         
-        if a[2] != 'and' or b[2] != 'and':
-            return False
-        
-        if not c or c[2] != 'and':
-            pass
+        try:
+            a = self.split_form(form1)
+            b = self.split_form(form2)
+            c = self.split_form(a[0])
+            d = self.split_form(b[1])
             
-    def split_form_recursive(self, form1):
-        """
-        This method breaks a formula down into its
-        lowest terms. (A*B)*(C->D) produces 
-        [[A,B,'and'],[C,D,'imp'],'and'].
-        A*(B*(C->D)) produces
-        [A,[B,[C,D,'imp'],'and'],'and']
-        """
-        pass
-
+            if (a[1] == d[1] and
+                b[0] == c[0] and
+                c[1] == d[0] and
+                (a[2],b[2],c[2],d[2]) ==
+                ('and','and','and','and')):
+                
+                return True
+            
+        except:
+            pass
         
-    def breaks_down(self, form1, form2):
-        """
-        Instead of using the association rules, I will instead
-        check to see if the two formulas can be broken down by
-        the 'and' operation or the 'or' operation into the same
-        parts. For example (A*B)*(C*D) is equivalent to A*(B*(C*D)).
-        This is because, if we look at the main operator 'and' in
-        both cases and break the two formulas done according
-        to this operator we get A, B, C, and D connected by and.
-        Also, (A\\/B)\\/C is equivalent to A\\/(B\\/C).
-        """
+        try:
+            a = self.split_form(form1)
+            b = self.split_form(form2)
+            c = self.split_form(a[1])
+            d = self.split_form(b[0])
+            
+            
+            if (a[0] == d[0] and
+                b[1] == c[1] and
+                c[0] == d[1] and
+                (a[2],b[2],c[2],d[2]) ==
+                ('and','and','and','and')):
+                
+                return True
+            
+        except:
+            pass
         
-
-
+        return False
 
     def dup(self, form1, form2): #Duplication
         a = self.split_form(form2)
