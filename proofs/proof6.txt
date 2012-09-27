@@ -1,0 +1,6 @@
+1.	Pa*Qa				Pr
+2.	Pa->Aa				Pr
+3.	Pa					Simp 1
+4.	Aa					MP 2,3
+5.	Q					Simp 1
+6.	Qa*Aa				Conj 4,5

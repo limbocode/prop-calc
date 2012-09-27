@@ -377,9 +377,18 @@ class Prop():
     def confirm_validity(self, file1):        
         lst1 = self.proof_to_list(file1)
         lst2 = []
+        str1 = ("The is a problem with the" +
+                "following lines: ")
         for element in lst1:
             lst2.append(self.test(element))
-        return all(lst2)
+        if all(lst2):
+            return "Proof is valid."
+        else:
+            for i,elem in enumerate(lst2):
+                if elem == False:
+                    str1 += str(i) + ", "
+            return str1[:-2]
+                    
 #            return "Proof is correct."
 #        else:
 #            return "Error with lines " + str(lst2)
@@ -481,15 +490,15 @@ if __name__ == '__main__':
     a = Prop()
 #    a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
 #                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
-#    file1 = open("proof.txt",'r')
+    file1 = open("proofs/proof6.txt",'r')
 #    file1 = a.prompt_for_file()
-#    print a.confirm_validity(file1)
+    print a.confirm_validity(file1)
 #    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
 #
 #    file1 = a.prompt_for_file()
 #    print a.confirm_validity(file1)
 
-    print a.split_form("(F::G) -> (A -> F )")
+#    print a.split_form("(F::G) -> (A -> F )")
 
     
         
