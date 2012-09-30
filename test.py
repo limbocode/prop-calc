@@ -157,6 +157,7 @@ class TestProp(unittest.TestCase):
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof4.txt",'r')))
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof5.txt",'r')))
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof6.txt",'r')))
+        self.assertTrue(self.prop.confirm_validity(open("./proofs/proof7.txt",'r')))
         
     def test_confirm_validity_string(self):
         self.assertEqual(self.prop.confirm_validity_string(open("./proofs/proof6.txt",'r')),

@@ -592,9 +592,10 @@ class Prop():
             line = re.sub(r"\t+","\t",line)
             line = re.sub(r"\.\t+","\t",line)
             lst2 = line.split("\t")
-            lst2 = lst2[1:]
-            lst2 = self.convert1(lst2)
-            lst1.append(lst2)
+            if len(lst2) == 3:
+                lst2 = lst2[1:]
+                lst2 = self.convert1(lst2)
+                lst1.append(lst2)
         
         for element in lst1:
             lst2 = self.convert2(element, lst1)

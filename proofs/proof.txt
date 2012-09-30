@@ -1,4 +1,4 @@
-1.	Pa*Qa				Pr
+1.	Pa *Qa				Pr
 2.	Pa->Aa				Pr
 3.	Pa					Simp 1
 4.	Aa					MP 2,3
