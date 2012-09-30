@@ -281,27 +281,64 @@ class Prop():
             
     def dem(self, form1, form2): #DeMorgan's
         try:
-            if self.split_form(form1)[2] == 'and':
-                return self.demand(form1,form2)
+            split_form1 = self.split_form(form1)
+            split_form2 = self.split_form(form2)
+            if split_form1[1] != 'neg':
+                return False 
+            split_form1 = self.split_form(split_form1[0])
+            if split_form1[2] == 'and':
+                return self.__demand(split_form1, split_form2)
             else:
-                return self.demor(form1,form2)
+                return self.__demor(split_form1, split_form2)
             
         except:
             return False
         
-    def demor(self, form1, form2):
-        pass
-        
-    def demand(self, form1, form2):
-        
-        a = self.strip_form(form1)
-        b = self.strip_form(form2)
+    def __demor(self, split_form1, split_form2):
+        a = split_form1
+        b = split_form2
         
         try:
-            if a[0] != '~':
-                return False           
+            return ('~' + a[0] == b[0] and
+                     '~' + a[1] ==  b[1] and b[2] == 'and')
+      
         except:
             return False
+        
+    def __demand(self, split_form1, split_form2):
+        
+        a = split_form1
+        b = split_form2
+        
+        try:
+            return ('~' + a[0] == b[0] and
+                     '~' + a[1] ==  b[1] and b[2] == 'or')
+      
+        except:
+            return False
+        
+        
+        
+    def be(self, form1, form2):
+        return (self.__be1(form1, form2) or
+                self.__be1(form2, form1))
+        
+    def __be1(self, form1, form2):
+        a = self.split_form(form1)
+        b = self.split_form(form2)
+        c = self.split_form(b[0])
+        d = self.split_form(b[1])
+        
+        return (a[2] == 'equiv' and
+                b[2] == 'and' and
+                c[2] == 'imp' and
+                d[2] == 'imp' and
+                a[0] == c[0] and
+                a[0] == d[1] and
+                a[1] == c[1] and
+                a[1] == d[0]
+                )
+
     
     def find_main_op(self, form):
         """
@@ -377,8 +414,16 @@ class Prop():
     def confirm_validity(self, file1):        
         lst1 = self.proof_to_list(file1)
         lst2 = []
-        str1 = ("The is a problem with the" +
+        for element in lst1:
+            lst2.append(self.test(element))
+        return all(lst2)
+                    
+
+    def confirm_validity_string(self, file1):
+        str1 = ("There is a problem with the " +
                 "following lines: ")
+        lst1 = self.proof_to_list(file1)
+        lst2 = []
         for element in lst1:
             lst2.append(self.test(element))
         if all(lst2):
@@ -386,13 +431,8 @@ class Prop():
         else:
             for i,elem in enumerate(lst2):
                 if elem == False:
-                    str1 += str(i) + ", "
+                    str1 += str(i+1) + ", "
             return str1[:-2]
-                    
-#            return "Proof is correct."
-#        else:
-#            return "Error with lines " + str(lst2)
-
 
     def test(self, lst1):        
         lst1[1]
@@ -492,7 +532,7 @@ if __name__ == '__main__':
 #                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
     file1 = open("proofs/proof6.txt",'r')
 #    file1 = a.prompt_for_file()
-    print a.confirm_validity(file1)
+    print a.confirm_validity_string(file1)
 #    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
 #
 #    file1 = a.prompt_for_file()

@@ -115,8 +115,14 @@ class TestProp(unittest.TestCase):
         self.assertTrue(self.prop.dup("A","A\\/A"))
         
         
-#    def test_dem(self):
-#        self.assertTrue(self.prop.dem("~(A*B)","~A\\/~B"))
+    def test_dem(self):
+        self.assertTrue(self.prop.dem("~(A*B)","~A\\/~B"))
+        self.assertTrue(self.prop.dem("~(A\\/B)","~A*~B"))
+        self.assertFalse(self.prop.dem("",""))
+        
+    def test_be(self):
+        self.assertTrue(self.prop.be("A::B","((A->B)*(B->A))"))
+        self.assertTrue(self.prop.be("((A->B)*(B->A))","A::B"))
 
 #    def test_demand(self):
 #        self.assertTrue(self.prop.demand("~(A*B)","~A\\/~B"))
@@ -128,7 +134,13 @@ class TestProp(unittest.TestCase):
         self.assertTrue(self.prop.confirm_validity(open("./proofs/proof3.txt",'r')))
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof4.txt",'r')))
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof5.txt",'r')))
+        self.assertFalse(self.prop.confirm_validity(open("./proofs/proof6.txt",'r')))
         
+    def test_confirm_validity_string(self):
+        self.assertEqual(self.prop.confirm_validity_string(open("./proofs/proof6.txt",'r')),
+                         "There is a problem with the following lines: 5, 6")
+    
+    
 if __name__ == '__main__':
     unittest.main()
 
