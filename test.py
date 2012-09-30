@@ -90,6 +90,7 @@ class TestProp(unittest.TestCase):
         
     def test_assoc(self):
         self.assertTrue(self.prop.assoc("(A*B)*C","A*(B*C)"))
+        self.assertTrue(self.prop.assoc("A*(B*C)","(A*B)*C"))
         self.assertTrue(self.prop.assoc("(A*B)*(C->D)","A*(B*(C->D))"))
         self.assertTrue(self.prop.assoc("(A*B)*(C*D)","A*(B*(C*D))"))
         self.assertTrue(self.prop.assoc("(A\\/B)\\/C","A\\/(B\\/C)"))
@@ -107,18 +108,23 @@ class TestProp(unittest.TestCase):
         
     def test_contra(self):
         self.assertTrue(self.prop.contra("A->B","~B->~A"))
+        self.assertTrue(self.prop.contra("~B->~A","A->B"))
         
         
         
     def test_dup(self):
         self.assertTrue(self.prop.dup("A","A*A"))
         self.assertTrue(self.prop.dup("A","A\\/A"))
+        self.assertTrue(self.prop.dup("A*A","A"))
+        self.assertTrue(self.prop.dup("A\\/A","A"))
         
         
     def test_dem(self):
         self.assertTrue(self.prop.dem("~(A*B)","~A\\/~B"))
         self.assertTrue(self.prop.dem("~(A\\/B)","~A*~B"))
         self.assertFalse(self.prop.dem("",""))
+        self.assertTrue(self.prop.dem("~A\\/~B","~(A*B)"))
+        self.assertTrue(self.prop.dem("~A*~B","~(A\\/B)"))
         
     def test_be(self):
         self.assertTrue(self.prop.be("A::B","((A->B)*(B->A))"))

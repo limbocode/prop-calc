@@ -145,6 +145,7 @@ class Prop():
                 and {tup4[0],tup4[1]} == {tup1[1],tup2[1]})
 
 
+
     def dn(self, form1, form2): #Double Negation
         return ((form1[:2] == '~~' and 
                 self.strip_form(form1[2:]) == self.strip_form(form2))
@@ -256,7 +257,12 @@ class Prop():
         
         return False
 
-    def dup(self, form1, form2): #Duplication
+
+    def dup(self, form1, form2):
+        return (self.__dup1(form1, form2) or
+                self.__dup1(form2, form1))
+
+    def __dup1(self, form1, form2): #Duplication
         a = self.split_form(form2)
         
         return (self.conj(form1, form1, form2) or(
@@ -264,7 +270,12 @@ class Prop():
                 a[0] == a[1]))
         
         
-    def contra(self, form1, form2): #Contraposition
+        
+    def contra(self, form1, form2):
+        return (self.__contra1(form1, form2) or
+                self.__contra1(form2, form1))
+            
+    def __contra1(self, form1, form2): #Contraposition
         
         a = self.split_form(form1)
         b = self.split_form(form2)
@@ -279,7 +290,13 @@ class Prop():
             return False
             
             
-    def dem(self, form1, form2): #DeMorgan's
+            
+    def dem(self, form1, form2):
+        
+        return (self.__dem1(form1, form2) or
+                self.__dem1(form2, form1))
+            
+    def __dem1(self, form1, form2): #DeMorgan's
         try:
             split_form1 = self.split_form(form1)
             split_form2 = self.split_form(form2)
