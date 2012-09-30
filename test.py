@@ -94,6 +94,7 @@ class TestProp(unittest.TestCase):
         self.assertTrue(self.prop.assoc("(A*B)*(C->D)","A*(B*(C->D))"))
         self.assertTrue(self.prop.assoc("(A*B)*(C*D)","A*(B*(C*D))"))
         self.assertTrue(self.prop.assoc("(A\\/B)\\/C","A\\/(B\\/C)"))
+        self.assertFalse(self.prop.assoc("",""))
 
     def test_assocand(self):
         self.assertTrue(self.prop.assocand("(A*B)*C","A*(B*C)"))
@@ -109,6 +110,7 @@ class TestProp(unittest.TestCase):
     def test_contra(self):
         self.assertTrue(self.prop.contra("A->B","~B->~A"))
         self.assertTrue(self.prop.contra("~B->~A","A->B"))
+        self.assertFalse(self.prop.contra("",""))
         
         
         
@@ -122,17 +124,31 @@ class TestProp(unittest.TestCase):
     def test_dem(self):
         self.assertTrue(self.prop.dem("~(A*B)","~A\\/~B"))
         self.assertTrue(self.prop.dem("~(A\\/B)","~A*~B"))
-        self.assertFalse(self.prop.dem("",""))
         self.assertTrue(self.prop.dem("~A\\/~B","~(A*B)"))
         self.assertTrue(self.prop.dem("~A*~B","~(A\\/B)"))
+        self.assertFalse(self.prop.dem("",""))
         
     def test_be(self):
         self.assertTrue(self.prop.be("A::B","((A->B)*(B->A))"))
         self.assertTrue(self.prop.be("((A->B)*(B->A))","A::B"))
+        self.assertFalse(self.prop.be("",""))
 
-#    def test_demand(self):
-#        self.assertTrue(self.prop.demand("~(A*B)","~A\\/~B"))
+    def test_ce(self):
+        self.assertTrue(self.prop.ce("A->B","~A\\/B"))
+        self.assertTrue(self.prop.ce("~A\\/B","A->B"))
+        self.assertFalse(self.prop.ce("",""))
         
+    def test_dist(self):
+        self.assertTrue(self.prop.dist("A*(B\\/C)","(A*B)\\/(A*C)"))
+        self.assertTrue(self.prop.dist("Ax*(By\\/Cz)","(Ax*By)\\/(Ax*Cz)"))
+        self.assertTrue(self.prop.dist("(A*B)\\/(A*C)","A*(B\\/C)"))
+        self.assertTrue(self.prop.dist("A\\/(B*C)","(A\\/B)*(A\\/C)"))
+        self.assertFalse(self.prop.dist("",""))
+        
+    def test_exp(self):
+        self.assertTrue(self.prop.exp("(A*B)->C","A->(B->C)"))
+        self.assertTrue(self.prop.exp("A->(B->C)","(A*B)->C"))
+        self.assertFalse(self.prop.exp("",""))
         
     def test_confirm_validity(self):
         self.assertTrue(self.prop.confirm_validity(open("./proofs/proof.txt",'r')))

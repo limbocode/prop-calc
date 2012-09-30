@@ -173,10 +173,13 @@ class Prop():
                 
         a = self.split_form(form1)
         
-        if a[2] == 'or':
-            return self.assocor(form1,form2)
-        else:
-            return self.assocand(form1,form2)
+        try:        
+            if a[2] == 'or':
+                return self.assocor(form1,form2)
+            else:
+                return self.assocand(form1,form2)
+        except:
+            return False
             
     def assocor(self, form1, form2):
                 
@@ -337,8 +340,11 @@ class Prop():
         
         
     def be(self, form1, form2):
-        return (self.__be1(form1, form2) or
+        try:
+            return (self.__be1(form1, form2) or
                 self.__be1(form2, form1))
+        except:
+            return False
         
     def __be1(self, form1, form2):
         a = self.split_form(form1)
@@ -356,6 +362,115 @@ class Prop():
                 a[1] == d[0]
                 )
 
+
+    def ce(self, form1, form2):
+        
+        try:
+            return (self.__ce1(form1, form2) or
+                self.__ce1(form2, form1))
+        except:
+            return False
+
+    def __ce1(self, form1, form2):
+        a = self.split_form(form1)
+        b = self.split_form(form2)
+        
+        return (a[2] == 'imp' and
+                b[2] == 'or' and
+                '~' + a[0] == b[0] and
+                a[1] == b[1])
+    
+    
+    
+    def exp(self, form1, form2):
+        try:
+            return (self.__exp1(form1, form2) or
+                    self.__exp1(form2, form1))
+            
+        except:
+            return False
+    
+    def __exp1(self, form1, form2):
+        try:
+            a = self.split_form(form1)
+            b = self.split_form(form2)
+            c = self.split_form(a[0])
+            d = self.split_form(b[1])
+
+            return (a[2] == 'imp' and
+                    b[2] == 'imp' and
+                    c[2] == 'and' and
+                    d[2] == 'imp' and
+                    a[1] == d[1] and
+                    b[0] == c[0] and
+                    c[1] == d[0])
+            
+        except:
+            return False
+        
+        
+    def dist(self, form1, form2):
+        try:
+            return (self.__dist1(form1, form2) or
+                    self.__dist1(form2, form1))
+        except:
+            return False
+        
+    def __dist1(self, form1, form2):
+        
+        try:
+            
+            a = self.split_form(form1)
+            b = self.split_form(form2)
+            c = self.split_form(a[1])
+            d = self.split_form(b[0])
+            e = self.split_form(b[1])
+            
+            if a[2] == 'and':
+                return self.__distand(a,b,c,d,e)
+            else:
+                return self.__distor(a, b, c, d, e)
+            
+        except:
+            return False
+        
+    def __distand(self,a,b,c,d,e):
+        try:     
+            
+            return (a[2] == 'and' and
+                    b[2] == 'or' and
+                    c[2] == 'or' and
+                    d[2] == 'and' and
+                    e[2] == 'and' and
+                    a[0] == d[0] and
+                    c[0] == d[1] and
+                    c[1] == e[1] and
+                    d[0] == e[0]
+                    )
+            
+        except:
+            return False
+        
+        
+    def __distor(self,a,b,c,d,e):
+        try:     
+            
+            return (a[2] == 'or' and
+                    b[2] == 'and' and
+                    c[2] == 'and' and
+                    d[2] == 'or' and
+                    e[2] == 'or' and
+                    a[0] == d[0] and
+                    c[0] == d[1] and
+                    c[1] == e[1] and
+                    d[0] == e[0]
+                    )
+            
+        except:
+            return False
+        
+        
+    
     
     def find_main_op(self, form):
         """
