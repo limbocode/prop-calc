@@ -570,6 +570,9 @@ class Prop():
         lst1[1]
         lst2 = []
         
+        if lst1[0] == 'return False':
+            return False
+        
         if lst1[1] != 'pr':
             str1 = "self." + lst1[1] + "(*lst2)"
             for x in lst1[2:]:
@@ -596,6 +599,10 @@ class Prop():
                 lst2 = lst2[1:]
                 lst2 = self.convert1(lst2)
                 lst1.append(lst2)
+            elif re.sub(r"\s+","",lst2[0]):
+                print lst2
+                print re.sub(r"\s+","",lst2[0])
+                lst1.append(['return False','return False'])
         
         for element in lst1:
             lst2 = self.convert2(element, lst1)
