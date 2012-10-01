@@ -75,21 +75,11 @@ class Prop():
     def ds(self, form1, form2, form3): #Disjunctive Syllogism
         
         a = self.split_form(form1)
-        strip2 = self.strip_form(form2)
-        strip3 = self.strip_form(form3)
-        
-        try:
-            return (a[2] == 'or' and
-                    strip2[0] == '~' and
-                    ((strip3 == a[0] and
-                    a[1] == self.strip_form(strip2[1:]))
-                    or
-                    (strip3 == a[1] and
-                    a[0] == self.strip_form(strip2[1:])))
-                    )
-            
-        except:
-            return False
+        b = self.split_form(form2)
+        c = self.split_form(form1)
+        print a 
+        print b 
+        print c
         
         
     def add(self, form1, form2): #Addition
@@ -480,32 +470,31 @@ class Prop():
         subdepth = 0
         
         try:
-            if form[0] == '~' and (len(form[1:]) == 1 or 
-                                   self.strip_form(form[1:]) == form[2:-1]):
+            for i, char in enumerate(form):
+                if char == '(':
+                    subdepth += 1
+                if char == ')':
+                    subdepth -= 1
+                if char == '*' and subdepth == 0:
+                    return (i, 'and')
+                if char == '\\' and subdepth == 0:
+                    if form[i+1] == '/':
+                        return (i, 'or')
+                if char == ':' and subdepth == 0:
+                    if form[i+1]  == ':':
+                        return (i, 'equiv')
+                if char == '-' and subdepth == 0:
+                    if form[i+1] == '>':
+                        return (i, 'imp')
+            
+            if form[0] == '~':
                 return (0, 'neg')
             
         except:
             pass
                 
-#        if form[0] == '~' and self.strip_form(form[1:]) == form[2:-1]:
-#            return (0, 'neg')
         
-        for i, char in enumerate(form):
-            if char == '(':
-                subdepth += 1
-            if char == ')':
-                subdepth -= 1
-            if char == '*' and subdepth == 0:
-                return (i, 'and')
-            if char == '\\' and subdepth == 0:
-                if form[i+1] == '/':
-                    return (i, 'or')
-            if char == ':' and subdepth == 0:
-                if form[i+1]  == ':':
-                    return (i, 'equiv')
-            if char == '-' and subdepth == 0:
-                if form[i+1] == '>':
-                    return (i, 'imp')
+
             
                      
     def strip_form(self, form):     
