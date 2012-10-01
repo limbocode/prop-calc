@@ -74,12 +74,22 @@ class Prop():
     
     def ds(self, form1, form2, form3): #Disjunctive Syllogism
         
-        a = self.split_form(form1)
-        b = self.split_form(form2)
-        c = self.split_form(form1)
-        print a 
-        print b 
-        print c
+        try:
+            
+            a = self.split_form(form1)
+            b = self.split_form(form2)
+            c = self.strip_form(form3)
+            
+            return ((a[2] == 'or' and
+                    b[1] == 'neg') and
+                    ((a[0] == b[0] and
+                    a[1] == c) 
+                     or
+                    (a[1] == b[0] and
+                    a[0] == c)
+                     ))
+        except:
+            return False
         
         
     def add(self, form1, form2): #Addition

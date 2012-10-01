@@ -1,8 +1,16 @@
 1.	F :: ~D				Pr
 2.	D -> C				Pr
-3.	~(B\/C)\/~(A*D)		Pr
+3.	~(B\/C)\/~(A\/D)	Pr
 4.	A					Pr
 5.	A\/D				Add 4
 6.	~~(A\/D)			DN 5
 7.	~(B\/C)				DS 3,6
+8.	~B*~C				DeM 7
+9.	~B					Simp 8
+10.	~C					Simp 8
+11.	~D					MT 2,10
+12.	(F->~D)*(~D->F)		BE 1
+13.	~D->F				Simp 12
+14.	F					MP 11,13
+15.	F\/G				Add 14
 

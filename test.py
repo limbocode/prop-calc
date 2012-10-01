@@ -29,12 +29,12 @@ class TestProp(unittest.TestCase):
         self.assertTrue(self.prop.conj("A\\/B","~(C->D)","(A\\/B)*~(C->D)"))
         
     def test_ds(self):
-        pass
-#        self.assertTrue(self.prop.ds("~(B\\/C)\\/~(A*D)", "~~(A\\/D)", "~(B\\/C)"))
-#        self.assertTrue(self.prop.ds("(~A\\/(B->C))\\/~D","~(~A\\/(B->C))","~D"))
-#        self.assertTrue(self.prop.ds("(~A\\/(B->C))\\/~D","~(~D)","(~A\\/(B->C))"))
-#        self.assertFalse(self.prop.ds("(~A\\/(B->C))\\/~D","(~D)","(~A\\/(B->C))"))
-#        self.assertFalse(self.prop.ds("A","(~D)","(~A\\/(B->C))"))
+        self.assertTrue(self.prop.ds("(~A\\/(B->C))\\/~D","~(~A\\/(B->C))","~D"))
+        self.assertTrue(self.prop.ds("(~A\\/(B->C))\\/~D","~(~D)","(~A\\/(B->C))"))
+        self.assertFalse(self.prop.ds("(~A\\/(B->C))\\/~D","(~D)","(~A\\/(B->C))"))
+        self.assertFalse(self.prop.ds("A","(~D)","(~A\\/(B->C))"))
+        self.assertTrue(self.prop.ds("~(B\\/C)\\/~(A*D)", "~~(A*D)", "~(B\\/C)"))
+        self.assertTrue(self.prop.ds("~(B\\/C)\\/~(A\\/D)", "~~(A\\/D)", "~(B\\/C)"))
     
     def test_hs(self):
         self.assertTrue(self.prop.hs("(A\\/B)->(C*D)","(C*D)->(~E*F)","(A\\/B)->(~E*F)"))
@@ -165,12 +165,12 @@ class TestProp(unittest.TestCase):
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof4.txt",'r')))
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof5.txt",'r')))
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof6.txt",'r')))
-#        self.assertTrue(self.prop.confirm_validity(open("./proofs/proof7.txt",'r')))
+        self.assertTrue(self.prop.confirm_validity(open("./proofs/proof7.txt",'r')))
         
     def test_confirm_validity_string(self):
         self.assertEqual(self.prop.confirm_validity_string(open("./proofs/proof6.txt",'r')),
                          "There is a problem with the following lines: 5, 6")
-    
+        print self.prop.confirm_validity_string(open("./proofs/proof7.txt",'r'))
     
 if __name__ == '__main__':
     unittest.main()
