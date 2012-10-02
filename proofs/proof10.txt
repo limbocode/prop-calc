@@ -1,0 +1,17 @@
+1.	(A\/B)->~(C\/D)			Pr
+2.	(~C*E)->(F*~O)			Pr
+3.	(F\/H)->(J*~K)			Pr
+4.	A*E						Assp
+5.	A						Simp 4
+6.	E						Simp 4
+7.	A\/B					Add 5
+8.	~(C\/D)					MP 1,7
+9.	~C*~D					DeM 8
+10.	~C						Simp 9
+11.	~C*E					Conj 6,10
+12.	F*~O					MP 2,11
+13.	F						Simp 12
+14.	F\/H					Add 13
+15.	J*~K					MP 3,14
+16.	~K						Simp 15
+

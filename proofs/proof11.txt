@@ -1,0 +1,20 @@
+1.	A->(B->(C*D))		Pr
+2.	C->(E->(H*I))		Pr
+3.	F->~I				Pr
+4.	A*B					Assp
+5.	A					Assp
+6.	F					Assp
+7.	E					Assp
+S.	B->(C*D)			MP 1,5
+9.	B					Simp 4
+10.	C*D					MP 8,9
+11.	C					Simp 10
+12.	E->(H*I)			MP 2,11
+13.	H*I					MP 12,7
+14.	I					Simp 13
+15.	~I					MP 3,6
+16.	I*~I				Conj 14,15
+17.	~E					IP 7,16
+18.	F->~E				CP 6,17
+19.	A->(F->~E)			CP 5,18
+20.	(A*B)->(A->(F->~E))	CP 4,19

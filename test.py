@@ -158,6 +158,29 @@ class TestProp(unittest.TestCase):
         self.assertTrue(self.prop.exp("A->(B->C)","(A*B)->C"))
         self.assertFalse(self.prop.exp("",""))
         
+    def test_cp(self):
+        self.assertTrue(self.prop.cp("A","F->~E","A->(F->~E)"))
+        self.assertTrue(self.prop.cp("Ax","Fy->~Ez","Ax->(Fy->~Ez)"))
+    
+    
+    def test_ip(self):
+        self.assertTrue(self.prop.ip("E","I*~I","~E"))
+        self.assertTrue(self.prop.ip("E","~I*~~I","~E"))
+        self.assertTrue(self.prop.ip("E","(I)*~I","~E"))
+        self.assertTrue(self.prop.ip("E","(A->B)*~(A->B)","~E"))
+        self.assertTrue(self.prop.ip("E","~(A->B)*~~(A->B)","~E"))
+        self.assertTrue(self.prop.ip("Ex","~(Ax->By)*~~(Ax->By)","~Ex"))
+        self.assertFalse(self.prop.ip("E","~~(A->B)*~~(A->B)","~E"))
+        
+    def test_confirm_structure(self):
+        self.assertTrue(self.prop.confirm_structure([(7,16),(6,17),(5,18),(4,19)],
+                                                    [(1,),(2,),(3,),(4,),(5,),(6,),(7,),(8,1,5),
+                                                     (9,4),(10,8,9),(11,10),(12,2,11),
+                                                     (13,7,12),(14,13),(15,3,6),(16,14,15),
+                                                     (17,),(18,),(19,),(20,)]))
+        
+        
+    
     def test_confirm_validity(self):
         self.assertTrue(self.prop.confirm_validity(open("./proofs/proof.txt",'r')))
         self.assertTrue(self.prop.confirm_validity(open("./proofs/proof2.txt",'r')))
@@ -166,11 +189,13 @@ class TestProp(unittest.TestCase):
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof5.txt",'r')))
         self.assertFalse(self.prop.confirm_validity(open("./proofs/proof6.txt",'r')))
         self.assertTrue(self.prop.confirm_validity(open("./proofs/proof7.txt",'r')))
+        self.assertTrue(self.prop.confirm_validity(open("./proofs/proof8.txt",'r')))
+        self.assertTrue(self.prop.confirm_validity(open("./proofs/proof9.txt",'r')))
         
     def test_confirm_validity_string(self):
         self.assertEqual(self.prop.confirm_validity_string(open("./proofs/proof6.txt",'r')),
                          "There is a problem with the following lines: 5, 6")
-        print self.prop.confirm_validity_string(open("./proofs/proof7.txt",'r'))
+        print self.prop.confirm_validity_string(open("./proofs/proof10.txt",'r'))
     
 if __name__ == '__main__':
     unittest.main()

@@ -470,6 +470,64 @@ class Prop():
             return False
         
         
+        
+        
+    def cp(self, form1, form2, form3):
+        a = self.split_form(form3)
+        form1 = self.strip_form(form1)
+        form2 = self.strip_form(form2)
+
+        return (form1 == a[0] and
+                form2 == a[1] and
+                a[2] == 'imp')    
+        
+    def ip(self, form1, form2, form3):
+        form1 = self.strip_form(form1)
+        form3 = self.strip_form(form3)
+        return (self.__is_contradiction(form2) and
+                (form1 == '~' + form3 or
+                     form3 == '~' + form1 or
+                     form1 == '~(' + form3 + ')' or
+                     form3 == '~(' + form1 + ')'))
+        
+    
+    
+    def __is_contradiction(self,form1):
+        a = self.split_form(form1)
+        try:
+            return (a[2] == 'and' and
+                    (a[0] == '~' + a[1] or
+                     a[1] == '~' + a[0] or
+                     a[0] == '~(' + a[1] + ')' or
+                     a[1] == '~(' + a[0] + ')'))
+            
+        except:
+            return False
+        
+    def confirm_structure(self, ip, refs):
+        for tuple1 in refs:
+            print tuple1
+            if not len(tuple1) == 1:
+                lst1 = []
+                
+                for tuple2 in ip:
+                    # if the line number is outside the scope of 
+                    # an assumption we must be cautious
+                    if tuple1[0] > tuple2[1]:
+                        lst1.append(tuple2)
+                for ref in tuple1[1:]:
+                    if self.__is_between(ref,lst1):
+                        return False
+        return True
+                        
+                                                
+    def __is_between(self,ref,lst1):
+        if lst1:
+            for range1 in lst1:
+                if (ref <= range1[1] and
+                    ref >= range[0]):
+                    return True
+        return False
     
     
     def find_main_op(self, form):
@@ -572,7 +630,7 @@ class Prop():
         if lst1[0] == 'return False':
             return False
         
-        if lst1[1] != 'pr':
+        if lst1[1] != 'pr' and lst1[1] != 'assp':
             str1 = "self." + lst1[1] + "(*lst2)"
             for x in lst1[2:]:
                 lst2.append(x)
@@ -669,7 +727,7 @@ if __name__ == '__main__':
     a = Prop()
 #    a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
 #                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
-    file1 = open("proofs/proof6.txt",'r')
+    file1 = open("proofs/proof11.txt",'r')
 #    file1 = a.prompt_for_file()
     print a.confirm_validity_string(file1)
 #    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")

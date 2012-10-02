@@ -1,0 +1,7 @@
+1.	(A\/B)->(C*D)			Pr
+2.	~D						Pr
+3.	~C\/~D					Add 2
+4.	~(C*D)					DeM 3
+5.	~(A\/B)					MT 1,4
+6.	~A*~B					DeM 5
+7.	~A						Simp 6

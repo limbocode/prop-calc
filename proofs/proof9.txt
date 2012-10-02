@@ -1,0 +1,10 @@
+1.	(A*B)\/(C*~D)			Pr
+2.	A->~B					Pr
+3.	C->(D\/F)				Pr
+4.	~A\/~B					CE 2
+5.	~(A*B)					DeM 4
+6.	C*~D					DS 1,5
+7.	C						Simp 6
+8.	~D						Simp 6
+9.	D\/F					MP 3,7
+10.	F						DS 9,8
