@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.27)  2 OCT 2012 21:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.27)  2 OCT 2012 22:09
 entering extended mode
  %&-line parsing enabled.
 **prop-calc.tex
@@ -2672,68 +2672,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--34
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 35--37
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 38--41
+Underfull \hbox (badness 10000) in paragraph at lines 35--112
 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 42--45
+Underfull \hbox (badness 10000) in paragraph at lines 113--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--49
+Underfull \hbox (badness 10000) in paragraph at lines 117--120
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 50--52
+Underfull \hbox (badness 10000) in paragraph at lines 121--124
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--56
+Underfull \hbox (badness 10000) in paragraph at lines 125--127
+
+ []
+
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 128--131
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 57--59
+Underfull \hbox (badness 10000) in paragraph at lines 132--134
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--62
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--66
+Underfull \hbox (badness 10000) in paragraph at lines 138--141
 
  []
 
-[2] (./prop-calc.aux) ) 
+[3] (./prop-calc.aux) ) 
 Here is how much of TeX's memory you used:
  7993 strings out of 493848
  128567 string characters out of 1152823
- 195953 words of memory out of 3000000
+ 199953 words of memory out of 3000000
  11140 multiletter control sequences out of 15000+50000
  8383 words of font info for 34 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 37i,10n,35p,240b,127s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,13n,35p,240b,151s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
 /cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb>
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share
 /texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on prop-calc.pdf (2 pages, 42548 bytes).
+Output written on prop-calc.pdf (3 pages, 43839 bytes).
 PDF statistics:
- 25 PDF objects out of 1000 (max. 8388607)
+ 28 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  3073 words of extra memory for PDF output out of 10000 (max. 10000000)
 
