@@ -621,7 +621,7 @@ class Prop():
                 x = lst2.pop()
                 if not element[2] == x:
                     return False
-        return True
+        return not bool(lst2)
 
 
     def confirm_validity_string(self, file1):

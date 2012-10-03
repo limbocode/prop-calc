@@ -1,0 +1,72 @@
+\documentclass[12pt]{article}
+%\usepackage{geometry}
+\usepackage[a4paper,centering,includehead]{geometry}
+%\usepackage[paperwidth=6in, paperheight=9in]{geometry} %For Book Printing
+%==============================
+\usepackage{microtype}
+%==============================
+%Math Related Packages
+\usepackage{amsmath, amsfonts, amssymb, amsthm, xfrac, mathtools}
+\begin{document}
+$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $p$ \end{tabular}}{/\therefore q}$
+
+
+$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $\sim q$ \end{tabular}}{/\therefore \sim p}$
+
+$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $q\supset r$ \end{tabular}}{/\therefore p \subset r}$
+
+$\dfrac{p\cdot q}{/\therefore p}$
+
+$\dfrac{p\cdot q}{/\therefore q}$
+
+$\dfrac{\begin{tabular}{l}$p$ \\ $q$ \end{tabular}}{/\therefore p\cdot q}$
+
+$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $r\supset s$ \\ $p\lor r$ \end{tabular}}{/\therefore q \lor s}$
+
+$\dfrac{\begin{tabular}{l}$p\lor q$ \\ $\sim p$ \end{tabular}}{/\therefore q}$
+
+$\dfrac{\begin{tabular}{l}$p\lor q$ \\ $\sim q$ \end{tabular}}{/\therefore p}$
+
+$\dfrac{p}{/\therefore p\lor q}$
+
+$\dfrac{q}{/\therefore p \lor q}$\\
+ \\
+
+Double Negation\\ 
+$p :: \sim\sim p$\\
+
+Duplication\\
+$p :: (p\lor p)$\\
+$p :: (p\cdot p)$\\
+
+Commutation\\
+$(p\lor q) :: (q\lor p)$\\
+$(p\cdot q) :: (q\cdot p)$\\
+
+Association\\
+$((p\lor q)\lor r) :: (p\lor (q\lor r))$\\
+$((p\cdot q)\cdot r) :: (p\cdot(q\cdot r))$\\
+
+Contraposition\\
+$(p\supset q) :: (\sim q\supset \sim p)$\\
+
+DeMorgan's\\
+$\sim(p\lor q) :: (\sim p\cdot \sim q)$\\
+$\sim(p\cdot q) :: (\sim p\lor \sim q)$\\
+
+Biconditional Exchange\\
+$(p\equiv q) :: ((p\supset q)\cdot(q\supset p))$\\
+
+Conditional Exchange\\
+$(p\supset q) :: (\sim p\lor q)$\\
+
+Distribution\\
+$(p\cdot(q\lor r)) :: ((p\cdot q)\lor(p\cdot r))$\\
+$(p\lor (q\cdot r)) :: ((p\lor q)\cdot (p\lor r))$\\
+
+Exportation\\
+$((p\cdot q)\supset r) :: (p\supset(q\supset r))$ 
+
+
+
+\end{document}
