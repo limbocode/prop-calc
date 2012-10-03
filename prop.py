@@ -506,7 +506,6 @@ class Prop():
         
     def confirm_structure(self, ip, refs):
         for tuple1 in refs:
-            print tuple1
             if not len(tuple1) == 1:
                 lst1 = []
                 
@@ -525,7 +524,7 @@ class Prop():
         if lst1:
             for range1 in lst1:
                 if (ref <= range1[1] and
-                    ref >= range[0]):
+                    ref >= range1[0]):
                     return True
         return False
     
@@ -601,17 +600,34 @@ class Prop():
         
         
     def confirm_validity(self, file1):        
-        lst1 = self.proof_to_list(file1)
+        lst1,ip,refs = self.proof_to_list(file1)
         lst2 = []
+        
         for element in lst1:
             lst2.append(self.test(element))
-        return all(lst2)
-                    
+            
+        return (all(lst2) and 
+                self.confirm_structure(ip, refs)
+                and
+                self.ip_do_not_cross(lst1))
+  
+
+    def ip_do_not_cross(self,lst1):
+        lst2 = []
+        for element in lst1:
+            if element[1] == 'assp':
+                lst2.append(element[0])
+            if element[1] in ('ip','cp'):
+                x = lst2.pop()
+                if not element[2] == x:
+                    return False
+        return True
+
 
     def confirm_validity_string(self, file1):
         str1 = ("There is a problem with the " +
                 "following lines: ")
-        lst1 = self.proof_to_list(file1)
+        lst1,ip,refs = self.proof_to_list(file1)
         lst2 = []
         for element in lst1:
             lst2.append(self.test(element))
@@ -657,16 +673,44 @@ class Prop():
                 lst2 = self.convert1(lst2)
                 lst1.append(lst2)
             elif re.sub(r"\s+","",lst2[0]):
-                print lst2
-                print re.sub(r"\s+","",lst2[0])
                 lst1.append(['return False','return False'])
+        
+        ip   = self.__ip(lst1)
+        refs = self.__refs(lst1)
+
         
         for element in lst1:
             lst2 = self.convert2(element, lst1)
             lst2[1] = lst2[1].lower()
             lst3.append(lst2)
 
-        return lst3
+        return (lst3,ip,refs)
+    
+    
+    def __refs(self,lst1):
+        lst2 = []
+        for i,element in enumerate(lst1):
+            if (not isinstance(element[-1],int)
+                or
+                element[-3].lower() in ('cp','ip')):
+                
+                lst2.append((i+1,))
+                
+            elif not isinstance(element[-2],int):
+                lst2.append((i+1,element[-1]))
+            else:
+                lst2.append((i+1,element[-2],element[-1]))
+        return lst2  
+    
+    def __ip(self,lst1):
+        lst2 = []
+        for element in lst1:
+            try:
+                if element[1].lower() in ('cp','ip'):
+                    lst2.append((element[-2],element[-1]))
+            except:
+                pass
+        return lst2
     
     
     def flatten(self, x):
@@ -729,13 +773,17 @@ if __name__ == '__main__':
 #                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
     file1 = open("proofs/proof11.txt",'r')
 #    file1 = a.prompt_for_file()
-    print a.confirm_validity_string(file1)
+    print a.confirm_validity(file1)
+#    print a.confirm_validity_string(file1)
 #    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
 #
 #    file1 = a.prompt_for_file()
 #    print a.confirm_validity(file1)
 
 #    print a.split_form("(F::G) -> (A -> F )")
+
+    file1 = open("proofs/proof12.txt",'r')
+    print a.confirm_validity(file1)
 
     
         
