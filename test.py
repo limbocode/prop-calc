@@ -125,6 +125,24 @@ class TestProp(unittest.TestCase):
         self.assertFalse(self.prop.exp("",""))
         
         
+        
+#Predicate Logic Methods
+
+    def test_ui(self):
+        self.assertTrue(self.prop.ui("(x)(Cx->Mx)","Ca->Ma"))
+        self.assertTrue(self.prop.ui("(x)(Mx->Vx)","Ma->Va"))
+        self.assertTrue(self.prop.ui("( x )( Mx -> Vx )","Ma->Va"))
+        self.assertFalse(self.prop.ui("",""))
+        
+    def test_eg(self):
+        self.assertTrue(self.prop.eg("Oa*Ea*Na","(\exists x)(Ox*Ex*Nx)"))
+        
+    def test_ei(self):
+        self.assertTrue(self.prop.ei("(\exists x)(Ox*Ex*Nx)","Oa*Ea*Na"))
+        
+    def test_ug(self):
+        self.assertTrue(self.prop.ug("Ca->Ma","(x)(Cx->Mx)"))
+        
 #Tests for conditional and indirect proofs.
     def test_cp(self):
         self.assertTrue(self.prop.cp("A","F->~E","A->(F->~E)"))
@@ -168,6 +186,7 @@ class TestProp(unittest.TestCase):
         self.assertEqual(self.prop.strip_form(" ( ( A \\/ B ) -> ~C ) "),"(A\\/B)->~C")
         self.assertEqual(self.prop.strip_form(" ( ( A \\/ B )) "),"A\\/B")
         self.assertEqual(self.prop.strip_form("(F::G) -> (A -> F )"),"(F::G)->(A->F)")
+        self.assertEqual(self.prop.strip_form("( x )(Cx ->Mx)"),"(x)(Cx->Mx)")
         
     def test_confirm_structure(self):
         self.assertTrue(self.prop.confirm_structure([(7,16),(6,17),(5,18),(4,19)],

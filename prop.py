@@ -557,6 +557,54 @@ class Prop():
         return not bool(lst2)
         
         
+        
+#Predicate Logic Methods
+
+    def ui(self, form1, form2):
+       
+        try:
+            dict1 = {}
+            form1 = self.strip_form(form1)
+            form2 = self.strip_form(form2)
+            var = form1[1]
+            form1 = form1[4:-1]
+            for i in range(len(form1)):
+                if form1[i] == var:
+                    if not dict1.has_key(var):
+                        dict1[var] = form2[i]
+                    else:
+                        return re.sub(var,dict1[var],form1) == form2
+  
+        except:
+            return False
+        
+        
+    def eg(self, form1, form2):
+        
+        try:
+            dict1 = {}
+            form1 = self.strip_form(form1)
+            form2 = self.strip_form(form2)
+            var = form2[8]
+            form2 = form2[11:-1]
+            for i in range(len(form2)):
+                if form2[i] == var:
+                    if not dict1.has_key(var):
+                        dict1[var] = form1[i]
+                    else:
+                        return re.sub(var,dict1[var],form2) == form1
+                
+        except:
+            return False
+        
+    def ei(self, form1, form2):
+        return self.eg(form2, form1)
+    
+    def ug(self, form1, form2):
+        return self.ui(form2, form1)
+        
+        
+        
 #Utilities used by above methods.
     def strip_form(self, form):
         form = re.sub(' ','',form)
