@@ -5,8 +5,37 @@ from pyparsing import Literal,Word,ZeroOrMore,Forward,nums,oneOf,Group,srange
 class Prop():
     def __init__(self):
         pass
+    
+#The following two methods define wffs and check them in the proof.
+    def syntax(self):
+        op = oneOf( '\\/ -> * ::')
+        lpar  = Literal('(')
+        rpar  = Literal( ')' )
+        statement = Word(srange('[A-Z]'),srange('[a-z]'))
+        expr = Forward()
+        atom = statement | lpar + expr + rpar
+        expr << atom + ZeroOrMore( op + expr )
+        expr.setResultsName("expr")
+        return expr
+    
+    def confirm_wff(self, form1):
+        expr = self.syntax()
+        form1 = self.strip_form(form1)
+        try:
+            result = ''.join(list(expr.parseString(form1)))
+        except:
+            result = None
+        return result == form1
 
-    def mp(self, form1, form2, form3): #Modus Ponens
+
+#Rules of inference.
+    def mp(self, form1, form2, form3):
+        return (self.__mp_one_way(form1, form2, form3) or
+                self.__mp_one_way(form2, form1, form3))
+        
+    
+    
+    def __mp_one_way(self, form1, form2, form3): #Modus Ponens
 
         a = self.split_form(form1)
         
@@ -17,9 +46,14 @@ class Prop():
                     self.strip_form(form3) == a[1])
         except:
             return False
-
+        
     
-    def mt(self, form1, form2, form3 ): # Modus Tollens
+    
+    def mt(self, form1, form2, form3):
+        return (self.__mt_one_way(form1, form2, form3) or
+                self.__mt_one_way(form2, form1, form3))
+    
+    def __mt_one_way(self, form1, form2, form3): # Modus Tollens
         
         a = self.split_form(form1)
         
@@ -36,9 +70,11 @@ class Prop():
         except:
             return False
         
+    def hs(self, form1, form2, form3):
+        return (self.__hs_one_way(form1, form2, form3) or
+                self.__hs_one_way(form2, form1, form3))
         
-        
-    def hs(self, form1, form2, form3): #Hypothetical Syllogism
+    def __hs_one_way(self, form1, form2, form3): #Hypothetical Syllogism
         
         a = self.split_form(form1)
         b = self.split_form(form2)
@@ -54,6 +90,9 @@ class Prop():
             
         except:
             return False
+        
+    
+    
         
     def simp(self, form1, form2): #Simplification
         
@@ -72,7 +111,31 @@ class Prop():
     def conj(self, form1, form2, form3): #Conjunction
         return self.simp(form3,form1) and self.simp(form3,form2)
     
-    def ds(self, form1, form2, form3): #Disjunctive Syllogism
+    
+    def dil(self, form1, form2, form3, form4):
+        return (self.__dil_one_way(form1, form2, form3, form4) or
+                self.__dil_one_way(form1, form3, form2, form4) or
+                self.__dil_one_way(form2, form1, form3, form4) or
+                self.__dil_one_way(form2, form3, form1, form4) or
+                self.__dil_one_way(form3, form1, form2, form4) or
+                self.__dil_one_way(form3, form2, form1, form4))
+        
+        
+    def __dil_one_way(self, form1, form2, form3, form4): #Dilemma
+        tup1 = self.split_form(form1)
+        tup2 = self.split_form(form2)
+        tup3 = self.split_form(form3)
+        tup4 = self.split_form(form4)
+
+        return ((tup1[2], tup2[2], tup3[2], tup4[2]) == ('imp','imp','or','or')
+                and {tup3[0],tup3[1]} == {tup1[0],tup2[0]}
+                and {tup4[0],tup4[1]} == {tup1[1],tup2[1]})
+    
+    def ds(self, form1, form2, form3): 
+        return (self.__ds_one_way(form1, form2, form3) or
+                self.__ds_one_way(form2, form1, form3))
+    
+    def __ds_one_way(self, form1, form2, form3): #Disjunctive Syllogism
         
         try:
             
@@ -104,48 +167,8 @@ class Prop():
         except:
             return False
         
-        
-    def split_form(self, form):
-        """
-        Splits a formula up into a tuple where the first element is the
-        first part of the formula before the main operator, the second
-        element is the second part of the formula after the main operator,
-        and the third is the name of the main operator.
-        """
-        
-        form = self.strip_form(form)
-        a = self.find_main_op(form)
-        
-        #checks for None
-        if not a:
-            return None
-        
-        if a[1] == 'neg':
-            return (self.strip_form(form[1:]), 'neg')
-        
-        
-        if a[1] in ['or','imp','equiv']:
-            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+2:]),
-                       a[1])
-            
-        else:
-            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+1:]), 
-                       a[1])
-            
-        return tuple1
-    
-    def dil(self, form1, form2, form3, form4): #Dilemma
-        tup1 = self.split_form(form1)
-        tup2 = self.split_form(form2)
-        tup3 = self.split_form(form3)
-        tup4 = self.split_form(form4)
-
-        return ((tup1[2], tup2[2], tup3[2], tup4[2]) == ('imp','imp','or','or')
-                and {tup3[0],tup3[1]} == {tup1[0],tup2[0]}
-                and {tup4[0],tup4[1]} == {tup1[1],tup2[1]})
-
-
-
+ 
+#Replacement Rules
     def dn(self, form1, form2): #Double Negation
         return ((form1[:2] == '~~' and 
                 self.strip_form(form1[2:]) == self.strip_form(form2))
@@ -154,6 +177,17 @@ class Prop():
                 self.strip_form(form2[2:]) == self.strip_form(form1))
                 )
             
+            
+    def dup(self, form1, form2):
+        return (self.__dup1(form1, form2) or
+                self.__dup1(form2, form1))
+
+    def __dup1(self, form1, form2): #Duplication
+        a = self.split_form(form2)
+        
+        return (self.conj(form1, form1, form2) or(
+                self.add(form1, form2) and
+                a[0] == a[1]))
             
     def comm(self, form1, form2): #Commutation
         
@@ -259,20 +293,7 @@ class Prop():
             pass
         
         return False
-
-
-    def dup(self, form1, form2):
-        return (self.__dup1(form1, form2) or
-                self.__dup1(form2, form1))
-
-    def __dup1(self, form1, form2): #Duplication
-        a = self.split_form(form2)
-        
-        return (self.conj(form1, form1, form2) or(
-                self.add(form1, form2) and
-                a[0] == a[1]))
-        
-        
+  
         
     def contra(self, form1, form2):
         return (self.__contra1(form1, form2) or
@@ -338,7 +359,6 @@ class Prop():
             return False
         
         
-        
     def be(self, form1, form2):
         try:
             return (self.__be1(form1, form2) or
@@ -380,33 +400,6 @@ class Prop():
                 '~' + a[0] == b[0] and
                 a[1] == b[1])
     
-    
-    
-    def exp(self, form1, form2):
-        try:
-            return (self.__exp1(form1, form2) or
-                    self.__exp1(form2, form1))
-            
-        except:
-            return False
-    
-    def __exp1(self, form1, form2):
-        try:
-            a = self.split_form(form1)
-            b = self.split_form(form2)
-            c = self.split_form(a[0])
-            d = self.split_form(b[1])
-
-            return (a[2] == 'imp' and
-                    b[2] == 'imp' and
-                    c[2] == 'and' and
-                    d[2] == 'imp' and
-                    a[1] == d[1] and
-                    b[0] == c[0] and
-                    c[1] == d[0])
-            
-        except:
-            return False
         
         
     def dist(self, form1, form2):
@@ -470,8 +463,33 @@ class Prop():
             return False
         
         
+    def exp(self, form1, form2): #Exportation
+        try:
+            return (self.__exp1(form1, form2) or
+                    self.__exp1(form2, form1))
+            
+        except:
+            return False
+    
+    def __exp1(self, form1, form2):
+        try:
+            a = self.split_form(form1)
+            b = self.split_form(form2)
+            c = self.split_form(a[0])
+            d = self.split_form(b[1])
+
+            return (a[2] == 'imp' and
+                    b[2] == 'imp' and
+                    c[2] == 'and' and
+                    d[2] == 'imp' and
+                    a[1] == d[1] and
+                    b[0] == c[0] and
+                    c[1] == d[0])
+            
+        except:
+            return False
         
-        
+#Conditional proof methods and structural checks.      
     def cp(self, form1, form2, form3):
         a = self.split_form(form3)
         form1 = self.strip_form(form1)
@@ -479,7 +497,7 @@ class Prop():
 
         return (form1 == a[0] and
                 form2 == a[1] and
-                a[2] == 'imp')    
+                a[2] == 'imp')
         
     def ip(self, form1, form2, form3):
         form1 = self.strip_form(form1)
@@ -490,8 +508,7 @@ class Prop():
                      form1 == '~(' + form3 + ')' or
                      form3 == '~(' + form1 + ')'))
         
-    
-    
+        
     def __is_contradiction(self,form1):
         a = self.split_form(form1)
         try:
@@ -528,6 +545,32 @@ class Prop():
                     return True
         return False
     
+    def ip_do_not_cross(self,lst1):
+        lst2 = []
+        for element in lst1:
+            if element[1] == 'assp':
+                lst2.append(element[0])
+            if element[1] in ('ip','cp'):
+                x = lst2.pop()
+                if not element[2] == x:
+                    return False
+        return not bool(lst2)
+        
+        
+#Utilities used by above methods.
+    def strip_form(self, form):
+        form = re.sub(' ','',form)
+        depth = 0
+        for i,char in enumerate(form):
+            if char == '(':
+                depth += 1
+            if char == ')':
+                depth -= 1
+            if depth == 0 and i == len(form) -1 and len(form) > 1:
+                return self.strip_form(form[1:-1])
+            elif depth == 0:
+                break         
+        return form 
     
     def find_main_op(self, form):
         """
@@ -559,47 +602,39 @@ class Prop():
             
         except:
             pass
-                
         
-
+    def split_form(self, form):
+        """
+        Splits a formula up into a tuple where the first element is the
+        first part of the formula before the main operator, the second
+        element is the second part of the formula after the main operator,
+        and the third is the name of the main operator.
+        """
+        
+        form = self.strip_form(form)
+        a = self.find_main_op(form)
+        
+        #checks for None
+        if not a:
+            return None
+        
+        if a[1] == 'neg':
+            return (self.strip_form(form[1:]), 'neg')
+        
+        
+        if a[1] in ['or','imp','equiv']:
+            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+2:]),
+                       a[1])
             
-                     
-    def strip_form(self, form):     
-        form = re.sub(' ','',form)
-        depth = 0
-        for i,char in enumerate(form):
-            if char == '(':
-                depth += 1
-            if char == ')':
-                depth -= 1
-            if depth == 0 and i == len(form) -1 and len(form) > 1:
-                return self.strip_form(form[1:-1])
-            elif depth == 0:
-                break         
-        return form 
+        else:
+            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+1:]), 
+                       a[1])
+            
+        return tuple1
     
-    def syntax(self):
-        op = oneOf( '\\/ -> * ::')
-        lpar  = Literal('(')
-        rpar  = Literal( ')' )
-        statement = Word(srange('[A-Z]'),srange('[a-z]'))
-        expr = Forward()
-        atom = statement | lpar + expr + rpar
-        expr << atom + ZeroOrMore( op + expr )
-        expr.setResultsName("expr")
-        return expr
-    
-    def confirm_wff(self, form1):
-        expr = self.syntax()
-        form1 = self.strip_form(form1)
-        try:
-            result = ''.join(list(expr.parseString(form1)))
-        except:
-            result = None
-        return result == form1
-        
-        
-    def confirm_validity(self, file1):        
+
+#The following methods control the entire checking process.
+    def confirm_validity(self, file1):
         lst1,ip,refs = self.proof_to_list(file1)
         lst2 = []
         
@@ -610,18 +645,6 @@ class Prop():
                 self.confirm_structure(ip, refs)
                 and
                 self.ip_do_not_cross(lst1))
-  
-
-    def ip_do_not_cross(self,lst1):
-        lst2 = []
-        for element in lst1:
-            if element[1] == 'assp':
-                lst2.append(element[0])
-            if element[1] in ('ip','cp'):
-                x = lst2.pop()
-                if not element[2] == x:
-                    return False
-        return not bool(lst2)
 
 
     def confirm_validity_string(self, file1):
@@ -639,7 +662,7 @@ class Prop():
                     str1 += str(i+1) + ", "
             return str1[:-2]
 
-    def test(self, lst1):        
+    def test(self, lst1):
         lst1[1]
         lst2 = []
         
@@ -685,7 +708,7 @@ class Prop():
             lst3.append(lst2)
 
         return (lst3,ip,refs)
-    
+
     
     def __refs(self,lst1):
         lst2 = []

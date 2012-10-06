@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.27)  2 OCT 2012 22:09
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.27)  4 OCT 2012 16:29
 entering extended mode
  %&-line parsing enabled.
 **prop-calc.tex
@@ -54,10 +54,15 @@ Package ifvtex Info: VTeX not detected.
 \Gm@dimlist=\toks15
 
 (/usr/share/texmf-texlive/tex/xelatex/xetexconfig/geometry.cfg))
+(/usr/share/texmf-texlive/tex/latex/changepage/changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count90
+\cp@tempcnt=\count91
+)
 (/usr/share/texmf-texlive/tex/latex/microtype/microtype.sty
 Package: microtype 2009/03/27 v2.3d Micro-typography with pdfTeX (RS)
 \MT@toks=\toks16
-\MT@count=\count90
+\MT@count=\count92
 LaTeX Info: Redefining \lsstyle on input line 1608.
 LaTeX Info: Redefining \lslig on input line 1608.
 \MT@outer@space=\skip43
@@ -89,13 +94,13 @@ Package: amsbsy 1999/11/29 v1.2d
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count91
+\inf@bad=\count93
 LaTeX Info: Redefining \frac on input line 211.
-\uproot@=\count92
-\leftroot@=\count93
+\uproot@=\count94
+\leftroot@=\count95
 LaTeX Info: Redefining \overline on input line 307.
-\classnum@=\count94
-\DOTSCASE@=\count95
+\classnum@=\count96
+\DOTSCASE@=\count97
 LaTeX Info: Redefining \ldots on input line 379.
 LaTeX Info: Redefining \dots on input line 382.
 LaTeX Info: Redefining \cdots on input line 467.
@@ -104,15 +109,15 @@ LaTeX Info: Redefining \cdots on input line 467.
 \big@size=\dimen110
 LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
-\macc@depth=\count96
-\c@MaxMatrixCols=\count97
+\macc@depth=\count98
+\c@MaxMatrixCols=\count99
 \dotsspace@=\muskip10
-\c@parentequation=\count98
-\dspbrk@lvl=\count99
+\c@parentequation=\count100
+\dspbrk@lvl=\count101
 \tag@help=\toks18
-\row@=\count100
-\column@=\count101
-\maxfields@=\count102
+\row@=\count102
+\column@=\count103
+\maxfields@=\count104
 \andhelp@=\toks19
 \eqnshift@=\dimen111
 \alignsep@=\dimen112
@@ -927,15 +932,15 @@ Defining \int_to_symbol:n on line 174
 Defining \int_symbol_math_conversion_rule:n on line 185
 Defining \int_symbol_text_conversion_rule:n on line 198
 Defining \l_tmpa_int on line 211
-\l_tmpa_int=\count103
+\l_tmpa_int=\count105
 Defining \l_tmpb_int on line 212
-\l_tmpb_int=\count104
+\l_tmpb_int=\count106
 Defining \l_tmpc_int on line 213
-\l_tmpc_int=\count105
+\l_tmpc_int=\count107
 Defining \g_tmpa_int on line 214
-\g_tmpa_int=\count106
+\g_tmpa_int=\count108
 Defining \g_tmpb_int on line 215
-\g_tmpb_int=\count107
+\g_tmpb_int=\count109
 Defining \int_const:Nn on line 221
 Defining \c_one on line 234
 Defining \c_two on line 235
@@ -964,7 +969,7 @@ Defining \c_ten_thousand_three on line 258
 Defining \c_ten_thousand_four on line 259
 Defining \c_twenty_thousand on line 260
 Defining \c_max_int on line 261
-\c_max_int=\count108
+\c_max_int=\count110
 Defining \int_get_sign_and_digits:n on line 262
 Defining \int_get_sign:n on line 265
 Defining \int_get_digits:n on line 268
@@ -1012,7 +1017,7 @@ Defining \prg_stepwise_function:nnnN on line 125
 Defining \prg_stepwise_function_incr:nnnN on line 131
 Defining \prg_stepwise_function_decr:nnnN on line 140
 Defining \g_prg_inline_level_int on line 149
-\g_prg_inline_level_int=\count109
+\g_prg_inline_level_int=\count111
 Defining \prg_stepwise_inline:nnnn on line 150
 Defining \prg_stepwise_inline_incr:Nnnn on line 160
 Defining \prg_stepwise_inline_decr:Nnnn on line 168
@@ -1197,7 +1202,7 @@ Defining \clist_map_function:nN on line 175
 Defining \clist_map_function_aux:Nw on line 180
 Defining \clist_map_break: on line 185
 Defining \g_clist_inline_level_int on line 186
-\g_clist_inline_level_int=\count110
+\g_clist_inline_level_int=\count112
 Defining \clist_map_inline:Nn on line 187
 Defining \clist_map_inline:cn on line 198
 Defining \clist_map_inline:nn on line 199
@@ -1996,7 +2001,7 @@ Defining \c_keys_properties_root_tl on line 57
 Defining \c_keys_value_forbidden_tl on line 58
 Defining \c_keys_value_required_tl on line 59
 Defining \l_keys_choice_int on line 60
-\l_keys_choice_int=\count111
+\l_keys_choice_int=\count113
 Defining \l_keys_choice_tl on line 61
 Defining \l_keys_choice_code_tl on line 62
 Defining \l_keys_key_tl on line 63
@@ -2104,13 +2109,13 @@ Defining \l_calc_expression_tl on line 56
 Defining \g_calc_A_register on line 57
 Defining \l_calc_B_register on line 58
 Defining \l_calc_current_type_int on line 59
-\l_calc_current_type_int=\count112
+\l_calc_current_type_int=\count114
 Defining \g_calc_A_int on line 60
-\g_calc_A_int=\count113
+\g_calc_A_int=\count115
 Defining \l_calc_B_int on line 61
-\l_calc_B_int=\count114
+\l_calc_B_int=\count116
 Defining \l_calc_C_int on line 62
-\l_calc_C_int=\count115
+\l_calc_C_int=\count117
 Defining \g_calc_A_dim on line 63
 \g_calc_A_dim=\dimen123
 Defining \l_calc_B_dim on line 64
@@ -2323,7 +2328,7 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
-\Gread@gobject=\count116
+\Gread@gobject=\count118
 ))
 \Gin@req@height=\dimen126
 \Gin@req@width=\dimen127
@@ -2346,17 +2351,17 @@ Defining \l_xparse_function_tl on line 73
 \l_xparse_last_arg_tl=\toks55
 Defining \l_xparse_long_bool on line 75
 Defining \l_xparse_m_args_int on line 76
-\l_xparse_m_args_int=\count117
+\l_xparse_m_args_int=\count119
 Defining \l_xparse_m_only_bool on line 77
 Defining \l_xparse_mandatory_args_int on line 78
-\l_xparse_mandatory_args_int=\count118
+\l_xparse_mandatory_args_int=\count120
 Defining \l_xparse_processor_bool on line 79
 Defining \l_xparse_processor_int on line 80
-\l_xparse_processor_int=\count119
+\l_xparse_processor_int=\count121
 \l_xparse_signature_toks=\toks56
 Defining \l_xparse_tmp_tl on line 82
 Defining \l_xparse_total_args_int on line 83
-\l_xparse_total_args_int=\count120
+\l_xparse_total_args_int=\count122
 Defining \q_xparse_stop on line 84
 Defining \xparse_add_grabber_mandatory:N on line 93
 Defining \xparse_add_grabber_optional:N on line 106
@@ -2554,30 +2559,30 @@ Package: mathtools 2008/08/01 v1.06 mathematical typesetting tools (MH)
 (/usr/share/texmf-texlive/tex/latex/mh/mhsetup.sty
 Package: mhsetup 2007/12/03 v1.2 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count121
+\g_MT_multlinerow_int=\count123
 \l_MT_multwidth_dim=\dimen128
 ) (./prop-calc.aux)
 \openout1 = `prop-calc.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 11.
 
 (/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    ... okay on input line 11.
 
 *geometry auto-detecting driver*
 *geometry detected driver: pdftex*
@@ -2620,7 +2625,7 @@ driver: pdftex
 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
-LaTeX Info: Redefining \microtypecontext on input line 10.
+LaTeX Info: Redefining \microtypecontext on input line 11.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -2636,25 +2641,25 @@ File: mt-cmr.cfg 2008/02/29 v1.9a microtype config. file: Computer Modern Roman
 )
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count122
+\scratchcounter=\count124
 \scratchdimen=\dimen129
 \scratchbox=\box31
-\nofMPsegments=\count123
-\nofMParguments=\count124
+\nofMPsegments=\count125
+\nofMParguments=\count126
 \everyMPshowfont=\toks61
-\MPscratchCnt=\count125
+\MPscratchCnt=\count127
 \MPscratchDim=\dimen130
-\MPnumerator=\count126
+\MPnumerator=\count128
 \everyMPtoPDFconversion=\toks62
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 11.
+LaTeX Font Info:    Try loading font information for U+msa on input line 14.
  (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
 (/usr/share/texmf-texlive/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 11.
+LaTeX Font Info:    Try loading font information for U+msb on input line 14.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -2662,78 +2667,50 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 (/usr/share/texmf-texlive/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 32--34
-
+Overfull \hbox (72.57701pt too wide) in paragraph at lines 14--67
+[][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--34
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 35--112
-
+Overfull \hbox (9.82948pt too wide) in paragraph at lines 71--143
+[][] 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 113--116
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 117--120
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 121--124
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 125--127
+Underfull \hbox (badness 10000) in paragraph at lines 169--170
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 128--131
-
+Overfull \hbox (32.06284pt too wide) in paragraph at lines 180--208
+[][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--134
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 135--137
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 138--141
+Underfull \hbox (badness 10000) in paragraph at lines 209--210
 
  []
 
 [3] (./prop-calc.aux) ) 
 Here is how much of TeX's memory you used:
- 7993 strings out of 493848
- 128567 string characters out of 1152823
- 199953 words of memory out of 3000000
- 11140 multiletter control sequences out of 15000+50000
- 8383 words of font info for 34 fonts, out of 3000000 for 9000
+ 8059 strings out of 493848
+ 129472 string characters out of 1152823
+ 203761 words of memory out of 3000000
+ 11184 multiletter control sequences out of 15000+50000
+ 9549 words of font info for 44 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 37i,13n,35p,240b,151s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,28n,35p,416b,354s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on prop-calc.pdf (3 pages, 43839 bytes).
+/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb
+></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
+/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texl
+ive/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/symbols/msam10.pfb>
+Output written on prop-calc.pdf (3 pages, 80547 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
+ 36 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 3073 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 5633 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 %\usepackage{geometry}
-\usepackage[a4paper,centering,includehead]{geometry}
+\usepackage[a4paper,centering,includehead,showframe=true]{geometry}
+\usepackage{changepage}
 %\usepackage[paperwidth=6in, paperheight=9in]{geometry} %For Book Printing
 %==============================
 \usepackage{microtype}
@@ -8,140 +9,209 @@
 %Math Related Packages
 \usepackage{amsmath, amsfonts, amssymb, amsthm, xfrac, mathtools}
 \begin{document}
-$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $p$ \end{tabular}}{/\therefore q}$
 
-
-$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $\sim q$ \end{tabular}}{/\therefore \sim p}$
-
-$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $q\supset r$ \end{tabular}}{/\therefore p \subset r}$
-
-$\dfrac{p\cdot q}{/\therefore p}$
-
-$\dfrac{p\cdot q}{/\therefore q}$
-
-$\dfrac{\begin{tabular}{l}$p$ \\ $q$ \end{tabular}}{/\therefore p\cdot q}$
-
-$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $r\supset s$ \\ $p\lor r$ \end{tabular}}{/\therefore q \lor s}$
-
-$\dfrac{\begin{tabular}{l}$p\lor q$ \\ $\sim p$ \end{tabular}}{/\therefore q}$
-
-$\dfrac{\begin{tabular}{l}$p\lor q$ \\ $\sim q$ \end{tabular}}{/\therefore p}$
-
-$\dfrac{p}{/\therefore p\lor q}$
-
-$\dfrac{q}{/\therefore p \lor q}$\\
- \\
-
-\begin{tabular}{cc}
+\begin{adjustwidth}{-2cm}{}
+\begin{tabular}{ccc}
 \begin{tabular}{c}
-Double Negation\\
+\bf{Modus Ponens (M.P.)}\\
+$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $p$ \end{tabular}}{/\therefore q}$\\
+\end{tabular}
+&
+\begin{tabular}{c}
+\bf{Modus Tollens (M.T.)}\\
+$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $\sim q$ \end{tabular}}{/\therefore \sim p}$\\
+\end{tabular}
+&
+\begin{tabular}{c}
+\bf{Hypothetical Syllogism (H.S.)}\\
+$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $q\supset r$ \end{tabular}}{/\therefore p \subset r}$\\
+\end{tabular}\\
+
+\begin{tabular}{c}
+\bf{Simplification (Simp.)}\\
+\begin{tabular}{cc}
+$\dfrac{p\cdot q}{/\therefore p}$
+&
+$\dfrac{p\cdot q}{/\therefore q}$
+\end{tabular}\\
+\end{tabular}
+&
+\begin{tabular}{c}
+\bf{Conjunction (Conj.)}\\
+$\dfrac{\begin{tabular}{l}$p$ \\ $q$ \end{tabular}}{/\therefore p\cdot q}$\\
+\end{tabular}
+&
+\begin{tabular}{c}
+\bf{Dillemma (Dil.)}\\
+$\dfrac{\begin{tabular}{l}$p\supset q$ \\ $r\supset s$ \\ $p\lor r$ \end{tabular}}{/\therefore q \lor s}$\\
+\end{tabular}\\
+
+\begin{tabular}{c}
+\bf{Disjunctive Syllogism (D.S.)}\\
+\begin{tabular}{cc}
+$\dfrac{\begin{tabular}{l}$p\lor q$ \\ $\sim p$ \end{tabular}}{/\therefore q}$
+&
+$\dfrac{\begin{tabular}{l}$p\lor q$ \\ $\sim q$ \end{tabular}}{/\therefore p}$\\
+\end{tabular}\\
+\end{tabular}
+&&
+\begin{tabular}{c}
+\bf{Addition (Add.)}\\
+\begin{tabular}{cc}
+$\dfrac{p}{/\therefore p\lor q}$
+&
+$\dfrac{q}{/\therefore p \lor q}$\\
+\end{tabular}\\
+\end{tabular}\\
+\end{tabular}
+
+\end{adjustwidth}
+
+
+\begin{tabular}{ccc}
+\begin{tabular}{c}
+\bf{Double Negation (D.N.)}\\
 $p :: \sim\sim p$\\
  \\
  \\
 \end{tabular}
-&
+&&
 \begin{tabular}{c}
-Duplication\\
+\bf{Duplication (Dup.)}\\
 $p :: (p\lor p)$\\
 $p :: (p\cdot p)$\\
  \\
 \end{tabular}\\
 
 \begin{tabular}{c}
-Commutation\\
+\bf{Commutation (Comm.}\\
 $(p\lor q) :: (q\lor p)$\\
 $(p\cdot q) :: (q\cdot p)$\\
  \\
 \end{tabular}
-
-&
-
+&&
 \begin{tabular}{c}
-Association\\
+\bf{Association (Assoc.)}\\
 $((p\lor q)\lor r) :: (p\lor (q\lor r))$\\
 $((p\cdot q)\cdot r) :: (p\cdot(q\cdot r))$\\
  \\
 \end{tabular}\\
 
 \begin{tabular}{c}
-Contraposition\\
+\bf{Contraposition (Contrap.)}\\
 $(p\supset q) :: (\sim q\supset \sim p)$\\
  \\
  \\
 \end{tabular}
-&
+&&
 \begin{tabular}{c}
-DeMorgan's\\
+\bf{DeMorgan's (DeM.)}\\
 $\sim(p\lor q) :: (\sim p\cdot \sim q)$\\
 $\sim(p\cdot q) :: (\sim p\lor \sim q)$\\
  \\
 \end{tabular}\\
 
 \begin{tabular}{c}
-Biconditional Exchange\\
+\bf{Biconditional Exchange (B.E.)}\\
 $(p\equiv q) :: ((p\supset q)\cdot(q\supset p))$\\
  \\
  \\
 \end{tabular}
-&
+&&
 \begin{tabular}{c}
-Conditional Exchange\\
+\bf{Conditional Exchange (C.E.)}\\
 $(p\supset q) :: (\sim p\lor q)$\\
  \\
  \\
 \end{tabular}\\
 
 \begin{tabular}{c}
-Distribution\\
+\bf{Distribution (Dist.)}\\
 $(p\cdot(q\lor r)) :: ((p\cdot q)\lor(p\cdot r))$\\
 $(p\lor (q\cdot r)) :: ((p\lor q)\cdot (p\lor r))$\\
  \\
  \\
 \end{tabular}
-&
+&&
 \begin{tabular}{c}
-Exportation\\
+\bf{Exportation (Exp.)}\\
 $((p\cdot q)\supset r) :: (p\supset(q\supset r))$\\
  \\
  \\
 \end{tabular}
 \end{tabular}
+
+
+
+C. Restrictions on the Use of C.P. and I.P.
+\begin{enumerate}
+\item Every assumption made in a proof must eventually be discharged.
+\item Once an assumption has been discharged, neither it nor any step that falls within its scope may be used in the proof again.
+\item Assumptions inside the scope of other assumptions must be discharged in the reverse order in which they were made; that is, not two schope markers may cross.
+\end{enumerate}
+D. General Instructions for Using C.P. and I.P
+\begin{enumerate}
+\item For both C.P. and I.P., an assumption may be introduced at any point in the proof, provided we label it as an assumption.
+\item In using C.P., we assume the antecedent of the conditional to be proved and then derive the consequent. In using I.P., we assume the opposite of what we want to prove and then derive a contradiction. All the steps from the assumption to the consequent (for C.P.) or the contradiction (for I.P.) are said to be \emph{within the scope} of the assumption.
+\end{enumerate}
+
+Quantifier Negation (Q.N.) Equivalences
+
+\begin{enumerate}
+\item $\sim(\exists x)\phi x \equiv (x)\sim\delta x$
+\item $\sim(x)\phi x \equiv (\exists x)\sim\phi x$
+\item $\sim(\exists x)\sim\phi x \equiv (x)\phi x$
+\item $\sim (x)\sim\phi x\equiv(\exists x)\phi x$
+\end{enumerate}
+
+STATEMENT OF THE QUANTIFIER RULES, WITH ALL NECESSARY RESTRICTIONS
+
+A. Preliminary Definitions\\
+\begin{enumerate}
+\item $\phi x$ is a propositional function on $x$, simple or complex. If complex it is assumed that it is enclosed in parentheses, so that the scope of any prefixed quantifier extends to the end of the formula.
+\item $\phi a$ is a formula just like $\phi x$, except that every occurrence of $x$ in $\phi x$ has benn replaced by an $a$.
+\item An instance of a general formula is the result of deleting the initial quantifier and replacing each variable bound by that quantifier uniformly with some name.
+\item An $a$-flagged subproof is a subproof that begins with the words "flag a" and ends with some instance containing $a$.
+\end{enumerate}
+
+B. The Four Quantifier Rules
+
+
+\begin{tabular}{cc}
+\begin{tabular}{l}
+{\bf Universal Instantiation (U.I.)}\\
  \\
-Double Negation\\ 
-$p :: \sim\sim p$\\
+$\dfrac{(x)\phi x}{/\therefore\phi a}$
+\end{tabular}
+&
+\begin{tabular}{l}
+\bf{Existential Instantiation (E.I.)}\\
+ \\
+\begin{tabular}{ll}
+$\dfrac{(\exists x)\phi x}{/\therefore \phi a}$
+&
+\emph{provided we flag a}
+\end{tabular}\\
+\end{tabular}\\
+\begin{tabular}{l}
+\\
+{\bf Universal Generalization (U.G.)}\\
+\end{tabular}
+&
+\begin{tabular}{l}
+\\
+{\bf Existential Generalization (E.G.)}\\
+ \\
+$\dfrac{\phi a}{/\therefore (\exists x)\phi x}$
+\end{tabular}
+\end{tabular}
 
-Duplication\\
-$p :: (p\lor p)$\\
-$p :: (p\cdot p)$\\
-
-Commutation\\
-$(p\lor q) :: (q\lor p)$\\
-$(p\cdot q) :: (q\cdot p)$\\
-
-Association\\
-$((p\lor q)\lor r) :: (p\lor (q\lor r))$\\
-$((p\cdot q)\cdot r) :: (p\cdot(q\cdot r))$\\
-
-Contraposition\\
-$(p\supset q) :: (\sim q\supset \sim p)$\\
-
-DeMorgan's\\
-$\sim(p\lor q) :: (\sim p\cdot \sim q)$\\
-$\sim(p\cdot q) :: (\sim p\lor \sim q)$\\
-
-Biconditional Exchange\\
-$(p\equiv q) :: ((p\supset q)\cdot(q\supset p))$\\
-
-Conditional Exchange\\
-$(p\supset q) :: (\sim p\lor q)$\\
-
-Distribution\\
-$(p\cdot(q\lor r)) :: ((p\cdot q)\lor(p\cdot r))$\\
-$(p\lor (q\cdot r)) :: ((p\lor q)\cdot (p\lor r))$\\
-
-Exportation\\
-$((p\cdot q)\supset r) :: (p\supset(q\supset r))$ 
-
+C. Flagging Restrictions\\
+\begin{enumerate}
+\item A letter being flagged must be new to the proof; that is, it may not appear, either in a formula or as a letter being flagged, previous to the step in which it gets flagged.
+\item A flagged letter may not appear either in the premises or in the conclusion of a proof.
+\item A flagged letter may not appear outside the subproof in which it gets flagged.
+\end{enumerate}
 
 
 \end{document}
