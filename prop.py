@@ -5,6 +5,8 @@ from pyparsing import Literal,Word,ZeroOrMore,Forward,nums,oneOf,Group,srange
 class Prop():
     def __init__(self):
         pass
+        global flagset
+        flagset = set()
     
 #The following two methods define wffs and check them in the proof.
     def syntax(self):
@@ -548,9 +550,10 @@ class Prop():
     def ip_do_not_cross(self,lst1):
         lst2 = []
         for element in lst1:
-            if element[1] == 'assp':
+            if (element[1] == 'assp' or
+                element[1] == 'fs'):
                 lst2.append(element[0])
-            if element[1] in ('ip','cp'):
+            if element[1] in ('ip','cp', 'ug'):
                 x = lst2.pop()
                 if not element[2] == x:
                     return False
@@ -598,10 +601,57 @@ class Prop():
             return False
         
     def ei(self, form1, form2):
-        return self.eg(form2, form1)
+        try:
+            global flagset
+            dict1 = {}
+            form1 = self.strip_form(form1)
+            form2 = self.strip_form(form2)
+            var = form1[8]
+            form1 = form1[11:-1]
+            for i in range(len(form1)):
+                if form1[i] == var:
+                    if not dict1.has_key(var):
+                        dict1[var] = form2[i]
+                        break
+            if dict1[var] not in flagset and re.sub(var,dict1[var],form1) == form2:
+                flagset.add(dict1[var])
+                return True
+                
+        except:
+            return False
     
-    def ug(self, form1, form2):
-        return self.ui(form2, form1)
+    def ug(self, flag, form1, form2):
+        global flagset
+        
+        try:
+            form1 = self.strip_form(form1)
+            form2 = self.strip_form(form2)
+            var = form2[1]
+            form2 = form2[4:-1]
+            bool1 = bool(re.sub(var,flag,form2) == form1)
+            if bool:
+                flagset.discard(flag)
+                return True
+            else:
+                return False
+  
+        except:
+            return False
+        
+    def fs(self, flag):
+        
+        try:
+            
+            global flagset
+            bool1 = bool(flag not in flagset)
+            if bool1:
+                flagset.add(flag)
+                return True
+            else:
+                return False
+            
+        except:
+            return False
         
         
         
@@ -683,12 +733,14 @@ class Prop():
 
 #The following methods control the entire checking process.
     def confirm_validity(self, file1):
+        global flagset
         lst1,ip,refs = self.proof_to_list(file1)
         lst2 = []
         
         for element in lst1:
             lst2.append(self.test(element))
             
+        flagset = set()
         return (all(lst2) and 
                 self.confirm_structure(ip, refs)
                 and
@@ -717,7 +769,8 @@ class Prop():
         if lst1[0] == 'return False':
             return False
         
-        if lst1[1] != 'pr' and lst1[1] != 'assp':
+        if not (lst1[1] == 'pr' or lst1[1] == 'assp'
+                or lst1[1] == 'fs'):
             str1 = "self." + lst1[1] + "(*lst2)"
             for x in lst1[2:]:
                 lst2.append(x)
@@ -763,7 +816,7 @@ class Prop():
         for i,element in enumerate(lst1):
             if (not isinstance(element[-1],int)
                 or
-                element[-3].lower() in ('cp','ip')):
+                element[-3].lower() in ('cp','ip','ug')):
                 
                 lst2.append((i+1,))
                 
@@ -777,17 +830,16 @@ class Prop():
         lst2 = []
         for element in lst1:
             try:
-                if element[1].lower() in ('cp','ip'):
+                if element[1].lower() in ('cp','ip','ug'):
                     lst2.append((element[-2],element[-1]))
             except:
                 pass
         return lst2
     
-    
+
     def flatten(self, x):
         result = []
         for el in x:
-            #if isinstance(el, (list, tuple)):
             if hasattr(el, "__iter__") and not isinstance(el, basestring):
                 result.extend(self.flatten(el))
             else:
@@ -811,27 +863,11 @@ class Prop():
         return lst1
         
     def convert2(self, lst1, lst2):
-        if not len(lst1) == 2:
+        if not len(lst1) == 2: #Not a premise or assumption.
             for i, x in enumerate(lst1[2:]):
                 lst1[i+2] = lst2[x - 1][0]
             
         return lst1
-            
-    
-    def reason_to_list(self, reason):
-        
-        reason = reason.lower()
-        
-        if reason == 'pr':
-            return ['pr']
-        
-        if reason in ['simp']:
-            lst1 = reason.split(' ')
-            lst1[1] = int(lst1[1])
-            return lst1
-        
-        if reason in ['mp','conj']:
-            pass
             
         
     def prompt_for_file(self):
@@ -840,11 +876,6 @@ class Prop():
     
 if __name__ == '__main__':
     a = Prop()
-#    a.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
-#                                      "((A\\/B)->C)\\/(F::G)","(D\\/F)\\/(A->F)")
-    file1 = open("proofs/proof11.txt",'r')
-#    file1 = a.prompt_for_file()
-    print a.confirm_validity(file1)
 #    print a.confirm_validity_string(file1)
 #    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
 #
@@ -853,7 +884,7 @@ if __name__ == '__main__':
 
 #    print a.split_form("(F::G) -> (A -> F )")
 
-    file1 = open("proofs/proof12.txt",'r')
+    file1 = open("proofs/proof13.txt",'r')
     print a.confirm_validity(file1)
 
     

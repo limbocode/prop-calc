@@ -139,9 +139,14 @@ class TestProp(unittest.TestCase):
         
     def test_ei(self):
         self.assertTrue(self.prop.ei("(\exists x)(Ox*Ex*Nx)","Oa*Ea*Na"))
+        self.assertFalse(self.prop.ei("(\exists x)(Ox*Ex*Nx)","Oa*Ea*Na"))
         
     def test_ug(self):
-        self.assertTrue(self.prop.ug("Ca->Ma","(x)(Cx->Mx)"))
+        self.assertTrue(self.prop.ug("a","Ca->Ma","(x)(Cx->Mx)"))
+        
+    def test_fs(self):
+        self.assertTrue(self.prop.fs("a"))
+        self.assertTrue(self.prop.fs("b"))
         
 #Tests for conditional and indirect proofs.
     def test_cp(self):
@@ -211,7 +216,7 @@ class TestProp(unittest.TestCase):
     def test_confirm_validity_string(self):
         self.assertEqual(self.prop.confirm_validity_string(open("./proofs/proof6.txt",'r')),
                          "There is a problem with the following lines: 5, 6")
-        print self.prop.confirm_validity(open("./proofs/proof7.txt",'r'))
+        print self.prop.confirm_validity(open("./proofs/proof13.txt",'r'))
         
         
         
