@@ -163,6 +163,16 @@ class TestProp(unittest.TestCase):
         self.assertFalse(self.prop.ip("E","~~(A->B)*~~(A->B)","~E"))
         
         
+#Tests for QN
+
+    def test_qn(self):
+        self.assertTrue(self.prop.qn1("~(x)(Ax)","(\\exists x)(~Ax)"))
+        self.assertTrue(self.prop.qn1("(\\exists x)(~Ax)","~(x)(Ax)"))
+        self.assertTrue(self.prop.qn1("(\\exists x)~(Ax)","~(x)(Ax)"))
+        self.assertTrue(self.prop.qn2("~(\exists x)(Ax)","(x)(~Ax)"))
+        self.assertTrue(self.prop.qn3("~(x)~(Ax)","(\exists x)(Ax)"))
+        self.assertTrue(self.prop.qn4("~(\exists x)~(Ax)","(x)(Ax)"))
+        
 #Tests for utilities
     def test_split_form(self):
         self.assertEqual(self.prop.split_form("(F::G)->(A->F)"), ("F::G","A->F","imp"))
@@ -216,7 +226,7 @@ class TestProp(unittest.TestCase):
     def test_confirm_validity_string(self):
         self.assertEqual(self.prop.confirm_validity_string(open("./proofs/proof6.txt",'r')),
                          "There is a problem with the following lines: 5, 6")
-        print self.prop.confirm_validity(open("./proofs/proof13.txt",'r'))
+#        print self.prop.confirm_validity(open("./proofs/proof16.txt",'r'))
         
         
         

@@ -1,0 +1,4 @@
+1.	(\exists x)(Ox*Nx)		Pr
+2.	(\exists x)(Ex*Nx)		Pr
+3.	Oa*Na					EI 1
+3.	Ea*Na					EI 2

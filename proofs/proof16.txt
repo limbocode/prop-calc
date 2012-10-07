@@ -1,0 +1,9 @@
+1.	(\exists x)(Fx*~Gx)		Pr
+2.	(x)(Hx->Gx)				Pr
+3.	Fa*~Ga					EI 1
+4.	Ha->Ga					UI 2
+5.	Fa						Simp 3
+6.	~Ga						Simp 3
+7.	~Ha						MT 6,4
+8.	Fa*~Ha					Conj 5,7
+9.	(\exists x)(Fx*~Hx)		EG 8

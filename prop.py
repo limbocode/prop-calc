@@ -629,7 +629,7 @@ class Prop():
             var = form2[1]
             form2 = form2[4:-1]
             bool1 = bool(re.sub(var,flag,form2) == form1)
-            if bool:
+            if bool1:
                 flagset.discard(flag)
                 return True
             else:
@@ -654,6 +654,93 @@ class Prop():
             return False
         
         
+#QN Rules
+
+    def qn1(self, form1, form2):
+        return (self.__qn1oneway(form1, form2) or
+                self.__qn1oneway(form2, form1))
+        
+
+    def __qn1oneway(self, form1, form2):
+        
+        try:
+                
+            form1 = self.strip_form(form1)
+            form2 = self.strip_form(form2)
+            var = form1[2]
+            
+            return (form1[0:4] == '~('+var+')' and
+                    form2[0:10] == "(\\exists" + var + ")" and
+                    self.split_form('~' + form1[4:]) == self.split_form(form2[10:]))
+            
+        except:
+            return False
+        
+        
+    def qn2(self, form1, form2):
+        try:
+            return (self.__qn2oneway(form1, form2) or
+                    self.__qn2oneway(form2, form1))
+        except:
+            return False
+       
+        
+    def __qn2oneway(self, form1, form2):
+        
+        try:
+            form1 = self.strip_form(form1)
+            form2 = self.strip_form(form2)
+            var = form2[1]
+            
+            
+            return (form1[0:11] == '~(\\exists'+var+')' and
+                    self.split_form('~('+form1[11:]+')') == self.split_form(form2[3:])
+                    and
+                    form2[0:3] == '('+var+')')
+        except:
+            return False
+        
+        
+    def qn3(self, form1, form2):
+        return (self.__qn3oneway(form1, form2) or
+                self.__qn3oneway(form2, form1))
+        
+        
+    def __qn3oneway(self, form1, form2):
+        
+        try:
+            form1 = self.strip_form(form1)
+            form2 = self.strip_form(form2)
+            var = form1[2]
+            
+            return (form1[0:4] == '~('+var+')' and
+                    form2[0:10] == '(\\exists'+var+')' and
+                    self.split_form(form1[4:]) == self.split_form('~('+form2[10:]+')'))
+            
+        except:
+            return False
+        
+        
+    def qn4(self, form1, form2):
+        return (self.__qn4oneway(form1, form2) or
+                self.__qn4oneway(form2, form1))
+        
+        
+    def __qn4oneway(self, form1, form2):
+        
+        try:
+            form1 = self.strip_form(form1)
+            form2 = self.strip_form(form2)
+            var = form2[1]
+            
+            return (form1[0:11] == '~(\\exists'+var+')' and
+                    self.split_form(form1[11:]) == self.split_form('~('+form2[3:]+')')
+                    and
+                    form2[0:3] == '('+var+')')
+        except:
+            return False
+        
+#CQN Rules
         
 #Utilities used by above methods.
     def strip_form(self, form):
@@ -884,7 +971,7 @@ if __name__ == '__main__':
 
 #    print a.split_form("(F::G) -> (A -> F )")
 
-    file1 = open("proofs/proof13.txt",'r')
+    file1 = open("proofs/proof14.txt",'r')
     print a.confirm_validity(file1)
 
     
