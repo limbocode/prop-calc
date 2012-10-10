@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.27)  4 OCT 2012 16:29
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.27)  9 OCT 2012 15:30
 entering extended mode
  %&-line parsing enabled.
 **prop-calc.tex
@@ -54,20 +54,78 @@ Package ifvtex Info: VTeX not detected.
 \Gm@dimlist=\toks15
 
 (/usr/share/texmf-texlive/tex/xelatex/xetexconfig/geometry.cfg))
+(/usr/share/texmf-texlive/tex/latex/graphics/color.sty
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+(/etc/texmf/tex/latex/config/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
+\Gread@gobject=\count90
+))
+(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+(/etc/texmf/tex/latex/config/color.cfg
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+LaTeX Info: Redefining \color on input line 702.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(/usr/share/texmf-texlive/tex/latex/listings/listings.sty
+\lst@mode=\count91
+\lst@gtempboxa=\box26
+\lst@token=\toks16
+\lst@length=\count92
+\lst@currlwidth=\dimen107
+\lst@column=\count93
+\lst@pos=\count94
+\lst@lostspace=\dimen108
+\lst@width=\dimen109
+\lst@newlines=\count95
+\lst@lineno=\count96
+\lst@maxwidth=\dimen110
+
+(/usr/share/texmf-texlive/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count97
+\lst@skipnumbers=\count98
+\lst@framebox=\box27
+)
+(/usr/share/texmf-texlive/tex/latex/listings/listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+(/usr/share/texmf-texlive/tex/latex/psnfss/courier.sty
+Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
+)
 (/usr/share/texmf-texlive/tex/latex/changepage/changepage.sty
 Package: changepage 2009/10/20 v1.0c check page and change page layout
-\c@cp@cntr=\count90
-\cp@tempcnt=\count91
+\c@cp@cntr=\count99
+\cp@tempcnt=\count100
 )
 (/usr/share/texmf-texlive/tex/latex/microtype/microtype.sty
 Package: microtype 2009/03/27 v2.3d Micro-typography with pdfTeX (RS)
-\MT@toks=\toks16
-\MT@count=\count92
+\MT@toks=\toks17
+\MT@count=\count101
 LaTeX Info: Redefining \lsstyle on input line 1608.
 LaTeX Info: Redefining \lslig on input line 1608.
 \MT@outer@space=\skip43
 LaTeX Info: Redefining \textls on input line 1616.
-\MT@outer@kern=\dimen107
+\MT@outer@kern=\dimen111
 LaTeX Info: Redefining \textmicrotypecontext on input line 2167.
 Package microtype Info: Loading configuration file microtype.cfg.
 
@@ -84,51 +142,51 @@ Package: amstext 2000/06/29 v2.01
 
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks17
-\ex@=\dimen108
+\@emptytoks=\toks18
+\ex@=\dimen112
 ))
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen109
+\pmbraise@=\dimen113
 )
 (/usr/share/texmf-texlive/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count93
+\inf@bad=\count102
 LaTeX Info: Redefining \frac on input line 211.
-\uproot@=\count94
-\leftroot@=\count95
+\uproot@=\count103
+\leftroot@=\count104
 LaTeX Info: Redefining \overline on input line 307.
-\classnum@=\count96
-\DOTSCASE@=\count97
+\classnum@=\count105
+\DOTSCASE@=\count106
 LaTeX Info: Redefining \ldots on input line 379.
 LaTeX Info: Redefining \dots on input line 382.
 LaTeX Info: Redefining \cdots on input line 467.
-\Mathstrutbox@=\box26
-\strutbox@=\box27
-\big@size=\dimen110
+\Mathstrutbox@=\box28
+\strutbox@=\box29
+\big@size=\dimen114
 LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
-\macc@depth=\count98
-\c@MaxMatrixCols=\count99
+\macc@depth=\count107
+\c@MaxMatrixCols=\count108
 \dotsspace@=\muskip10
-\c@parentequation=\count100
-\dspbrk@lvl=\count101
-\tag@help=\toks18
-\row@=\count102
-\column@=\count103
-\maxfields@=\count104
-\andhelp@=\toks19
-\eqnshift@=\dimen111
-\alignsep@=\dimen112
-\tagshift@=\dimen113
-\tagwidth@=\dimen114
-\totwidth@=\dimen115
-\lineht@=\dimen116
-\@envbody=\toks20
+\c@parentequation=\count109
+\dspbrk@lvl=\count110
+\tag@help=\toks19
+\row@=\count111
+\column@=\count112
+\maxfields@=\count113
+\andhelp@=\toks20
+\eqnshift@=\dimen115
+\alignsep@=\dimen116
+\tagshift@=\dimen117
+\tagwidth@=\dimen118
+\totwidth@=\dimen119
+\lineht@=\dimen120
+\@envbody=\toks21
 \multlinegap=\skip45
 \multlinetaggap=\skip46
-\mathdisplay@stack=\toks21
+\mathdisplay@stack=\toks22
 LaTeX Info: Redefining \[ on input line 2666.
 LaTeX Info: Redefining \] on input line 2667.
 )
@@ -144,15 +202,15 @@ Package: amssymb 2009/06/22 v3.00
 )
 (/usr/share/texmf-texlive/tex/latex/amscls/amsthm.sty
 Package: amsthm 2004/08/06 v2.20
-\thm@style=\toks22
-\thm@bodyfont=\toks23
-\thm@headfont=\toks24
-\thm@notefont=\toks25
-\thm@headpunct=\toks26
+\thm@style=\toks23
+\thm@bodyfont=\toks24
+\thm@headfont=\toks25
+\thm@notefont=\toks26
+\thm@headpunct=\toks27
 \thm@preskip=\skip47
 \thm@postskip=\skip48
 \thm@headsep=\skip49
-\dth@everypar=\toks27
+\dth@everypar=\toks28
 )
 (/usr/share/texmf-texlive/tex/latex/mh/xfrac.sty
 (/usr/share/texmf-texlive/tex/latex/expl3/expl3.sty
@@ -876,13 +934,13 @@ Defining \toks_if_eq:ccT on line 149
 Defining \toks_if_eq:NcF on line 150
 Defining \toks_if_eq:cNF on line 150
 Defining \toks_if_eq:ccF on line 150
-\l_tmpb_toks=\toks28
-\l_tmpc_toks=\toks29
-\g_tmpa_toks=\toks30
-\g_tmpb_toks=\toks31
-\g_tmpc_toks=\toks32
-\c_empty_toks=\toks33
-\l_tl_replace_toks=\toks34
+\l_tmpb_toks=\toks29
+\l_tmpc_toks=\toks30
+\g_tmpa_toks=\toks31
+\g_tmpb_toks=\toks32
+\g_tmpc_toks=\toks33
+\c_empty_toks=\toks34
+\l_tl_replace_toks=\toks35
 )
 (/usr/share/texmf-texlive/tex/latex/expl3/l3int.sty
 Package: l3int 2009/05/28 v1362 L3 Experimental Integer module
@@ -932,15 +990,15 @@ Defining \int_to_symbol:n on line 174
 Defining \int_symbol_math_conversion_rule:n on line 185
 Defining \int_symbol_text_conversion_rule:n on line 198
 Defining \l_tmpa_int on line 211
-\l_tmpa_int=\count105
+\l_tmpa_int=\count114
 Defining \l_tmpb_int on line 212
-\l_tmpb_int=\count106
+\l_tmpb_int=\count115
 Defining \l_tmpc_int on line 213
-\l_tmpc_int=\count107
+\l_tmpc_int=\count116
 Defining \g_tmpa_int on line 214
-\g_tmpa_int=\count108
+\g_tmpa_int=\count117
 Defining \g_tmpb_int on line 215
-\g_tmpb_int=\count109
+\g_tmpb_int=\count118
 Defining \int_const:Nn on line 221
 Defining \c_one on line 234
 Defining \c_two on line 235
@@ -969,7 +1027,7 @@ Defining \c_ten_thousand_three on line 258
 Defining \c_ten_thousand_four on line 259
 Defining \c_twenty_thousand on line 260
 Defining \c_max_int on line 261
-\c_max_int=\count110
+\c_max_int=\count119
 Defining \int_get_sign_and_digits:n on line 262
 Defining \int_get_sign:n on line 265
 Defining \int_get_digits:n on line 268
@@ -1017,7 +1075,7 @@ Defining \prg_stepwise_function:nnnN on line 125
 Defining \prg_stepwise_function_incr:nnnN on line 131
 Defining \prg_stepwise_function_decr:nnnN on line 140
 Defining \g_prg_inline_level_int on line 149
-\g_prg_inline_level_int=\count111
+\g_prg_inline_level_int=\count120
 Defining \prg_stepwise_inline:nnnn on line 150
 Defining \prg_stepwise_inline_incr:Nnnn on line 160
 Defining \prg_stepwise_inline_decr:Nnnn on line 168
@@ -1202,7 +1260,7 @@ Defining \clist_map_function:nN on line 175
 Defining \clist_map_function_aux:Nw on line 180
 Defining \clist_map_break: on line 185
 Defining \g_clist_inline_level_int on line 186
-\g_clist_inline_level_int=\count112
+\g_clist_inline_level_int=\count121
 Defining \clist_map_inline:Nn on line 187
 Defining \clist_map_inline:cn on line 198
 Defining \clist_map_inline:nn on line 199
@@ -1669,8 +1727,8 @@ Defining \c_msg_code_prefix_tl on line 98
 Defining \l_msg_class_tl on line 99
 Defining \l_msg_current_class_tl on line 100
 Defining \l_msg_names_clist on line 101
-\l_msg_redirect_classes_prop=\toks35
-\l_msg_redirect_names_prop=\toks36
+\l_msg_redirect_classes_prop=\toks36
+\l_msg_redirect_names_prop=\toks37
 Defining \l_msg_redirect_classes_clist on line 104
 Defining \msg_line_number: on line 107
 Defining \msg_line_context: on line 113
@@ -1709,19 +1767,19 @@ Defining \msg_use_aux:nnn on line 297
 Defining \msg_use_aux:nn on line 308
 Defining \msg_use_loop_check:nn on line 316
 Defining \msg_fatal:nnxx on line 317
-\l_msg_redirect_fatal_prop=\toks37
+\l_msg_redirect_fatal_prop=\toks38
 Defining \msg_error:nnxx on line 328
-\l_msg_redirect_error_prop=\toks38
+\l_msg_redirect_error_prop=\toks39
 Defining \msg_warning:nnxx on line 349
-\l_msg_redirect_warning_prop=\toks39
+\l_msg_redirect_warning_prop=\toks40
 Defining \msg_info:nnxx on line 356
-\l_msg_redirect_info_prop=\toks40
+\l_msg_redirect_info_prop=\toks41
 Defining \msg_log:nnxx on line 363
-\l_msg_redirect_log_prop=\toks41
+\l_msg_redirect_log_prop=\toks42
 Defining \msg_trace:nnxx on line 369
-\l_msg_redirect_trace_prop=\toks42
+\l_msg_redirect_trace_prop=\toks43
 Defining \msg_none:nnxx on line 375
-\l_msg_redirect_none_prop=\toks43
+\l_msg_redirect_none_prop=\toks44
 Defining \msg_redirect_class:nn on line 378
 Defining \msg_redirect_module:nnn on line 381
 Defining \msg_redirect_name:nnn on line 384
@@ -1821,17 +1879,17 @@ Defining \dim_use:c on line 157
 Defining \dim_show:N on line 158
 Defining \dim_show:c on line 159
 Defining \l_tmpa_dim on line 160
-\l_tmpa_dim=\dimen117
+\l_tmpa_dim=\dimen121
 Defining \l_tmpb_dim on line 161
-\l_tmpb_dim=\dimen118
+\l_tmpb_dim=\dimen122
 Defining \l_tmpc_dim on line 162
-\l_tmpc_dim=\dimen119
+\l_tmpc_dim=\dimen123
 Defining \l_tmpd_dim on line 163
-\l_tmpd_dim=\dimen120
+\l_tmpd_dim=\dimen124
 Defining \g_tmpa_dim on line 164
-\g_tmpa_dim=\dimen121
+\g_tmpa_dim=\dimen125
 Defining \g_tmpb_dim on line 165
-\g_tmpb_dim=\dimen122
+\g_tmpb_dim=\dimen126
 Defining \c_zero_dim on line 166
 Defining \c_max_dim on line 167
 Defining \dim_eval:n on line 168
@@ -1918,7 +1976,7 @@ Defining \box_use:c on line 111
 Defining \box_show:c on line 113
 Defining \l_tmpa_box on line 115
 Defining \l_tmpb_box on line 116
-\l_tmpb_box=\box28
+\l_tmpb_box=\box30
 Defining \vbox:n on line 117
 Defining \vbox_set:Nn on line 118
 Defining \vbox_set:cn on line 119
@@ -1968,9 +2026,9 @@ Package: l3keyval 2009/07/13 v1424 L3 Experimental keyval processing
 Defining \l_KV_tmpa_tl on line 56
 Defining \l_KV_tmpb_tl on line 57
 Defining \c_KV_single_equal_sign_tl on line 58
-\l_KV_parse_toks=\toks44
-\l_KV_currkey_toks=\toks45
-\l_KV_currval_toks=\toks46
+\l_KV_parse_toks=\toks45
+\l_KV_currkey_toks=\toks46
+\l_KV_currval_toks=\toks47
 Defining \l_KV_remove_one_level_of_braces_bool on line 62
 Defining \KV_sanitize_outerlevel_active_equals:N on line 76
 Defining \KV_sanitize_outerlevel_active_commas:N on line 76
@@ -2001,7 +2059,7 @@ Defining \c_keys_properties_root_tl on line 57
 Defining \c_keys_value_forbidden_tl on line 58
 Defining \c_keys_value_required_tl on line 59
 Defining \l_keys_choice_int on line 60
-\l_keys_choice_int=\count113
+\l_keys_choice_int=\count122
 Defining \l_keys_choice_tl on line 61
 Defining \l_keys_choice_code_tl on line 62
 Defining \l_keys_key_tl on line 63
@@ -2011,7 +2069,7 @@ Defining \l_keys_module_tl on line 66
 Defining \l_keys_nesting_seq on line 67
 Defining \l_keys_nesting_tl on line 68
 Defining \l_keys_no_value_bool on line 69
-\l_keys_value_toks=\toks47
+\l_keys_value_toks=\toks48
 Defining \keys_bool_set:NN on line 86
 Defining \keys_choice_code_store:x on line 89
 Defining \keys_choice_find:n on line 94
@@ -2109,19 +2167,19 @@ Defining \l_calc_expression_tl on line 56
 Defining \g_calc_A_register on line 57
 Defining \l_calc_B_register on line 58
 Defining \l_calc_current_type_int on line 59
-\l_calc_current_type_int=\count114
+\l_calc_current_type_int=\count123
 Defining \g_calc_A_int on line 60
-\g_calc_A_int=\count115
+\g_calc_A_int=\count124
 Defining \l_calc_B_int on line 61
-\l_calc_B_int=\count116
+\l_calc_B_int=\count125
 Defining \l_calc_C_int on line 62
-\l_calc_C_int=\count117
+\l_calc_C_int=\count126
 Defining \g_calc_A_dim on line 63
-\g_calc_A_dim=\dimen123
+\g_calc_A_dim=\dimen127
 Defining \l_calc_B_dim on line 64
-\l_calc_B_dim=\dimen124
+\l_calc_B_dim=\dimen128
 Defining \l_calc_C_dim on line 65
-\l_calc_C_dim=\dimen125
+\l_calc_C_dim=\dimen129
 Defining \g_calc_A_skip on line 66
 \g_calc_A_skip=\skip55
 Defining \l_calc_B_skip on line 67
@@ -2207,8 +2265,8 @@ Defining \calc_chk_document_counter:nn on line 488
 )
 (/usr/share/texmf-texlive/tex/latex/expl3/l3xref.sty
 Package: l3xref 2009/05/28 v1362 L3 Experimental cross referencing
-\g_xref_all_curr_immediate_fields_prop=\toks48
-\g_xref_all_curr_deferred_fields_prop=\toks49
+\g_xref_all_curr_immediate_fields_prop=\toks49
+\g_xref_all_curr_deferred_fields_prop=\toks50
 Defining \xref_new:nn on line 58
 Defining \xref_deferred_new:nn on line 59
 Defining \xref_new_aux:nnn on line 60
@@ -2325,43 +2383,39 @@ Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
 File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 )
 Package graphics Info: Driver file: pdftex.def on input line 91.
-
-(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
-\Gread@gobject=\count118
-))
-\Gin@req@height=\dimen126
-\Gin@req@width=\dimen127
+)
+\Gin@req@height=\dimen130
+\Gin@req@width=\dimen131
 )
 (/usr/share/texmf-texlive/tex/latex/xpackages/xbase/template.sty
 Package: template 2009/08/15 v1461 template
 
 (/usr/share/texmf-texlive/tex/latex/xpackages/xbase/ldcsetup.sty
 Package: ldcsetup 2009/05/06 v1295 coding conventions and stuff
-\KV@toks=\toks50
+\KV@toks=\toks51
 )
 (/usr/share/texmf-texlive/tex/latex/xpackages/xbase/xparse.sty
 Package: xparse 2009/08/31 v1497 Generic document command parser
-\c_xparse_shorthands_prop=\toks51
-\l_xparse_arg_toks=\toks52
-\l_xparse_args_toks=\toks53
-\l_xparse_environment_args_toks=\toks54
+\c_xparse_shorthands_prop=\toks52
+\l_xparse_arg_toks=\toks53
+\l_xparse_args_toks=\toks54
+\l_xparse_environment_args_toks=\toks55
 Defining \l_xparse_error_bool on line 72
 Defining \l_xparse_function_tl on line 73
-\l_xparse_last_arg_tl=\toks55
+\l_xparse_last_arg_tl=\toks56
 Defining \l_xparse_long_bool on line 75
 Defining \l_xparse_m_args_int on line 76
-\l_xparse_m_args_int=\count119
+\l_xparse_m_args_int=\count127
 Defining \l_xparse_m_only_bool on line 77
 Defining \l_xparse_mandatory_args_int on line 78
-\l_xparse_mandatory_args_int=\count120
+\l_xparse_mandatory_args_int=\count128
 Defining \l_xparse_processor_bool on line 79
 Defining \l_xparse_processor_int on line 80
-\l_xparse_processor_int=\count121
-\l_xparse_signature_toks=\toks56
+\l_xparse_processor_int=\count129
+\l_xparse_signature_toks=\toks57
 Defining \l_xparse_tmp_tl on line 82
 Defining \l_xparse_total_args_int on line 83
-\l_xparse_total_args_int=\count122
+\l_xparse_total_args_int=\count130
 Defining \q_xparse_stop on line 84
 Defining \xparse_add_grabber_mandatory:N on line 93
 Defining \xparse_add_grabber_optional:N on line 106
@@ -2477,14 +2531,14 @@ Defining \IfNoValueF on line 888
 Defining \IfNoValueT on line 889
 Defining \IfNoValueTF on line 890
 )
-\l_TP_KV_assignments_toks=\toks57
-\l_TP_default_assignments_toks=\toks58
+\l_TP_KV_assignments_toks=\toks58
+\l_TP_default_assignments_toks=\toks59
 Defining \TP_declare_instance:Nnn on line 77
 Defining \TP_declare_instance:cnn on line 78
 Defining \UseTemplate on line 80
 Defining \DoParameterAssignments on line 85
 Defining \TP_pop_and_execute_assignments:nw on line 90
-\g_TP_assignments_stack_toks=\toks59
+\g_TP_assignments_stack_toks=\toks60
 Defining \TP_push_assignments:n on line 95
 Defining \TP_push_assignments: on line 98
 Defining \DeclareTemplateType on line 104
@@ -2537,7 +2591,7 @@ Defining \ShowTemplate on line 437
 Defining \ShowCollectionInstance on line 453
 Defining \ShowInstance on line 457
 Defining \TP_templdecl_setup_fakeregister_key:NNn on line 458
-\g_TP_multiselection_toks=\toks60
+\g_TP_multiselection_toks=\toks61
 Defining \TP_multiselection_add:nnnnnn on line 487
 Defining \TP_multiselection_add_or_case:n on line 503
 Defining \TP_multiselection_add_or_case:o on line 508
@@ -2549,9 +2603,9 @@ Defining \TP_split_finite_skip_value:nnNN on line 558
 )
 Defining \g_cm_recommended_bool on line 34
 Defining \l_xfrac_temp_box on line 41
-\l_xfrac_temp_box=\box29
+\l_xfrac_temp_box=\box31
 Defining \l_xfrac_slash_box on line 42
-\l_xfrac_slash_box=\box30
+\l_xfrac_slash_box=\box32
 )
 (/usr/share/texmf-texlive/tex/latex/mh/mathtools.sty
 Package: mathtools 2008/08/01 v1.06 mathematical typesetting tools (MH)
@@ -2559,30 +2613,33 @@ Package: mathtools 2008/08/01 v1.06 mathematical typesetting tools (MH)
 (/usr/share/texmf-texlive/tex/latex/mh/mhsetup.sty
 Package: mhsetup 2007/12/03 v1.2 programming setup (MH)
 )
-\g_MT_multlinerow_int=\count123
-\l_MT_multwidth_dim=\dimen128
+\g_MT_multlinerow_int=\count131
+\l_MT_multwidth_dim=\dimen132
+)
+(/usr/share/texmf-texlive/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2004/09/05 1.3 listings language file
 ) (./prop-calc.aux)
 \openout1 = `prop-calc.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 11.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 40.
 
 (/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    ... okay on input line 40.
 
 *geometry auto-detecting driver*
 *geometry detected driver: pdftex*
@@ -2625,7 +2682,21 @@ driver: pdftex
 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
-LaTeX Info: Redefining \microtypecontext on input line 11.
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count132
+\scratchdimen=\dimen133
+\scratchbox=\box33
+\nofMPsegments=\count133
+\nofMParguments=\count134
+\everyMPshowfont=\toks62
+\MPscratchCnt=\count135
+\MPscratchDim=\dimen134
+\MPnumerator=\count136
+\everyMPtoPDFconversion=\toks63
+)
+\c@lstlisting=\count137
+LaTeX Info: Redefining \microtypecontext on input line 40.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -2635,31 +2706,19 @@ Package microtype Info: Using default expansion set `basictext'.
 Package microtype Info: No tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
-(/usr/share/texmf-texlive/tex/latex/microtype/mt-cmr.cfg
+ (/usr/share/texmf-texlive/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2008/02/29 v1.9a microtype config. file: Computer Modern Roman
  (RS)
 )
-(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count124
-\scratchdimen=\dimen129
-\scratchbox=\box31
-\nofMPsegments=\count125
-\nofMParguments=\count126
-\everyMPshowfont=\toks61
-\MPscratchCnt=\count127
-\MPscratchDim=\dimen130
-\MPnumerator=\count128
-\everyMPtoPDFconversion=\toks62
-)
-LaTeX Font Info:    Try loading font information for U+msa on input line 14.
- (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
 (/usr/share/texmf-texlive/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 14.
+LaTeX Font Info:    Try loading font information for U+msb on input line 43.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
@@ -2667,50 +2726,461 @@ File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 (/usr/share/texmf-texlive/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Overfull \hbox (72.57701pt too wide) in paragraph at lines 14--67
+Overfull \hbox (72.57701pt too wide) in paragraph at lines 43--96
 [][] 
  []
 
 
-Overfull \hbox (9.82948pt too wide) in paragraph at lines 71--143
+Overfull \hbox (9.82948pt too wide) in paragraph at lines 100--172
 [][] 
  []
 
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 169--170
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
 
  []
 
 [2]
-Overfull \hbox (32.06284pt too wide) in paragraph at lines 180--208
+Overfull \hbox (32.06284pt too wide) in paragraph at lines 209--237
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--210
+Underfull \hbox (badness 10000) in paragraph at lines 238--239
 
  []
 
-[3] (./prop-calc.aux) ) 
+[3]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 246.
+
+ (/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) (./prop.py
+LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 2.
+
+Overfull \hbox (30.73491pt too wide) in paragraph at lines 3--5
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[4] [5] [6]
+Overfull \hbox (43.87502pt too wide) in paragraph at lines 132--133
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
+Overfull \hbox (70.15523pt too wide) in paragraph at lines 616--617
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][] 
+ []
+
+[19]
+Overfull \hbox (76.72528pt too wide) in paragraph at lines 674--676
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[20]
+Overfull \hbox (89.86539pt too wide) in paragraph at lines 697--698
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (96.43544pt too wide) in paragraph at lines 718--720
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[21]
+Overfull \hbox (89.86539pt too wide) in paragraph at lines 737--738
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[22]
+Overfull \hbox (11.02475pt too wide) in paragraph at lines 795--796
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[23]
+Overfull \hbox (70.15523pt too wide) in paragraph at lines 811--812
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.15523pt too wide) in paragraph at lines 815--816
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[24] [25] [26]
+Overfull \hbox (11.02475pt too wide) in paragraph at lines 930--931
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (57.01512pt too wide) in paragraph at lines 961--962
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+ 
+ []
+
+[27]) [28] (./test.py
+Overfull \hbox (109.57555pt too wide) in paragraph at lines 26--27
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (83.29533pt too wide) in paragraph at lines 27--28
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.15523pt too wide) in paragraph at lines 28--29
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (83.29533pt too wide) in paragraph at lines 29--30
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (30.73491pt too wide) in paragraph at lines 30--32
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (24.16486pt too wide) in paragraph at lines 38--40
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][] 
+ []
+
+
+Overfull \hbox (43.87502pt too wide) in paragraph at lines 41--42
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][] 
+ []
+
+[29]
+Overfull \hbox (63.58517pt too wide) in paragraph at lines 42--43
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (43.87502pt too wide) in paragraph at lines 43--44
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][] 
+ []
+
+
+Overfull \hbox (63.58517pt too wide) in paragraph at lines 44--46
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (57.01512pt too wide) in paragraph at lines 47--48
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][] 
+ []
+
+
+Overfull \hbox (70.15523pt too wide) in paragraph at lines 48--49
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.15523pt too wide) in paragraph at lines 49--50
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][] 
+ []
+
+
+Overfull \hbox (57.01512pt too wide) in paragraph at lines 51--52
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (83.29533pt too wide) in paragraph at lines 52--54
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (240.97661pt too wide) in paragraph at lines 56--57
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[30]
+Overfull \hbox (11.02475pt too wide) in paragraph at lines 87--89
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (17.5948pt too wide) in paragraph at lines 117--118
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[31]
+Overfull \hbox (4.4547pt too wide) in paragraph at lines 138--140
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (4.4547pt too wide) in paragraph at lines 141--142
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (11.02475pt too wide) in paragraph at lines 142--144
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[32]
+Overfull \hbox (96.43544pt too wide) in paragraph at lines 178--179
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (103.0055pt too wide) in paragraph at lines 179--180
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (129.2857pt too wide) in paragraph at lines 180--181
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (70.15523pt too wide) in paragraph at lines 181--182
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (96.43544pt too wide) in paragraph at lines 182--183
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (148.99586pt too wide) in paragraph at lines 183--184
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (4.4547pt too wide) in paragraph at lines 189--190
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][] 
+ []
+
+
+Overfull \hbox (89.86539pt too wide) in paragraph at lines 190--191
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (4.4547pt too wide) in paragraph at lines 192--193
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][] 
+ []
+
+
+Overfull \hbox (17.5948pt too wide) in paragraph at lines 193--194
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][] 
+ []
+
+
+Overfull \hbox (57.01512pt too wide) in paragraph at lines 200--201
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][] 
+ []
+
+
+Overfull \hbox (96.43544pt too wide) in paragraph at lines 201--202
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[33]
+Overfull \hbox (11.02475pt too wide) in paragraph at lines 202--203
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (89.86539pt too wide) in paragraph at lines 203--204
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
+[][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (37.30496pt too wide) in paragraph at lines 204--206
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (63.58517pt too wide) in paragraph at lines 207--208
+[][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (155.56592pt too wide) in paragraph at lines 208--209
+[][][][] 
+ []
+
+
+Overfull \hbox (89.86539pt too wide) in paragraph at lines 209--210
+[][][][] 
+ []
+
+
+Overfull \hbox (122.71565pt too wide) in paragraph at lines 210--211
+[][][][] 
+ []
+
+
+Overfull \hbox (43.87502pt too wide) in paragraph at lines 211--215
+[][][][] 
+ []
+
+
+Overfull \hbox (70.15523pt too wide) in paragraph at lines 216--217
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (76.72528pt too wide) in paragraph at lines 217--218
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (76.72528pt too wide) in paragraph at lines 218--219
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (83.29533pt too wide) in paragraph at lines 219--220
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (83.29533pt too wide) in paragraph at lines 220--221
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (83.29533pt too wide) in paragraph at lines 221--222
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (76.72528pt too wide) in paragraph at lines 222--223
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (76.72528pt too wide) in paragraph at lines 223--224
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (76.72528pt too wide) in paragraph at lines 224--226
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (129.2857pt too wide) in paragraph at lines 227--228
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (30.73491pt too wide) in paragraph at lines 228--229
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (17.5948pt too wide) in paragraph at lines 229--235
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[34]) [35] (./prop-calc.aux) ) 
 Here is how much of TeX's memory you used:
- 8059 strings out of 493848
- 129472 string characters out of 1152823
- 203761 words of memory out of 3000000
- 11184 multiletter control sequences out of 15000+50000
- 9549 words of font info for 44 fonts, out of 3000000 for 9000
+ 10070 strings out of 493848
+ 156749 string characters out of 1152823
+ 296373 words of memory out of 3000000
+ 13145 multiletter control sequences out of 15000+50000
+ 10981 words of font info for 51 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 37i,28n,35p,416b,354s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm
-/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb
-></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texl
-ive/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/t
-ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on prop-calc.pdf (3 pages, 80547 bytes).
+ 37i,28n,40p,416b,1598s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r
+.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
+ts/symbols/msam10.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.
+pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb>
+Output written on prop-calc.pdf (35 pages, 148028 bytes).
 PDF statistics:
- 36 PDF objects out of 1000 (max. 8388607)
+ 147 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 5633 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 8705 words of extra memory for PDF output out of 10000 (max. 10000000)
 

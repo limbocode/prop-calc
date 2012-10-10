@@ -1,6 +1,18 @@
 \documentclass[12pt]{article}
 %\usepackage{geometry}
-\usepackage[a4paper,centering,includehead,showframe=true]{geometry}
+\usepackage[a4paper,
+centering,
+includehead
+%,showframe=true
+]{geometry}
+
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{courier}
+\usepackage{changepage}
+
+
 \usepackage{changepage}
 %\usepackage[paperwidth=6in, paperheight=9in]{geometry} %For Book Printing
 %==============================
@@ -8,6 +20,23 @@
 %==============================
 %Math Related Packages
 \usepackage{amsmath, amsfonts, amssymb, amsthm, xfrac, mathtools}
+
+
+\definecolor{javared}{rgb}{0.6,0,0} % for strings
+\definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
+\definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
+\definecolor{javadocblue}{rgb}{0.25,0.35,0.75} % javadoc
+
+\lstset{language=python,
+basicstyle=\small\ttfamily,
+xleftmargin=-2cm,
+keywordstyle=\color{javapurple}\bfseries,
+stringstyle=\color{javared},
+commentstyle=\color{javagreen},
+tabsize=4,
+showspaces=false,
+showstringspaces=false}
+
 \begin{document}
 
 \begin{adjustwidth}{-2cm}{}
@@ -212,6 +241,12 @@ C. Flagging Restrictions\\
 \item A flagged letter may not appear either in the premises or in the conclusion of a proof.
 \item A flagged letter may not appear outside the subproof in which it gets flagged.
 \end{enumerate}
+
+\newpage
+\lstinputlisting[language=python]{./prop.py}
+\newpage
+\lstinputlisting[language=python]{./test.py}
+
 
 
 \end{document}
