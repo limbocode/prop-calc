@@ -5,7 +5,7 @@ class TextViewWindow(Gtk.Window):
 
     def __init__(self):
         self.prop = Prop()
-        Gtk.Window.__init__(self, title="TextView Example")
+        Gtk.Window.__init__(self, title="Prop Calc")
 
         self.set_default_size(350, 350)
 
@@ -28,7 +28,7 @@ class TextViewWindow(Gtk.Window):
 
         confirm_button.connect("clicked", self.confirm_click)
         save_button.connect("clicked", self.save_click)
-        
+        load_button.connect("clicked", self.load_click)
     
     def create_textview(self):
         scrolledwindow = Gtk.ScrolledWindow()
@@ -42,7 +42,7 @@ class TextViewWindow(Gtk.Window):
 
     def create_label(self):
         self.label = Gtk.Label()
-        self.label.set_text("True")
+        self.label.set_text("")
         self.grid.attach(self.label,0,2,1,1)
 
     def confirm_click(self, button):
@@ -53,19 +53,35 @@ class TextViewWindow(Gtk.Window):
         f.close()
         f = open('temp.txt','r')
         if self.prop.confirm_validity(f):
-            self.label.set_text("True")
+            self.label.set_text("Valid")
         else:
-            self.label.set_text("False")
+            self.label.set_text("Is not Valid")
 
     def save_click(self, button):
-        file1 = file_chooser()
-        if file1:
-            f = open('test.txt','w')
-            i = self.textbuffer.get_start_iter()
-            x = self.textbuffer.get_end_iter()
-            f.write(self.textbuffer.get_text(i,x,True))
-            f.close()
+        try:
+            file1 = self.file_chooser()
+            print file1
+            if file1:
+                f = open(file1,'w')
+                i = self.textbuffer.get_start_iter()
+                x = self.textbuffer.get_end_iter()
+                f.write(self.textbuffer.get_text(i,x,True))
+                f.close()
+        except:
+            pass
 
+    def load_click(self, button):
+        try:
+            file1 = self.file_chooser()
+            print file1
+            if file1:
+                f = open(file1,'r')
+                i = self.textbuffer.get_start_iter()
+                x = self.textbuffer.set_end_iter()
+                f.write(self.textbuffer.get_text(i,x,True))
+                f.close()
+        except:
+            pass
 
     def file_chooser(self):
         dialog = Gtk.FileChooserDialog("Please choose a file", self,

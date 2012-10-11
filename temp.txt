@@ -1,3 +1,3 @@
-1.	p->q		Pr
-2.	p			Pr
-3.	q			MP 1,2
+1.	A->B	Pr
+2.	A		Pr
+3.	B		MP 1
