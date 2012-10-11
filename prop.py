@@ -5,8 +5,7 @@ from pyparsing import Literal,Word,ZeroOrMore,Forward,nums,oneOf,Group,srange
 class Prop():
     def __init__(self):
         pass
-        global flagset
-        flagset = set()
+        self.flagset = set()
     
 #The following two methods define wffs and check them in the proof.
     def syntax(self):
@@ -32,12 +31,20 @@ class Prop():
 
 #Rules of inference.
     def mp(self, form1, form2, form3):
+        """
+        Checks for the correct use of Modus Ponens.
+        Both A->B,A,B and A,A->B,B are valid.
+        """
         return (self.__mp_one_way(form1, form2, form3) or
                 self.__mp_one_way(form2, form1, form3))
         
     
     
     def __mp_one_way(self, form1, form2, form3): #Modus Ponens
+        """
+        The first formula is split up and compared to the
+        other two formulas.
+        """
 
         a = self.split_form(form1)
         
@@ -56,6 +63,10 @@ class Prop():
                 self.__mt_one_way(form2, form1, form3))
     
     def __mt_one_way(self, form1, form2, form3): # Modus Tollens
+        """
+        The first formula is split and compared to the other
+        two.
+        """
         
         a = self.split_form(form1)
         
@@ -77,7 +88,9 @@ class Prop():
                 self.__hs_one_way(form2, form1, form3))
         
     def __hs_one_way(self, form1, form2, form3): #Hypothetical Syllogism
-        
+        """
+        All three formulas are split and compared to one another.
+        """        
         a = self.split_form(form1)
         b = self.split_form(form2)
         c = self.split_form(form3)
@@ -97,6 +110,10 @@ class Prop():
     
         
     def simp(self, form1, form2): #Simplification
+        """
+        The first formula is split and compared to the
+        second.
+        """
         
         a = self.split_form(form1)
         strip2 = self.strip_form(form2)
@@ -111,6 +128,11 @@ class Prop():
             return False
     
     def conj(self, form1, form2, form3): #Conjunction
+        """
+        Conjunction uses the simplification method to
+        validate that form1 is a simplification of form3
+        and form2 is a simplification of form3.
+        """
         return self.simp(form3,form1) and self.simp(form3,form2)
     
     
@@ -602,7 +624,6 @@ class Prop():
         
     def ei(self, form1, form2):
         try:
-            global flagset
             dict1 = {}
             form1 = self.strip_form(form1)
             form2 = self.strip_form(form2)
@@ -613,24 +634,28 @@ class Prop():
                     if not dict1.has_key(var):
                         dict1[var] = form2[i]
                         break
-            if dict1[var] not in flagset and re.sub(var,dict1[var],form1) == form2:
-                flagset.add(dict1[var])
+            if dict1[var] not in self.flagset and re.sub(var,dict1[var],form1) == form2:
+                self.flagset.add(dict1[var])
                 return True
                 
         except:
             return False
     
-    def ug(self, flag, form1, form2):
-        global flagset
-        
-        try:
-            form1 = self.strip_form(form1)
+    def ug(self, flag, form1, form2): #Universal Generalization
+        """
+        This method compares the flagged variable, the first 
+        formula in the Universal Generalization subproof and
+        the conclusion to the subproof. The flagged variable 
+        is discarded if the proof is valid.
+        """
+        try: #Anything that goes wrong here means that something is incorrect.
+            form1 = self.strip_form(form1) #Get rid of access space
             form2 = self.strip_form(form2)
             var = form2[1]
             form2 = form2[4:-1]
             bool1 = bool(re.sub(var,flag,form2) == form1)
             if bool1:
-                flagset.discard(flag)
+                self.flagset.discard(flag) #Once the ug subproof is complete flagged variable can be used again.
                 return True
             else:
                 return False
@@ -642,10 +667,9 @@ class Prop():
         
         try:
             
-            global flagset
-            bool1 = bool(flag not in flagset)
+            bool1 = bool(flag not in self.flagset)
             if bool1:
-                flagset.add(flag)
+                self.flagset.add(flag)
                 return True
             else:
                 return False
@@ -820,14 +844,12 @@ class Prop():
 
 #The following methods control the entire checking process.
     def confirm_validity(self, file1):
-        global flagset
         lst1,ip,refs = self.proof_to_list(file1)
         lst2 = []
         
         for element in lst1:
             lst2.append(self.test(element))
             
-        flagset = set()
         return (all(lst2) and 
                 self.confirm_structure(ip, refs)
                 and

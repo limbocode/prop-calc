@@ -1,7 +1,7 @@
 1.	(x)(Cx->Mx)			Pr
 2.	(x)(Mx->Vx)			Pr
-3.	a						FS
+3.	a					FS
 4.	Ca->Ma				UI 1
 5.	Ma->Va				UI 2
 6.	Ca->Va				HS 4,5
-7.	(x)(Cx->Vx)			UG 3,6
+7.	(x)(Cx->Vx)			UG 6

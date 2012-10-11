@@ -36,6 +36,7 @@ class TestProp(unittest.TestCase):
         
     def test_conj(self):
         self.assertTrue(self.prop.conj("A\\/B","~(C->D)","(A\\/B)*~(C->D)"))
+        self.assertFalse(self.prop.conj("A","B","A*B*C"))
         
     def test_dil(self):
         self.assertTrue(self.prop.dil("((A\\/B)->C)->(D\\/F)","(F::G)->(A->F)",
