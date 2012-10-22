@@ -58,7 +58,7 @@ def split(form):
                    a[1])
         
     else:
-        tuple1 = (strip_form(form[:a[0]]), strip(form[a[0]+1:]), 
+        tuple1 = (strip(form[:a[0]]), strip(form[a[0]+1:]), 
                    a[1])
         
     return tuple1
@@ -97,23 +97,99 @@ def confirm(forms, rule):
 
     return True
 
+def text_to_dict(file1):
+    lst1 = []
+    for line in file1:
+        line = re.sub(' ','',line.rstrip())
+        if line:
+            lst1.append(line)
+    dict1 = {}
+    i = 0
+    while True:
+        if lst1[i][0] == ':':
+            key = lst[i][1:]
+            i += 1
+            while lst1[i][0] != ':':
+                if len(lst1[i]) > 1:
+                    tup1 = lst1[i].split()
+                    
+                    
+
+def dict_from_file(file):
+    lst = lst_from_file(file)
+    return dict_from_lst(lst)
+
+def lst_from_file(file):
+    lst = []
+    for line in file:
+        line = line.rstrip()
+        if line:
+            lst.append(line)
+    return lst
+
+
+def list_to_tuple(lst):
+        lst1 = []
+        lst2 = []
+        for el in lst:
+            split1 = split(el)
+            if split1:
+                lst1.append(split1[:-1])
+                lst2.append(split1[-1])
+            else:
+                lst1.append((el,))
+                lst2.append(None)
+        return (tuple(lst1), tuple(lst2))
+    
+def dict_from_lst(lst):
+    dict1 = {}
+    i,a,b = 0,None,None
+    while i < len(lst):
+        if lst[i][0] == ':' and not a:
+            key = lst[i][1:].lower()
+            i += 1
+            a = i
+        elif lst[i][0] == ':':
+            b = i
+            i -= 1
+            dict1[key] = list_to_tuple(lst[a:b])
+            a = None
+            b = None
+        i += 1
+    return dict1
+            
+    
+
 if __name__ == "__main__":
+    
+    
+    print dict_from_file(open('rules_of_inference.txt','r'))
+    
+#    print split('a')
+#    
+#    a = ['p->q','p','q']
+#    
+#    b = [':MP','p->q','p','q',':MT','p->q','~q','~p',':']
+#    
+#    print dict_from_lst(b)
+#    
+#    print list_to_tuple(a)
 
-    a = ('A -> Bx','A','Bx')
-
-    mp = ((('p','q'),('p',),('q',)),('imp',None,None))
-    
-    c = ('p->q','~q','~p')
-    
-    mt = ((('p','q'),('q'),('p')),('imp','neg','neg'))
- 
-    comm = ((('p','q'),('q','p')),('or','or'))
-    
-    d = ('p\\/q','q\\/p')
-    
-    print confirm(a,mp)
-    
-    print confirm(c,mt)
-    
-    print confirm(d,comm)
+#    a = ('A -> Bx','A','Bx')
+#
+#    mp = ((('p','q'),('p',),('q',)),('imp',None,None))
+#    
+#    c = ('p->q','~q','~p')
+#    
+#    mt = ((('p','q'),('q'),('p')),('imp','neg','neg'))
+# 
+#    comm = ((('p','q'),('q','p')),('or','or'))
+#    
+#    d = ('p\\/q','q\\/p')
+#    
+#    print confirm(a,mp)
+#    
+#    print confirm(c,mt)
+#    
+#    print confirm(d,comm)
     

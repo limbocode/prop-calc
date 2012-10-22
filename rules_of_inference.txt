@@ -1,37 +1,37 @@
-MP
+:MP
 p->q
 p
 q
 
-MT
+:MT
 p->q
 ~q
 ~p
 
-HS
+:HS
 p->q
 q->r
 p->r
 
-Simp
+:Simp
 p*q
 p
 
-Conj
+:Conj
 p
 q
 p*q
 
-Dil
+:Dil
 p->q
 r->s
 p\/r
 
-DS
+:DS
 p\/q
 ~p
 q
 
-Add
+:Add
 p
 p\/q
