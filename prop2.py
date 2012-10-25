@@ -42,7 +42,6 @@ def find_main_op(form):
     except:
         pass
 
-
 def split(form):
     form = strip(form)
     a = find_main_op(form)
@@ -158,6 +157,26 @@ def dict_from_lst(lst):
         i += 1
     return dict1
             
+            
+def test(lst1):
+    lst1[1]
+    lst2 = []
+    if lst1[0] == 'return False':
+        return False
+    
+    if not (lst1[1] == 'pr' or lst1[1] == 'assp'
+               or lst1[1] == 'fs'):
+           
+        str1 = "self." + lst1[1] + "(*lst2)"
+        for x in lst1[2:]:
+            lst2.append(x)
+            lst2.append(lst1[0])
+            try:
+                return eval(str1)
+            except:
+                return False
+       
+    return True
     
 
 if __name__ == "__main__":
