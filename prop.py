@@ -4,10 +4,8 @@ from pyparsing import Literal,Word,ZeroOrMore,Forward,nums,oneOf,Group,srange
 
 class Prop():
     def __init__(self):
+        pass
         self.flagset = set()
-        self.rules = self.dict_from_file(open('rules_of_inference.txt','r'))
-#        self.rules = {'dil': ((('p', 'q'), ('r', 's'), ('p', 'r')), ('imp', 'imp', 'or')), 'simp': ((('p', 'q'), ('p',)), ('and', None)), 'hs': ((('p', 'q'), ('q', 'r'), ('p', 'r')), ('imp', 'imp', 'imp')), 'mt': ((('p', 'q'), ('q',), ('p',)), ('imp', 'neg', 'neg')), 'mp': ((('p', 'q'), ('p',), ('q',)), ('imp', None, None)), 'conj': ((('p',), ('q',), ('p', 'q')), (None, None, 'and')), 'ds': ((('p', 'q'), ('p',), ('q',)), ('or', 'neg', None))}
-        print self.rules
     
 #The following two methods define wffs and check them in the proof.
     def syntax(self):
@@ -827,7 +825,7 @@ class Prop():
         
         #checks for None
         if not a:
-            return (form, None)
+            return None
         
         if a[1] == 'neg':
             return (self.strip_form(form[1:]), 'neg')
@@ -852,8 +850,6 @@ class Prop():
         for element in lst1:
             lst2.append(self.test(element))
             
-        print lst2
-        
         return (all(lst2) and 
                 self.confirm_structure(ip, refs)
                 and
@@ -874,55 +870,6 @@ class Prop():
                 if elem == False:
                     str1 += str(i+1) + ", "
             return str1[:-2]
-        
-        
-    def confirm2(self, forms, rule):
-        for form in forms:
-            form = self.split_form(form)
-            for i in form:
-                print i
-            
-    
-    
-    def confirm(self, forms, rule):
-#        self.confirm2(forms, rule)
-        wtup = rule[0]
-        maintup = rule[1]
-#        print forms 
-#        print rule
-#        print wtup
-#        print maintup
-        if len(forms) != len(wtup):
-            return False
-
-        dict1 = {}
-
-        for index,form in enumerate(forms):
-            if maintup[index]:
-                splitform = self.split_form(form)
-                if splitform[-1] != maintup[index]:
-                    return False
-
-                else:
-                    for m,wff in enumerate(wtup[index]):
-                        if dict1.has_key(wff):
-                            if dict1[wff] != splitform[m]:
-                                return False
-                        else:
-#                            print wff
-#                            print splitform[m]
-                            dict1[wff] = splitform[m]
-
-        else:
-            stripform = self.strip_form(form)
-            if dict1.has_key(wtup[index][0]):
-                x = dict1[wtup[index][0]]
-                if x != stripform:
-                    return False
-                else:
-                    dict1[wtup[index][0]] = stripform
-
-        return True
 
     def test(self, lst1):
         lst1[1]
@@ -930,24 +877,6 @@ class Prop():
         
         if lst1[0] == 'return False':
             return False
-        
-        rule = self.rules.get(lst1[1])
-        
-        if rule:
-            lst3 = []
-            i = 2
-            while True:
-                if i < len(lst1):
-                    lst3.append(lst1[i])
-                else:
-                    break
-                i += 1
-            lst3.append(lst1[0])
-            return self.confirm(lst3, rule)
-        
-#        print lst1
-#        print lst2
-            
         
         if not (lst1[1] == 'pr' or lst1[1] == 'assp'
                 or lst1[1] == 'fs'):
@@ -1054,56 +983,8 @@ class Prop():
         filename = raw_input("Please enter the name of the file to be checked: ")
         return open(filename, 'r')
     
-    
-    def dict_from_file(self, file):
-        lst = self.lst_from_file(file)
-        return self.dict_from_lst(lst)
-
-    def lst_from_file(self, file):
-        lst = []
-        for line in file:
-            line = line.rstrip()
-            if line:
-                lst.append(line)
-        return lst
-
-
-    def list_to_tuple(self, lst):
-            lst1 = []
-            lst2 = []
-            for el in lst:
-                split1 = self.split_form(el)
-                if split1[0]:
-                    lst1.append(split1[:-1])
-                    lst2.append(split1[-1])
-                else:
-                    lst1.append((el,))
-                    lst2.append(None)
-            return (tuple(lst1), tuple(lst2))
-    
-    def dict_from_lst(self, lst):
-        dict1 = {}
-        i,a,b = 0,None,None
-        while i < len(lst):
-            if lst[i][0] == ':' and not a:
-                key = lst[i][1:].lower()
-                i += 1
-                a = i
-            elif lst[i][0] == ':':
-                b = i
-                i -= 1
-                dict1[key] = self.list_to_tuple(lst[a:b])
-                a = None
-                b = None
-            i += 1
-        return dict1
-    
 if __name__ == '__main__':
     a = Prop()
-#    print a.confirm_validity(open("./proofs/proof.txt",'r'))
-    print a.confirm_validity(open("./proofs/proof2.txt",'r'))
-#    print a.confirm_validity(open("./proofs/proof3.txt",'r'))
-#    print a.confirm_validity(open("./proofs/proof17.txt",'r'))
 #    print a.confirm_validity_string(file1)
 #    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
 #
@@ -1112,8 +993,8 @@ if __name__ == '__main__':
 
 #    print a.split_form("(F::G) -> (A -> F )")
 
-#    file1 = open("proofs/proof14.txt",'r')
-#    print a.confirm_validity(file1)
+    file1 = open("proofs/proof14.txt",'r')
+    print a.confirm_validity(file1)
 
     
         

@@ -59,7 +59,7 @@ class TextViewWindow(Gtk.Window):
 
     def save_click(self, button):
         try:
-            file1 = self.file_chooser()
+            file1 = self.file_chooser_save()
             print file1
             if file1:
                 f = open(file1,'w')
@@ -72,33 +72,44 @@ class TextViewWindow(Gtk.Window):
 
     def load_click(self, button):
         try:
-            file1 = self.file_chooser()
-            print file1
+            file1 = self.file_chooser_load()
             if file1:
-                f = open(file1,'r')
-                i = self.textbuffer.get_start_iter()
-                x = self.textbuffer.set_end_iter()
-                f.write(self.textbuffer.get_text(i,x,True))
-                f.close()
+                self.textbuffer.set_text(open(file1).read())
         except:
             pass
 
-    def file_chooser(self):
-        dialog = Gtk.FileChooserDialog("Please choose a file", self,
+    def file_chooser_save(self):
+        chooser = Gtk.FileChooserDialog("Save", self,
             Gtk.FileChooserAction.SAVE,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
              Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
 
-        if dialog.run() == Gtk.ResponseType.OK:
-            file1 = dialog.get_filename()
+        if chooser.run() == Gtk.ResponseType.OK:
+            file1 = chooser.get_filename()
 
-        dialog.destroy()
+        chooser.destroy()
+        
+        if file1:
+            return file1
+        return None
+
+    def file_chooser_load(self):
+        chooser = Gtk.FileChooserDialog("Load", self,
+            Gtk.FileChooserAction.OPEN,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+             Gtk.STOCK_OPEN, Gtk.ResponseType.OK))
+
+        if chooser.run() == Gtk.ResponseType.OK:
+            file1 = chooser.get_filename()
+
+        chooser.destroy()
         if file1:
             return file1
         return None
 
 
-win = TextViewWindow()
-win.connect("delete-event", Gtk.main_quit)
-win.show_all()
-Gtk.main()
+if __name__ == "__main__":
+    win = TextViewWindow()
+    win.connect("delete-event", Gtk.main_quit)
+    win.show_all()
+    Gtk.main()

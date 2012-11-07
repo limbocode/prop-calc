@@ -38,6 +38,37 @@ showspaces=false,
 showstringspaces=false}
 
 \begin{document}
+\begin{abstract}
+This project has revolved around creating a proof checker in python. This proof checker checks proofs that are written in the Hilbert Style as seen in the book \emph{Understanding} by Klenk. It does a reasonably good job, but could also be expanded upon a great deal. Also, because this was only for a two credit class for one semester there were certain things that I was not able to do simply due to the fact that my time was limited. I will be going over what I did during this semester, some of the research that I did.
+\end{abstract}
+
+\section{QED Manifesto}
+The QED Manifesto is a paper that was written in \emph{insert year} and provides an argument for the standardization of mathematical proofs. This standardization would make checking the validity of proofs much easier as it could be done with a computer program. The standardization of mathematical proofs would also have some pedagogical benefits as well. 
+
+\section{Proof Checkers and Proof Assists}
+I have looked at various proof checkers over the course of this semester, but very few of them seem to be focused on Mathematicians and what they would like to see. I am hoping that my proof checker will require minimum programming knowledge.
+
+\section{Using the Proof Checker}
+The proof checker has a simple GUI interface with load, save, and confirm validity buttons. If we click confirm validity without typing anything into the text box we see at the bottom of the screen the word \emph{Valid}. This is because a proof where not statements are made is valid. If we type in the letter \emph{a} and nothing else and press confirm validity we get \emph{Is Not Valid}. This is because we have not yet said anything about what \emph{a} is. We do not know that it is a premise. If we type in the following line 
+\begin{quote}
+1.  a    Pr
+\end{quote}
+and press confirm validity we get \emph{is valid}. In this we are making one premise and nothing else.
+
+\begin{quote}
+1.	~A\\/A				Pr
+2.	A\\/(~A*B)		Pr
+3.	(A\\/~A)*(A\\/B)	Dist 2
+4.	A\\/~A			Simp 3
+\end{quote}
+
+\section{Applications in Teaching}
+Here we will write out a proof of $x$
+\begin{proof}
+\end{proof}
+
+
+\newpage
 
 \begin{adjustwidth}{-2cm}{}
 \begin{tabular}{ccc}
@@ -246,7 +277,6 @@ C. Flagging Restrictions\\
 \lstinputlisting[language=python]{./prop.py}
 \newpage
 \lstinputlisting[language=python]{./test.py}
-
 
 
 \end{document}

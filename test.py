@@ -183,7 +183,7 @@ class TestProp(unittest.TestCase):
         self.assertEqual(self.prop.split_form("~(A\\/B) \\/ C"), ("~(A\\/B)","C","or"))
         self.assertEqual(self.prop.split_form("~(B\\/C)\\/~(A*D)"), ("~(B\\/C)","~(A*D)","or"))
         self.assertEqual(self.prop.split_form("~(A*B)"), ("A*B",'neg'))
-        self.assertTrue(self.prop.split_form("A") == (None,))
+        self.assertTrue(self.prop.split_form("A") == None)
     
     def test_find_main_op(self):
         self.assertEqual(self.prop.find_main_op("~(A*B)->C"), (6,'imp'))
