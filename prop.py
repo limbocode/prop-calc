@@ -1,85 +1,84 @@
 #!/usr/bin/python
 import re
-
-class Prop():
+from itertools import permutations
+#Has the rules of propositional calculus.
+class Prop:
     def __init__(self):
-        pass
         self.flagset = set()
 
-
 #Rules of inference.
-    def mp(self, form1, form2, form3):
+    def mp(self, premise1, premise2, premise3):
         """
         Checks for the correct use of Modus Ponens.
         Both A->B,A,B and A,A->B,B are valid.
         """
-        return (self.__mp_one_way(form1, form2, form3) or
-                self.__mp_one_way(form2, form1, form3))
+        return (self.__mp_one_way(premise1, premise2, premise3) or
+                self.__mp_one_way(premise2, premise1, premise3))
         
     
     
-    def __mp_one_way(self, form1, form2, form3): #Modus Ponens
+    def __mp_one_way(self, premise1, premise2, conclusion): #Modus Ponens
         """
         The first formula is split up and compared to the
         other two formulas.
         """
-
-        a = self.split_form(form1)
+        
+        #Convert the two premises and the conclusion to a wff.
+        premise1 = Wff(premise1)
+        premise2 = Wff(premise2)
+        conclusion = Wff(conclusion)
         
         
+        #Any exception that is thrown means something is not in the right
+        #place and so we return false.
         try:
-            return (a[2] == 'imp' and
-                    self.strip_form(form2) == a[0] and
-                    self.strip_form(form3) == a[1])
+            return (premise1.main_op == 'imp' and
+                    premise2.string == premise1.left and
+                    conclusion.string == premise1.right)
         except:
             return False
         
     
     
-    def mt(self, form1, form2, form3):
-        return (self.__mt_one_way(form1, form2, form3) or
-                self.__mt_one_way(form2, form1, form3))
+    def mt(self, premise1, premise2, conclusion):
+        return (self.__mt_one_way(premise1, premise2, conclusion) or
+                self.__mt_one_way(premise2, premise1, conclusion))
     
-    def __mt_one_way(self, form1, form2, form3): # Modus Tollens
-        """
-        The first formula is split and compared to the other
-        two.
-        """
+    def __mt_one_way(self, premise1,premise2,conclusion): # Modus Tollens
         
-        a = self.split_form(form1)
-        
-        strip2 = self.strip_form(form2)
-        strip3 = self.strip_form(form3)
+        premise1 = Wff(premise1)
+        premise2 = Wff(premise2)
+        conclusion = Wff(conclusion)
         
         try:
-            return (a[2] == 'imp' and
-                    strip2[0] == '~' and
-                    strip3[0] == '~' and
-                    a[0] == self.strip_form(strip3[1:]) and
-                    a[1] == self.strip_form(strip2[1:])
-                    )
+            return (premise1.main_op == 'imp' and
+                    premise2.main_op == 'neg' and
+                    conclusion.main_op == 'neg' and
+                    premise1.left == conclusion.left and
+                    premise1.right == premise2.left)
         except:
             return False
         
-    def hs(self, form1, form2, form3):
-        return (self.__hs_one_way(form1, form2, form3) or
-                self.__hs_one_way(form2, form1, form3))
+    def hs(self, premise1, premise2, conclusion):
+        return (self.__hs_one_way(premise1, premise2, conclusion) or
+                self.__hs_one_way(premise2, premise1, conclusion))
         
-    def __hs_one_way(self, form1, form2, form3): #Hypothetical Syllogism
+    def __hs_one_way(self, premise1,premise2,conclusion): #Hypothetical Syllogism
         """
         All three formulas are split and compared to one another.
         """        
-        a = self.split_form(form1)
-        b = self.split_form(form2)
-        c = self.split_form(form3)
+        
+        premise1 = Wff(premise1)
+        premise2 = Wff(premise2)
+        conclusion = Wff(conclusion)
         
         try:
-            return (a[2] == 'imp' and
-                    b[2] == 'imp' and
-                    c[2] == 'imp' and
-                    a[0] == c[0] and
-                    a[1] == b[0] and
-                    b[1] == c[1])
+            return (premise1.main_op == 'imp' and
+                    premise2.main_op == 'imp' and
+                    conclusion.main_op == 'imp' and
+                    premise1.left == conclusion.left and
+                    premise1.right == premise2.left and
+                    premise2.right == conclusion.right )
             
         except:
             return False
@@ -87,118 +86,149 @@ class Prop():
     
     
         
-    def simp(self, form1, form2): #Simplification
+    def simp(self, premise,conclusion): #Simplification
         """
         The first formula is split and compared to the
         second.
         """
         
-        a = self.split_form(form1)
-        strip2 = self.strip_form(form2)
+        premise = Wff(premise)
+        conclusion = Wff(conclusion)
         
         try:
-            return (a[2] == 'and' and
-                    (a[0] == strip2 or
-                     a[1] == strip2)
+            return (premise.main_op == 'and' and
+                    (premise.left == conclusion.string or
+                     premise.right == conclusion.string)
                     )
             
         except:
             return False
     
-    def conj(self, form1, form2, form3): #Conjunction
+    def conj(self, premise1, premise2, conclusion): #Conjunction
         """
         Conjunction uses the simplification method to
-        validate that form1 is a simplification of form3
-        and form2 is a simplification of form3.
+        validate that premise1 is tuple_of_form simplification of conclusion
+        and premise2 is tuple_of_form simplification of conclusion.
         """
-        return self.simp(form3,form1) and self.simp(form3,form2)
+        return self.simp(conclusion, premise1) and self.simp(conclusion, premise2)
     
     
-    def dil(self, form1, form2, form3, form4):
-        return (self.__dil_one_way(form1, form2, form3, form4) or
-                self.__dil_one_way(form1, form3, form2, form4) or
-                self.__dil_one_way(form2, form1, form3, form4) or
-                self.__dil_one_way(form2, form3, form1, form4) or
-                self.__dil_one_way(form3, form1, form2, form4) or
-                self.__dil_one_way(form3, form2, form1, form4))
+    def dil(self, premise1,premise2,premise3,conclusion):
+        boolean = False
+        for permutation in permutations((premise1,premise2,premise3),3):
+            boolean = self.__dil_one_way(permutation[0],permutation[1],permutation[2], conclusion)
+            if boolean:
+                break
+        return boolean
+        
+    def __dil_one_way(self, premise1, premise2, premise3, conclusion): #Dilemma
+        
+        premise1 = Wff(premise1)
+        premise2 = Wff(premise2)
+        premise3 = Wff(premise3)
+        conclusion = Wff(conclusion)
         
         
-    def __dil_one_way(self, form1, form2, form3, form4): #Dilemma
-        tup1 = self.split_form(form1)
-        tup2 = self.split_form(form2)
-        tup3 = self.split_form(form3)
-        tup4 = self.split_form(form4)
-
-        return ((tup1[2], tup2[2], tup3[2], tup4[2]) == ('imp','imp','or','or')
-                and {tup3[0],tup3[1]} == {tup1[0],tup2[0]}
-                and {tup4[0],tup4[1]} == {tup1[1],tup2[1]})
+        return (premise1.main_op == 'imp' and
+                premise2.main_op == 'imp' and
+                premise3.main_op == 'or' and
+                conclusion.main_op == 'or' and
+                {premise3.left, premise3.right} == {premise1.left, premise2.left} and
+                {conclusion.left, conclusion.right} == {premise1.right, premise2.right})
     
-    def ds(self, form1, form2, form3): 
+    def ds(self, form1, form2, form3):
         return (self.__ds_one_way(form1, form2, form3) or
                 self.__ds_one_way(form2, form1, form3))
     
-    def __ds_one_way(self, form1, form2, form3): #Disjunctive Syllogism
+    
+    def __ds_one_way(self, a,b,c): #Disjunctive Syllogism 
+        
+        a = Wff(a)
+        b = Wff(b)
+        c = Wff(c)
         
         try:
+            return (a.main_op == 'or' and
+                    b.main_op == 'neg' and
+                    (a.left == b.left and
+                    a.right == c.string)
+                    or
+                    (a.right == b.left and
+                     a.left == c.string)
+                    )
             
-            a = self.split_form(form1)
-            b = self.split_form(form2)
-            c = self.strip_form(form3)
-            
-            return ((a[2] == 'or' and
-                    b[1] == 'neg') and
-                    ((a[0] == b[0] and
-                    a[1] == c) 
-                     or
-                    (a[1] == b[0] and
-                    a[0] == c)
-                     ))
         except:
             return False
         
+    def add(self, a,b): #Addition
         
-    def add(self, form1, form2): #Addition
+        a = Wff(a)
+        b = Wff(b)
         
-        a = self.split_form(form2)
-        strip1 = self.strip_form(form1)
-
         try:
-            return (a[2] == 'or' and
-                    (a[0] == strip1 or a[1] == strip1))
+            return (b.main_op == 'or' and
+                    (a.string in b.form))
             
         except:
             return False
         
  
 #Replacement Rules
-    def dn(self, form1, form2): #Double Negation
-        return ((form1[:2] == '~~' and 
-                self.strip_form(form1[2:]) == self.strip_form(form2))
-                or
-                (form2[:2] == '~~' and 
-                self.strip_form(form2[2:]) == self.strip_form(form1))
-                )
+    def dn(self, form1,form2): #Double Negation
+        
+        form1a = Wff(form1)
+        form2a = Wff(form2)
+        form1b = Wff(form1a.left)
+        form2b = Wff(form2a.left)
+        
+        #The second wff is the double negation.
+        if (form1a.string == form2b.left and form2a.main_op == 'neg'
+            and form2b.main_op == 'neg'):
+            return True
+            
+        #The first wff is the double negation.
+        else:
+            return (form2a.string == form1b.left and form1a.main_op == 'neg'
+            and form1b.main_op == 'neg')
             
             
     def dup(self, form1, form2):
-        return (self.__dup1(form1, form2) or
-                self.__dup1(form2, form1))
-
-    def __dup1(self, form1, form2): #Duplication
-        a = self.split_form(form2)
+                
+        form1 = Wff(form1)
+        form2 = Wff(form2)
         
-        return (self.conj(form1, form1, form2) or(
-                self.add(form1, form2) and
-                a[0] == a[1]))
+        if (form1.main_op == 'or' and form1.left == form2.string):
+            return form1.left == form1.right
+        
+        if (form1.main_op == 'and' and form1.left == form2.string):
+            return form1.left == form1.right
+        
+        if (form2.main_op == 'or' and form2.left == form1.string):
+            return form2.left == form2.right
+        
+        if (form2.main_op == 'and' and form2.left == form1.string):
+            return form2.left == form2.right
+        
+        return False
             
     def comm(self, form1, form2): #Commutation
         
-        a = (self.find_main_op(form1)[0], self.find_main_op(form1)[1],
-             self.find_main_op(form2)[1])
+        form1 = Wff(form1)
+        form2 = Wff(form2)
         
-        return ((a[1],a[2]) in [('or','or'),('and','and')] and 
-                 form1[a[0]+1:] + form1[a[0]] + form1[:a[0]] == form2)
+        if ((form1.main_op == 'or' and form2.main_op == 'or') or
+            (form1.main_op == 'and' and form2.main_op == 'and')):
+            return (form1.left == form2.right and
+                    form1.right == form2.left)
+            
+        return False
         
+#        tuple_of_form = (self.find_main_op(form1)[0], self.find_main_op(form1)[1],
+#             self.find_main_op(form2)[1])
+#        
+#        return ((tuple_of_form[1],tuple_of_form[2]) in [('or','or'),('and','and')] and 
+#                 form1[tuple_of_form[0]+1:] + form1[tuple_of_form[0]] + form1[:tuple_of_form[0]] == form2)
+#        
         
     def assoc(self,form1, form2): #Association
         """
@@ -206,11 +236,25 @@ class Prop():
         Then we will apply it and finally we will decide if
         it is valid.
         """
+        
+        form1 = Wff(form1)
+        form2 = Wff(form2)
+        
+        form1L = Wff(form1.left)
+        form2R = Wff(form2.right)
+        
+        if (form1L.left == form2.left and form1L.right == form2R.left and
+            form1.right == form2R.right):
+            return ((from1L.main_op == 'or' and form1.main_op == 'or' and form2.main_op == 'or'
+                    and form2R.main_op == 'or') or (from1L.main_op == 'and' 
+                    and form1.main_op == 'and' and form2.main_op == 'and'
+                    and form2R.main_op == 'and')
+                    )
                 
-        a = self.split_form(form1)
+        tuple_of_form = self.split_form(form1)
         
         try:        
-            if a[2] == 'or':
+            if tuple_of_form[2] == 'or':
                 return self.assocor(form1,form2)
             else:
                 return self.assocand(form1,form2)
@@ -221,15 +265,15 @@ class Prop():
                 
                 
         try:
-            a = self.split_form(form1)
+            tuple_of_form = self.split_form(form1)
             b = self.split_form(form2)
-            c = self.split_form(a[0])
+            c = self.split_form(tuple_of_form[0])
             d = self.split_form(b[1])
             
-            if (a[1] == d[1] and
+            if (tuple_of_form[1] == d[1] and
                 b[0] == c[0] and
                 c[1] == d[0] and
-                (a[2],b[2],c[2],d[2]) ==
+                (tuple_of_form[2],b[2],c[2],d[2]) ==
                 ('or','or','or','or')):
                 
                 return True
@@ -238,16 +282,16 @@ class Prop():
             pass
         
         try:
-            a = self.split_form(form1)
+            tuple_of_form = self.split_form(form1)
             b = self.split_form(form2)
-            c = self.split_form(a[1])
+            c = self.split_form(tuple_of_form[1])
             d = self.split_form(b[0])
             
             
-            if (a[0] == d[0] and
+            if (tuple_of_form[0] == d[0] and
                 b[1] == c[1] and
                 c[0] == d[1] and
-                (a[2],b[2],c[2],d[2]) ==
+                (tuple_of_form[2],b[2],c[2],d[2]) ==
                 ('or','or','or','or')):
                 
                 return True
@@ -260,15 +304,15 @@ class Prop():
     def assocand(self, form1, form2):
         
         try:
-            a = self.split_form(form1)
+            tuple_of_form = self.split_form(form1)
             b = self.split_form(form2)
-            c = self.split_form(a[0])
+            c = self.split_form(tuple_of_form[0])
             d = self.split_form(b[1])
             
-            if (a[1] == d[1] and
+            if (tuple_of_form[1] == d[1] and
                 b[0] == c[0] and
                 c[1] == d[0] and
-                (a[2],b[2],c[2],d[2]) ==
+                (tuple_of_form[2],b[2],c[2],d[2]) ==
                 ('and','and','and','and')):
                 
                 return True
@@ -277,16 +321,16 @@ class Prop():
             pass
         
         try:
-            a = self.split_form(form1)
+            tuple_of_form = self.split_form(form1)
             b = self.split_form(form2)
-            c = self.split_form(a[1])
+            c = self.split_form(tuple_of_form[1])
             d = self.split_form(b[0])
             
             
-            if (a[0] == d[0] and
+            if (tuple_of_form[0] == d[0] and
                 b[1] == c[1] and
                 c[0] == d[1] and
-                (a[2],b[2],c[2],d[2]) ==
+                (tuple_of_form[2],b[2],c[2],d[2]) ==
                 ('and','and','and','and')):
                 
                 return True
@@ -303,13 +347,13 @@ class Prop():
             
     def __contra1(self, form1, form2): #Contraposition
         
-        a = self.split_form(form1)
+        tuple_of_form = self.split_form(form1)
         b = self.split_form(form2)
         
         try:
-            return (self.strip_form(b[0][1:]) == a[1] and
-                    self.strip_form(b[1][1:]) == a[0] and
-                    a[2] == 'imp' and
+            return (self.strip_form(b[0][1:]) == tuple_of_form[1] and
+                    self.strip_form(b[1][1:]) == tuple_of_form[0] and
+                    tuple_of_form[2] == 'imp' and
                     b[2] == 'imp')
 
         except:
@@ -338,24 +382,24 @@ class Prop():
             return False
         
     def __demor(self, split_form1, split_form2):
-        a = split_form1
+        tuple_of_form = split_form1
         b = split_form2
         
         try:
-            return ('~' + a[0] == b[0] and
-                     '~' + a[1] ==  b[1] and b[2] == 'and')
+            return ('~' + tuple_of_form[0] == b[0] and
+                     '~' + tuple_of_form[1] ==  b[1] and b[2] == 'and')
       
         except:
             return False
         
     def __demand(self, split_form1, split_form2):
         
-        a = split_form1
+        tuple_of_form = split_form1
         b = split_form2
         
         try:
-            return ('~' + a[0] == b[0] and
-                     '~' + a[1] ==  b[1] and b[2] == 'or')
+            return ('~' + tuple_of_form[0] == b[0] and
+                     '~' + tuple_of_form[1] ==  b[1] and b[2] == 'or')
       
         except:
             return False
@@ -369,19 +413,19 @@ class Prop():
             return False
         
     def __be1(self, form1, form2):
-        a = self.split_form(form1)
+        tuple_of_form = self.split_form(form1)
         b = self.split_form(form2)
         c = self.split_form(b[0])
         d = self.split_form(b[1])
         
-        return (a[2] == 'equiv' and
+        return (tuple_of_form[2] == 'equiv' and
                 b[2] == 'and' and
                 c[2] == 'imp' and
                 d[2] == 'imp' and
-                a[0] == c[0] and
-                a[0] == d[1] and
-                a[1] == c[1] and
-                a[1] == d[0]
+                tuple_of_form[0] == c[0] and
+                tuple_of_form[0] == d[1] and
+                tuple_of_form[1] == c[1] and
+                tuple_of_form[1] == d[0]
                 )
 
 
@@ -394,13 +438,13 @@ class Prop():
             return False
 
     def __ce1(self, form1, form2):
-        a = self.split_form(form1)
+        tuple_of_form = self.split_form(form1)
         b = self.split_form(form2)
         
-        return (a[2] == 'imp' and
+        return (tuple_of_form[2] == 'imp' and
                 b[2] == 'or' and
-                '~' + a[0] == b[0] and
-                a[1] == b[1])
+                '~' + tuple_of_form[0] == b[0] and
+                tuple_of_form[1] == b[1])
     
         
         
@@ -415,29 +459,29 @@ class Prop():
         
         try:
             
-            a = self.split_form(form1)
+            tuple_of_form = self.split_form(form1)
             b = self.split_form(form2)
-            c = self.split_form(a[1])
+            c = self.split_form(tuple_of_form[1])
             d = self.split_form(b[0])
             e = self.split_form(b[1])
             
-            if a[2] == 'and':
-                return self.__distand(a,b,c,d,e)
+            if tuple_of_form[2] == 'and':
+                return self.__distand(tuple_of_form,b,c,d,e)
             else:
-                return self.__distor(a, b, c, d, e)
+                return self.__distor(tuple_of_form, b, c, d, e)
             
         except:
             return False
         
-    def __distand(self,a,b,c,d,e):
+    def __distand(self,tuple_of_form,b,c,d,e):
         try:     
             
-            return (a[2] == 'and' and
+            return (tuple_of_form[2] == 'and' and
                     b[2] == 'or' and
                     c[2] == 'or' and
                     d[2] == 'and' and
                     e[2] == 'and' and
-                    a[0] == d[0] and
+                    tuple_of_form[0] == d[0] and
                     c[0] == d[1] and
                     c[1] == e[1] and
                     d[0] == e[0]
@@ -447,15 +491,15 @@ class Prop():
             return False
         
         
-    def __distor(self,a,b,c,d,e):
+    def __distor(self,tuple_of_form,b,c,d,e):
         try:     
             
-            return (a[2] == 'or' and
+            return (tuple_of_form[2] == 'or' and
                     b[2] == 'and' and
                     c[2] == 'and' and
                     d[2] == 'or' and
                     e[2] == 'or' and
-                    a[0] == d[0] and
+                    tuple_of_form[0] == d[0] and
                     c[0] == d[1] and
                     c[1] == e[1] and
                     d[0] == e[0]
@@ -475,16 +519,16 @@ class Prop():
     
     def __exp1(self, form1, form2):
         try:
-            a = self.split_form(form1)
+            tuple_of_form = self.split_form(form1)
             b = self.split_form(form2)
-            c = self.split_form(a[0])
+            c = self.split_form(tuple_of_form[0])
             d = self.split_form(b[1])
 
-            return (a[2] == 'imp' and
+            return (tuple_of_form[2] == 'imp' and
                     b[2] == 'imp' and
                     c[2] == 'and' and
                     d[2] == 'imp' and
-                    a[1] == d[1] and
+                    tuple_of_form[1] == d[1] and
                     b[0] == c[0] and
                     c[1] == d[0])
             
@@ -493,13 +537,13 @@ class Prop():
         
 #Conditional proof methods and structural checks.      
     def cp(self, form1, form2, form3):
-        a = self.split_form(form3)
+        tuple_of_form = self.split_form(form3)
         form1 = self.strip_form(form1)
         form2 = self.strip_form(form2)
 
-        return (form1 == a[0] and
-                form2 == a[1] and
-                a[2] == 'imp')
+        return (form1 == tuple_of_form[0] and
+                form2 == tuple_of_form[1] and
+                tuple_of_form[2] == 'imp')
         
     def ip(self, form1, form2, form3):
         form1 = self.strip_form(form1)
@@ -512,13 +556,13 @@ class Prop():
         
         
     def __is_contradiction(self,form1):
-        a = self.split_form(form1)
+        tuple_of_form = self.split_form(form1)
         try:
-            return (a[2] == 'and' and
-                    (a[0] == '~' + a[1] or
-                     a[1] == '~' + a[0] or
-                     a[0] == '~(' + a[1] + ')' or
-                     a[1] == '~(' + a[0] + ')'))
+            return (tuple_of_form[2] == 'and' and
+                    (tuple_of_form[0] == '~' + tuple_of_form[1] or
+                     tuple_of_form[1] == '~' + tuple_of_form[0] or
+                     tuple_of_form[0] == '~(' + tuple_of_form[1] + ')' or
+                     tuple_of_form[1] == '~(' + tuple_of_form[0] + ')'))
             
         except:
             return False
@@ -562,6 +606,10 @@ class Prop():
         
         
 #Predicate Logic Methods
+
+class Pred(Prop):
+    def __init__(self):
+        super(Pred, self).__init__()
 
     def ui(self, form1, form2):
        
@@ -742,9 +790,60 @@ class Prop():
         except:
             return False
         
-#CQN Rules
         
-#Utilities used by above methods.
+#Class that represents a well-formed formula.
+class Wff:
+    """
+    Takes the string representation of the tuple. ("A","B","imp")
+    Has left for left of main op, right for right of main op, and main_op for main_op
+    The tuple form also contains these.
+    """
+
+    def __init__(self, form):
+        
+        #Change the the string "A -> B" to "A->B".
+        self.string = self.strip_form(form)
+        self.form = self.string
+        
+        #Find the name and index of main operator.
+        tuple_of_form = self.find_main_op(self.form)
+        
+        #If any of the following if statements are true, the method is
+        #broken out of with a return.
+        
+        #There is no main operator.
+        if not tuple_of_form:
+            self.form = (self.form,'')
+            self.left = self.form[0]
+            self.right = ''
+            self.main_op = ''
+            return
+        
+        #Main operator is a 'negation'. Length is 1.
+        if tuple_of_form[1] == 'neg':
+            self.form = (self.form[1:], 'neg')
+            self.left = self.form[0]
+            self.right = ''
+            self.main_op = 'neg'
+            return
+        
+        #Main operator is 'or', 'imp', or 'quiv'. All are length 2.
+        if tuple_of_form[1] in ['or','imp','equiv']:
+            self.form = (self.form[:tuple_of_form[0]], self.form[tuple_of_form[0]+2:],
+                       tuple_of_form[1])
+            self.left = self.form[0]
+            self.right = self.form[1]
+            self.main_op = self.form[2]
+            return
+            
+        #Main operator is an 'and'. Length is 1.
+        else:
+            self.form = (self.form[:tuple_of_form[0]], self.form[tuple_of_form[0]+1:], 
+                       tuple_of_form[1])
+            self.left = self.form[0]
+            self.right = self.form[1]
+            self.main_op = self.form[2]
+
     def strip_form(self, form):
         form = re.sub(' ','',form)
         depth = 0
@@ -761,66 +860,40 @@ class Prop():
     
     def find_main_op(self, form):
         """
-        Takes a stripped formula as an argument. Not used
-        directly. Used as a helper function to split_form.
+        Takes tuple_of_form wff and converts it to tuple_of_form tuple. 
+        ie ("name of operator", index_of_operator)
         """
+        
+        if form[0] == '~':
+            return (0, 'neg') 
+
+        #This could be better implemented as tuple_of_form stack.
+        
         subdepth = 0
         
-        try:
-            for i, char in enumerate(form):
-                if char == '(':
-                    subdepth += 1
-                if char == ')':
-                    subdepth -= 1
-                if char == '*' and subdepth == 0:
-                    return (i, 'and')
-                if char == '\\' and subdepth == 0:
-                    if form[i+1] == '/':
-                        return (i, 'or')
-                if char == ':' and subdepth == 0:
-                    if form[i+1]  == ':':
-                        return (i, 'equiv')
-                if char == '-' and subdepth == 0:
-                    if form[i+1] == '>':
-                        return (i, 'imp')
-            
-            if form[0] == '~':
-                return (0, 'neg')
-            
-        except:
-            pass
-        
-    def split_form(self, form):
-        """
-        Splits a formula up into a tuple where the first element is the
-        first part of the formula before the main operator, the second
-        element is the second part of the formula after the main operator,
-        and the third is the name of the main operator.
-        """
-        
-        form = self.strip_form(form)
-        a = self.find_main_op(form)
-        
-        #checks for None
-        if not a:
-            return None
-        
-        if a[1] == 'neg':
-            return (self.strip_form(form[1:]), 'neg')
-        
-        
-        if a[1] in ['or','imp','equiv']:
-            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+2:]),
-                       a[1])
-            
-        else:
-            tuple1 = (self.strip_form(form[:a[0]]), self.strip_form(form[a[0]+1:]), 
-                       a[1])
-            
-        return tuple1
-    
+        for i, char in enumerate(form):
+            if char == '(':
+                subdepth += 1
+            if char == ')':
+                subdepth -= 1
+            if char == '*' and subdepth == 0:
+                return (i, 'and')
+            if char == '\\' and subdepth == 0:
+                if form[i+1] == '/':
+                    return (i, 'or')
+            if char == ':' and subdepth == 0:
+                if form[i+1]  == ':':
+                    return (i, 'equiv')
+            if char == '-' and subdepth == 0:
+                if form[i+1] == '>':
+                    return (i, 'imp') 
 
-#The following methods control the entire checking process.
+
+#Confirms the validity of the proof.
+class Confirm:
+    def __init__(self):
+        pass
+    
     def confirm_validity(self, file1):
         lst1,ip,refs = self.proof_to_list(file1)
         lst2 = []
@@ -835,7 +908,7 @@ class Prop():
 
 
     def confirm_validity_string(self, file1):
-        str1 = ("There is a problem with the " +
+        str1 = ("There is tuple_of_form problem with the " +
                 "following lines: ")
         lst1,ip,refs = self.proof_to_list(file1)
         lst2 = []
@@ -868,9 +941,7 @@ class Prop():
                 return False
         
         return True
-        
-        
-        
+
     def proof_to_list(self, file1):
         lst1 = []
         lst3 = []
@@ -950,7 +1021,7 @@ class Prop():
         return lst1
         
     def convert2(self, lst1, lst2):
-        if not len(lst1) == 2: #Not a premise or assumption.
+        if not len(lst1) == 2: #Not tuple_of_form premise or assumption.
             for i, x in enumerate(lst1[2:]):
                 lst1[i+2] = lst2[x - 1][0]
             
@@ -962,17 +1033,82 @@ class Prop():
         return open(filename, 'r')
     
 if __name__ == '__main__':
-    a = Prop()
-#    print a.confirm_validity_string(file1)
-#    a.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
+    a = Wff("A->B")
+    b = Wff("~A")
+    c = Wff("A*B")
+    print a.form
+    print b.form
+    print c.form
+    a = "A->B"
+    b = "A"
+    c = "B"
+    prop = Prop()
+    print prop.mp(a,b,c)
+    print prop.mp(b,a,c)
+    print prop.mp(c,a,c)
+    print prop.mp(b,a,"B->C")
+    b = "~B"
+    c = "~A"
+    print prop.mt(a,b,c)
+    b = "B->C"
+    c = "A->C"
+    print prop.hs(a,b,c)
+    print prop.hs(b,a,c)
+    print prop.hs(b,c,c)
+    a = "A*B"
+    b = "A"
+    c = "B"
+    print prop.simp(a, b)
+    print prop.simp(a, c)
+    a = "A->B"
+    b = "C->D"
+    c = "A\\/C"
+    d = "B\\/D"
+    print prop.dil(a, b, c, c)
+    print prop.dil(a, b, c, d)
+    print prop.dil(b,a, c, d)
+    print prop.dil(a, b, c, c)
+    d = "~C"
+    e = "~A"
+    print prop.ds(c,d,"A")
+    print prop.ds(c,d,e)
+    a = "A"
+    b = "B"
+    c = "A\\/B"
+    print prop.add(a, c)
+    print prop.add(b,c)
+    print prop.dn("A","~~A")
+    print prop.dn("~~A","~~~~A")
+    print prop.dn("~~A","A")
+    print prop.dn("~A","A")
+    
+    a = 'A'
+    b = 'A\\/A'
+    c = 'A*A'
+    
+    print prop.dup(a,b)
+    print prop.dup(a,c)
+    print prop.dup(b,a)
+    print prop.dup(c,"B")
+    
+    a = 'A\\/B'
+    b = 'B\\/A'
+    c = 'A*B'
+    d = 'B*A'
+    print prop.comm(a,b)
+    print prop.comm(c,d)
+    print prop.comm("A","B")
+#    tuple_of_form = Prop()
+##    print tuple_of_form.confirm_validity_string(file1)
+##    tuple_of_form.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
+##
+##    file1 = tuple_of_form.prompt_for_file()
+##    print tuple_of_form.confirm_validity(file1)
 #
-#    file1 = a.prompt_for_file()
-#    print a.confirm_validity(file1)
-
-#    print a.split_form("(F::G) -> (A -> F )")
-
-    file1 = open("proofs/proof14.txt",'r')
-    print a.confirm_validity(file1)
+##    print tuple_of_form.split_form("(F::G) -> (A -> F )")
+#
+#    file1 = open("proofs/proof14.txt",'r')
+#    print tuple_of_form.confirm_validity(file1)
 
     
         
