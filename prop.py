@@ -5,15 +5,42 @@ from itertools import permutations
 class Prop:
     def __init__(self):
         self.flagset = set()
+        
+        
+    def confirm(self,forms, mold):
+        """
+        This generalized confirm method is used by all of
+        the rules of inference methods.
+        """
 
+        if len(forms) != len(mold):
+            return False
+    
+        variable_dict = {}
+        
+        for index in range(len(forms)):
+            form1 = Wff(forms[index])
+            form2 = Wff(mold[index])
+            variable_dict = form1.similar(form2, variable_dict)
+            if not variable_dict:
+                return False
+            
+        return True
+    
+    
 #Rules of inference.
     def mp(self, premise1, premise2, premise3):
         """
         Checks for the correct use of Modus Ponens.
         Both A->B,A,B and A,A->B,B are valid.
         """
-        return (self.__mp_one_way(premise1, premise2, premise3) or
-                self.__mp_one_way(premise2, premise1, premise3))
+        mp_rule = ('p->q','p','q')
+        
+        return (self.confirm((premise1, premise2, premise3), mp_rule) or
+                self.confirm(premise2, premise1, premise3, mp_rule))
+        
+#        return (self.__mp_one_way(premise1, premise2, premise3) or
+#                self.__mp_one_way(premise2, premise1, premise3))
         
     
     
@@ -815,15 +842,15 @@ class Wff:
         if not tuple_of_form:
             self.form = (self.form,'')
             self.left = self.form[0]
-            self.right = ''
-            self.main_op = ''
+            self.right = None
+            self.main_op = None
             return
         
         #Main operator is a 'negation'. Length is 1.
         if tuple_of_form[1] == 'neg':
             self.form = (self.form[1:], 'neg')
             self.left = self.form[0]
-            self.right = ''
+            self.right = None
             self.main_op = 'neg'
             return
         
@@ -887,6 +914,33 @@ class Wff:
             if char == '-' and subdepth == 0:
                 if form[i+1] == '>':
                     return (i, 'imp') 
+                
+                
+    def similar(self, form2, dictionary):
+        """
+        Confirms that the self fits the mold form2 and the dictionary is consitant.
+        Any variables not in the dictionary are added and returned.
+        If there is some conflict, false is returned else the dictionary.
+        """
+        
+        if self.main_op != form2.main_op:
+            return False
+        
+        if self.left in dictionary:
+            if dictionary[self.left] != form2.left:
+                return False
+        else:
+            dictionary[self.left] = form2.left
+            
+        if self.right in dictionary:
+            if dictionary[self.right] != form2.right:
+                return False
+        else:
+            dictionary[self.right] = form2.right
+            
+        return dictionary
+        
+        
 
 
 #Confirms the validity of the proof.
@@ -1033,71 +1087,71 @@ class Confirm:
         return open(filename, 'r')
     
 if __name__ == '__main__':
-    a = Wff("A->B")
-    b = Wff("~A")
-    c = Wff("A*B")
-    print a.form
-    print b.form
-    print c.form
+#    a = Wff("A->B")
+#    b = Wff("~A")
+#    c = Wff("A*B")
+#    print a.form
+#    print b.form
+#    print c.form
     a = "A->B"
     b = "A"
     c = "B"
     prop = Prop()
     print prop.mp(a,b,c)
-    print prop.mp(b,a,c)
-    print prop.mp(c,a,c)
-    print prop.mp(b,a,"B->C")
-    b = "~B"
-    c = "~A"
-    print prop.mt(a,b,c)
-    b = "B->C"
-    c = "A->C"
-    print prop.hs(a,b,c)
-    print prop.hs(b,a,c)
-    print prop.hs(b,c,c)
-    a = "A*B"
-    b = "A"
-    c = "B"
-    print prop.simp(a, b)
-    print prop.simp(a, c)
-    a = "A->B"
-    b = "C->D"
-    c = "A\\/C"
-    d = "B\\/D"
-    print prop.dil(a, b, c, c)
-    print prop.dil(a, b, c, d)
-    print prop.dil(b,a, c, d)
-    print prop.dil(a, b, c, c)
-    d = "~C"
-    e = "~A"
-    print prop.ds(c,d,"A")
-    print prop.ds(c,d,e)
-    a = "A"
-    b = "B"
-    c = "A\\/B"
-    print prop.add(a, c)
-    print prop.add(b,c)
-    print prop.dn("A","~~A")
-    print prop.dn("~~A","~~~~A")
-    print prop.dn("~~A","A")
-    print prop.dn("~A","A")
-    
-    a = 'A'
-    b = 'A\\/A'
-    c = 'A*A'
-    
-    print prop.dup(a,b)
-    print prop.dup(a,c)
-    print prop.dup(b,a)
-    print prop.dup(c,"B")
-    
-    a = 'A\\/B'
-    b = 'B\\/A'
-    c = 'A*B'
-    d = 'B*A'
-    print prop.comm(a,b)
-    print prop.comm(c,d)
-    print prop.comm("A","B")
+#    print prop.mp(b,a,c)
+#    print prop.mp(c,a,c)
+#    print prop.mp(b,a,"B->C")
+#    b = "~B"
+#    c = "~A"
+#    print prop.mt(a,b,c)
+#    b = "B->C"
+#    c = "A->C"
+#    print prop.hs(a,b,c)
+#    print prop.hs(b,a,c)
+#    print prop.hs(b,c,c)
+#    a = "A*B"
+#    b = "A"
+#    c = "B"
+#    print prop.simp(a, b)
+#    print prop.simp(a, c)
+#    a = "A->B"
+#    b = "C->D"
+#    c = "A\\/C"
+#    d = "B\\/D"
+#    print prop.dil(a, b, c, c)
+#    print prop.dil(a, b, c, d)
+#    print prop.dil(b,a, c, d)
+#    print prop.dil(a, b, c, c)
+#    d = "~C"
+#    e = "~A"
+#    print prop.ds(c,d,"A")
+#    print prop.ds(c,d,e)
+#    a = "A"
+#    b = "B"
+#    c = "A\\/B"
+#    print prop.add(a, c)
+#    print prop.add(b,c)
+#    print prop.dn("A","~~A")
+#    print prop.dn("~~A","~~~~A")
+#    print prop.dn("~~A","A")
+#    print prop.dn("~A","A")
+#    
+#    a = 'A'
+#    b = 'A\\/A'
+#    c = 'A*A'
+#    
+#    print prop.dup(a,b)
+#    print prop.dup(a,c)
+#    print prop.dup(b,a)
+#    print prop.dup(c,"B")
+#    
+#    a = 'A\\/B'
+#    b = 'B\\/A'
+#    c = 'A*B'
+#    d = 'B*A'
+#    print prop.comm(a,b)
+#    print prop.comm(c,d)
+#    print prop.comm("A","B")
 #    tuple_of_form = Prop()
 ##    print tuple_of_form.confirm_validity_string(file1)
 ##    tuple_of_form.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
