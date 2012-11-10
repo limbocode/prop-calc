@@ -1,32 +1,10 @@
 #!/usr/bin/python
 import re
-from pyparsing import Literal,Word,ZeroOrMore,Forward,nums,oneOf,Group,srange
 
 class Prop():
     def __init__(self):
         pass
         self.flagset = set()
-    
-#The following two methods define wffs and check them in the proof.
-    def syntax(self):
-        op = oneOf( '\\/ -> * ::')
-        lpar  = Literal('(')
-        rpar  = Literal( ')' )
-        statement = Word(srange('[A-Z]'),srange('[a-z]'))
-        expr = Forward()
-        atom = statement | lpar + expr + rpar
-        expr << atom + ZeroOrMore( op + expr )
-        expr.setResultsName("expr")
-        return expr
-    
-    def confirm_wff(self, form1):
-        expr = self.syntax()
-        form1 = self.strip_form(form1)
-        try:
-            result = ''.join(list(expr.parseString(form1)))
-        except:
-            result = None
-        return result == form1
 
 
 #Rules of inference.
