@@ -4,8 +4,7 @@ from itertools import permutations
 #Has the rules of propositional calculus.
 class Prop:
     def __init__(self):
-        self.flagset = set()
-        
+        pass        
         
     def confirm(self,forms, mold):
         """
@@ -27,7 +26,6 @@ class Prop:
             
         return True
     
-    
 #Rules of inference.
     def mp(self, premise1, premise2, premise3):
         """
@@ -37,33 +35,8 @@ class Prop:
         mp_rule = ('p->q','p','q')
         
         return (self.confirm((premise1, premise2, premise3), mp_rule) or
-                self.confirm(premise2, premise1, premise3, mp_rule))
+                self.confirm((premise2, premise1, premise3), mp_rule))
         
-#        return (self.__mp_one_way(premise1, premise2, premise3) or
-#                self.__mp_one_way(premise2, premise1, premise3))
-        
-    
-    
-    def __mp_one_way(self, premise1, premise2, conclusion): #Modus Ponens
-        """
-        The first formula is split up and compared to the
-        other two formulas.
-        """
-        
-        #Convert the two premises and the conclusion to a wff.
-        premise1 = Wff(premise1)
-        premise2 = Wff(premise2)
-        conclusion = Wff(conclusion)
-        
-        
-        #Any exception that is thrown means something is not in the right
-        #place and so we return false.
-        try:
-            return (premise1.main_op == 'imp' and
-                    premise2.string == premise1.left and
-                    conclusion.string == premise1.right)
-        except:
-            return False
         
     
     
@@ -264,305 +237,72 @@ class Prop:
         it is valid.
         """
         
-        form1 = Wff(form1)
-        form2 = Wff(form2)
+        mold = ('((p\/q)\/r)','(p\/(q\/r))')
         
-        form1L = Wff(form1.left)
-        form2R = Wff(form2.right)
+#        return self.confirm((form1,form2), mold)
         
-        if (form1L.left == form2.left and form1L.right == form2R.left and
-            form1.right == form2R.right):
-            return ((from1L.main_op == 'or' and form1.main_op == 'or' and form2.main_op == 'or'
-                    and form2R.main_op == 'or') or (from1L.main_op == 'and' 
-                    and form1.main_op == 'and' and form2.main_op == 'and'
-                    and form2R.main_op == 'and')
-                    )
-                
-        tuple_of_form = self.split_form(form1)
+        if (self.confirm((form1,form2), mold) or self.confirm((form2,form1),mold)):
+            return True
         
-        try:        
-            if tuple_of_form[2] == 'or':
-                return self.assocor(form1,form2)
-            else:
-                return self.assocand(form1,form2)
-        except:
-            return False
-            
-    def assocor(self, form1, form2):
-                
-                
-        try:
-            tuple_of_form = self.split_form(form1)
-            b = self.split_form(form2)
-            c = self.split_form(tuple_of_form[0])
-            d = self.split_form(b[1])
-            
-            if (tuple_of_form[1] == d[1] and
-                b[0] == c[0] and
-                c[1] == d[0] and
-                (tuple_of_form[2],b[2],c[2],d[2]) ==
-                ('or','or','or','or')):
-                
-                return True
-            
-        except:
-            pass
+        mold = ('(p*q)*r','p*(q*r)')
         
-        try:
-            tuple_of_form = self.split_form(form1)
-            b = self.split_form(form2)
-            c = self.split_form(tuple_of_form[1])
-            d = self.split_form(b[0])
-            
-            
-            if (tuple_of_form[0] == d[0] and
-                b[1] == c[1] and
-                c[0] == d[1] and
-                (tuple_of_form[2],b[2],c[2],d[2]) ==
-                ('or','or','or','or')):
-                
-                return True
-            
-        except:
-            pass
-        
-        return False
-    
-    def assocand(self, form1, form2):
-        
-        try:
-            tuple_of_form = self.split_form(form1)
-            b = self.split_form(form2)
-            c = self.split_form(tuple_of_form[0])
-            d = self.split_form(b[1])
-            
-            if (tuple_of_form[1] == d[1] and
-                b[0] == c[0] and
-                c[1] == d[0] and
-                (tuple_of_form[2],b[2],c[2],d[2]) ==
-                ('and','and','and','and')):
-                
-                return True
-            
-        except:
-            pass
-        
-        try:
-            tuple_of_form = self.split_form(form1)
-            b = self.split_form(form2)
-            c = self.split_form(tuple_of_form[1])
-            d = self.split_form(b[0])
-            
-            
-            if (tuple_of_form[0] == d[0] and
-                b[1] == c[1] and
-                c[0] == d[1] and
-                (tuple_of_form[2],b[2],c[2],d[2]) ==
-                ('and','and','and','and')):
-                
-                return True
-            
-        except:
-            pass
-        
-        return False
-  
+        return self.confirm((form1,form2), mold) or self.confirm((form2,form1),mold)
         
     def contra(self, form1, form2):
-        return (self.__contra1(form1, form2) or
-                self.__contra1(form2, form1))
-            
-    def __contra1(self, form1, form2): #Contraposition
         
-        tuple_of_form = self.split_form(form1)
-        b = self.split_form(form2)
+        mold = ('p->q','~q->~p')
         
-        try:
-            return (self.strip_form(b[0][1:]) == tuple_of_form[1] and
-                    self.strip_form(b[1][1:]) == tuple_of_form[0] and
-                    tuple_of_form[2] == 'imp' and
-                    b[2] == 'imp')
-
-        except:
-            return False
-            
-            
+        return (self.confirm((form1, form2), mold) or
+                self.confirm((form2,form1), mold))           
             
     def dem(self, form1, form2):
         
-        return (self.__dem1(form1, form2) or
-                self.__dem1(form2, form1))
-            
-    def __dem1(self, form1, form2): #DeMorgan's
-        try:
-            split_form1 = self.split_form(form1)
-            split_form2 = self.split_form(form2)
-            if split_form1[1] != 'neg':
-                return False 
-            split_form1 = self.split_form(split_form1[0])
-            if split_form1[2] == 'and':
-                return self.__demand(split_form1, split_form2)
-            else:
-                return self.__demor(split_form1, split_form2)
-            
-        except:
-            return False
+        mold = ('~(p\/q)','~p*~q')
         
-    def __demor(self, split_form1, split_form2):
-        tuple_of_form = split_form1
-        b = split_form2
+        if (self.confirm((form1, form2), mold) or
+            self.confirm((form1, form2), mold)):
+            return True
         
-        try:
-            return ('~' + tuple_of_form[0] == b[0] and
-                     '~' + tuple_of_form[1] ==  b[1] and b[2] == 'and')
-      
-        except:
-            return False
+        mold = ('~(p*q)','~p\/~q')
         
-    def __demand(self, split_form1, split_form2):
-        
-        tuple_of_form = split_form1
-        b = split_form2
-        
-        try:
-            return ('~' + tuple_of_form[0] == b[0] and
-                     '~' + tuple_of_form[1] ==  b[1] and b[2] == 'or')
-      
-        except:
-            return False
+        return (self.confirm((form1, form2), mold) or
+            self.confirm((form1, form2), mold))
         
         
     def be(self, form1, form2):
-        try:
-            return (self.__be1(form1, form2) or
-                self.__be1(form2, form1))
-        except:
-            return False
+        mold = ('p::q','(p->q)*(q->p)')
         
-    def __be1(self, form1, form2):
-        tuple_of_form = self.split_form(form1)
-        b = self.split_form(form2)
-        c = self.split_form(b[0])
-        d = self.split_form(b[1])
-        
-        return (tuple_of_form[2] == 'equiv' and
-                b[2] == 'and' and
-                c[2] == 'imp' and
-                d[2] == 'imp' and
-                tuple_of_form[0] == c[0] and
-                tuple_of_form[0] == d[1] and
-                tuple_of_form[1] == c[1] and
-                tuple_of_form[1] == d[0]
-                )
-
+        return (self.confirm((form1,form2), mold) or
+                self.confirm((form1,form2), mold))
 
     def ce(self, form1, form2):
+        mold = ('p->q', '~p\/q')
         
-        try:
-            return (self.__ce1(form1, form2) or
-                self.__ce1(form2, form1))
-        except:
-            return False
-
-    def __ce1(self, form1, form2):
-        tuple_of_form = self.split_form(form1)
-        b = self.split_form(form2)
-        
-        return (tuple_of_form[2] == 'imp' and
-                b[2] == 'or' and
-                '~' + tuple_of_form[0] == b[0] and
-                tuple_of_form[1] == b[1])
-    
+        return (self.confirm((form1,form2), mold) or
+                self.confirm((form1,form2), mold))
         
         
     def dist(self, form1, form2):
-        try:
-            return (self.__dist1(form1, form2) or
-                    self.__dist1(form2, form1))
-        except:
-            return False
+        mold = ('p*(q\/r)', '(p*q)\/(p*r)')
         
-    def __dist1(self, form1, form2):
+        if (self.confirm((form1,form2), mold) or
+                self.confirm((form1,form2), mold)):
+            return True
         
-        try:
-            
-            tuple_of_form = self.split_form(form1)
-            b = self.split_form(form2)
-            c = self.split_form(tuple_of_form[1])
-            d = self.split_form(b[0])
-            e = self.split_form(b[1])
-            
-            if tuple_of_form[2] == 'and':
-                return self.__distand(tuple_of_form,b,c,d,e)
-            else:
-                return self.__distor(tuple_of_form, b, c, d, e)
-            
-        except:
-            return False
+        mold = ('p\/(q*r)', '(p\/q)*(p\/r)')
         
-    def __distand(self,tuple_of_form,b,c,d,e):
-        try:     
-            
-            return (tuple_of_form[2] == 'and' and
-                    b[2] == 'or' and
-                    c[2] == 'or' and
-                    d[2] == 'and' and
-                    e[2] == 'and' and
-                    tuple_of_form[0] == d[0] and
-                    c[0] == d[1] and
-                    c[1] == e[1] and
-                    d[0] == e[0]
-                    )
-            
-        except:
-            return False
-        
-        
-    def __distor(self,tuple_of_form,b,c,d,e):
-        try:     
-            
-            return (tuple_of_form[2] == 'or' and
-                    b[2] == 'and' and
-                    c[2] == 'and' and
-                    d[2] == 'or' and
-                    e[2] == 'or' and
-                    tuple_of_form[0] == d[0] and
-                    c[0] == d[1] and
-                    c[1] == e[1] and
-                    d[0] == e[0]
-                    )
-            
-        except:
-            return False
+        return (self.confirm((form1,form2), mold) or
+                self.confirm((form1,form2), mold))
         
         
     def exp(self, form1, form2): #Exportation
-        try:
-            return (self.__exp1(form1, form2) or
-                    self.__exp1(form2, form1))
-            
-        except:
-            return False
-    
-    def __exp1(self, form1, form2):
-        try:
-            tuple_of_form = self.split_form(form1)
-            b = self.split_form(form2)
-            c = self.split_form(tuple_of_form[0])
-            d = self.split_form(b[1])
-
-            return (tuple_of_form[2] == 'imp' and
-                    b[2] == 'imp' and
-                    c[2] == 'and' and
-                    d[2] == 'imp' and
-                    tuple_of_form[1] == d[1] and
-                    b[0] == c[0] and
-                    c[1] == d[0])
-            
-        except:
-            return False
         
-#Conditional proof methods and structural checks.      
+        mold = ('(p*q)->r','p->(q->r)')
+        
+        return (self.confirm((form1,form2), mold) or
+                self.confirm((form1,form2), mold))
+        
+#Conditional proof methods and structural checks.   
     def cp(self, form1, form2, form3):
         tuple_of_form = self.split_form(form3)
         form1 = self.strip_form(form1)
@@ -637,9 +377,9 @@ class Prop:
 class Pred(Prop):
     def __init__(self):
         super(Pred, self).__init__()
+        self.flagset = set()
 
     def ui(self, form1, form2):
-       
         try:
             dict1 = {}
             form1 = self.strip_form(form1)
@@ -940,13 +680,126 @@ class Wff:
             
         return dictionary
         
-        
 
+class Proof:
+    """
+    This class contains the attribute valid, which is true if
+    there are no problems with the proof.
+    Problems with the proof are stored in the following.
+    rules_of_inference: stores a list of tuples (line_number, specific_rule)
+    replacement_rules: list of (line_number, replacement_rule)
+    flag: list of lines with incorrect flags
+    """
+
+    def __init__(self, file1):
+        """
+        Initialize Proof using a file. This automatically stores validity
+        in valid and all of the problems of the proof.
+        """
+        self.logic = Pred()
+        self.invalid_line = []
+        self.invalid_number_of_arguments = []
+        self.invalid_reasoning = []
+        
+        #Temporary list for proof. Elements are in the form
+        #[premise1,premise2,...,conclusion,rule]
+        proof_lst = self._file_to_list(file1)
+
+        
+        for index in range(len(proof_lst)):
+            if proof_lst[index] == None:
+                #Add one to the index for line number.
+                self.invalid_line.append(index+1)
+                #Do nothing else if problem with format.
+                return
+        
+        #Only reached if format of proof is correct
+        
+        #Proof list changed to final format.
+        proof_lst = self._replace_and_rearrange(proof_lst)
+        
+        #Check the individual parts of the proof and not the structure.
+        for index, element in enumerate(proof_lst):
+            if element[0] == 'pr':
+                pass
+            else:
+                #If not true add to list of errors.
+                try:
+                    if not eval('self.logic.'+element[1]+'(*element[1:])'):
+                        self.invalid_reasoning.append((element[1], index+1))
+                except TypeError:
+                    self.invalid_number_of_arguments.append(index+1)
+        
+        #Check that the flags are valid.
+        
+        #Check that the structure is valid.
+                
+        
+    def _file_to_list(self, file1):
+        """
+        Takes proof file and returns proof as list.
+        """
+        
+        #Proof as a list
+        proof_lst = []
+        
+        for line in file1:
+            #Remove newline from string
+            line = line.rstrip()
+            
+            #Remove excess tabs
+            line = re.sub(r"\t+","\t",line)
+            line = re.sub(r"\.\t+","\t",line)
+            
+            #Split by tabs
+            lst = line.split("\t")
+            
+            #The list should equal three except for blank lines
+            if len(lst) == 3:
+                proof_lst.append(lst)
+                
+            #If line is not equal to three and not blank
+            #append None
+            elif re.sub(r"\s+","",lst2[0]):
+                lst1.append(None)
+            
+        return proof_lst
+    
+    def _replace_and_rearrange(proof_lst):
+        """
+        Takes a list with elements in the form [line_num, conclusion, reason, prem1ref,...]
+        and returns a list with elements [reason, prem1,...,conclusion].
+        Ready to be used with rules of inference and replacement rules.
+        """
+        #Holds result of proof_lst after the change.
+        result = []
+        
+        for index, element in enumerate(proof_lst):
+            #reason holds rule of inference, replacement, or pr
+            if element[-1].lower() == 'pr':
+                reason = 'pr'
+            
+            else:
+                #Temp lst
+                lst = element[-1].split(' ')
+                reason = lst[0]
+                
+                #Will hold a list of line elements
+                line_lst = [reason]
+                for ref in lst[1:]:
+                    line_lst.append(proof_lst[ref][1])
+                
+                #Append the conclusion
+                line_lst.append(element[1])
+            
+            result.append(line_lst)
+            
+        return result
 
 #Confirms the validity of the proof.
 class Confirm:
     def __init__(self):
-        pass
+        self.logic = Pred()
     
     def confirm_validity(self, file1):
         lst1,ip,refs = self.proof_to_list(file1)
@@ -1036,7 +889,7 @@ class Confirm:
                 lst2.append((i+1,element[-1]))
             else:
                 lst2.append((i+1,element[-2],element[-1]))
-        return lst2  
+        return lst2
     
     def __ip(self,lst1):
         lst2 = []
@@ -1081,10 +934,6 @@ class Confirm:
             
         return lst1
             
-        
-    def prompt_for_file(self):
-        filename = raw_input("Please enter the name of the file to be checked: ")
-        return open(filename, 'r')
     
 if __name__ == '__main__':
 #    a = Wff("A->B")
@@ -1093,11 +942,11 @@ if __name__ == '__main__':
 #    print a.form
 #    print b.form
 #    print c.form
-    a = "A->B"
-    b = "A"
-    c = "B"
+#    a = "A->B"
+#    b = "A"
+#    c = "B"
     prop = Prop()
-    print prop.mp(a,b,c)
+#    print prop.mp(a,b,c)
 #    print prop.mp(b,a,c)
 #    print prop.mp(c,a,c)
 #    print prop.mp(b,a,"B->C")
@@ -1152,6 +1001,47 @@ if __name__ == '__main__':
 #    print prop.comm(a,b)
 #    print prop.comm(c,d)
 #    print prop.comm("A","B")
+
+    a = '((A\/B)\/C)'
+    b = '(A\/(B\/C))'
+    c = '((A*B)*C)'
+    d = '(A*(B*C))'
+    print prop.assoc(a,b)
+    print prop.assoc(b,a)
+    print prop.assoc(c,d)
+    print prop.assoc(d,c)
+    
+    a = 'A->B'
+    b = '~A->~B'
+    
+    print prop.contra(a,b)
+    print prop.contra(b,a)
+    
+    a = '~(A\/B)'
+    b = '~A*~B'
+    
+    print prop.dem(a,b)
+    
+    a = 'A::B'
+    b = '(A->B)*(B->A)'
+    
+    print prop.be(a,b)
+    
+    a = 'A->B'
+    b = '~A\/B'
+    
+    print prop.ce(a,b)
+    
+    a = 'A*(B\/C)'
+    b = '(A*B)\/(A*C)'
+    
+    print prop.dist(a,b)
+    
+    a = '(A*B)->C'
+    b = 'A->(B->C)'
+    
+    print prop.exp(a,b)
+    
 #    tuple_of_form = Prop()
 ##    print tuple_of_form.confirm_validity_string(file1)
 ##    tuple_of_form.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
