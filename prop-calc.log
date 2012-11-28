@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.27)  10 OCT 2012 11:50
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.4.27)  7 NOV 2012 23:00
 entering extended mode
  %&-line parsing enabled.
 **prop-calc.tex
@@ -2709,8 +2709,10 @@ Package microtype Info: No adjustment of character kerning.
  (/usr/share/texmf-texlive/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2008/02/29 v1.9a microtype config. file: Computer Modern Roman
  (RS)
-)
-LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for U+msa on input line 66.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
@@ -2718,42 +2720,40 @@ File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 (/usr/share/texmf-texlive/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 43.
+LaTeX Font Info:    Try loading font information for U+msb on input line 66.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
 (/usr/share/texmf-texlive/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-)
-Overfull \hbox (72.57701pt too wide) in paragraph at lines 43--96
+) [2]
+Overfull \hbox (72.57701pt too wide) in paragraph at lines 74--133
 [][] 
  []
 
 
-Overfull \hbox (9.82948pt too wide) in paragraph at lines 100--172
+Overfull \hbox (9.82948pt too wide) in paragraph at lines 137--209
 [][] 
- []
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 198--199
-
- []
-
-[2]
-Overfull \hbox (32.06284pt too wide) in paragraph at lines 209--237
-[][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 238--239
-
  []
 
 [3]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 246.
+Underfull \hbox (badness 10000) in paragraph at lines 235--236
+
+ []
+
+[4]
+Overfull \hbox (32.06284pt too wide) in paragraph at lines 246--274
+[][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 275--276
+
+ []
+
+[5]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 283.
 
  (/usr/share/texmf-texlive/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
@@ -2765,19 +2765,19 @@ Overfull \hbox (30.73491pt too wide) in paragraph at lines 3--5
 [][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[4] [5] [6]
+[6] [7] [8]
 Overfull \hbox (43.87502pt too wide) in paragraph at lines 154--155
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
+[9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19] [20]
 Overfull \hbox (103.0055pt too wide) in paragraph at lines 637--638
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][] 
  []
 
-[19]
+[21]
 Overfull \hbox (37.30496pt too wide) in paragraph at lines 651--652
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
@@ -2790,7 +2790,7 @@ Overfull \hbox (260.68677pt too wide) in paragraph at lines 658--659
 [][][][][][][][] 
  []
 
-[20]
+[22]
 Overfull \hbox (76.72528pt too wide) in paragraph at lines 698--700
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2800,7 +2800,7 @@ Overfull \hbox (89.86539pt too wide) in paragraph at lines 721--722
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[21]
+[23]
 Overfull \hbox (96.43544pt too wide) in paragraph at lines 742--744
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2810,7 +2810,7 @@ Overfull \hbox (89.86539pt too wide) in paragraph at lines 761--762
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[22] [23]
+[24] [25]
 Overfull \hbox (11.02475pt too wide) in paragraph at lines 819--820
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
@@ -2826,19 +2826,19 @@ Overfull \hbox (70.15523pt too wide) in paragraph at lines 839--840
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[24] [25] [26]
+[26] [27] [28]
 Overfull \hbox (11.02475pt too wide) in paragraph at lines 952--953
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[27]
+[29]
 Overfull \hbox (57.01512pt too wide) in paragraph at lines 983--984
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
  
  []
 
-) [28] (./test.py
+) [30] (./test.py
 Overfull \hbox (109.57555pt too wide) in paragraph at lines 26--27
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -2880,7 +2880,7 @@ Overfull \hbox (24.16486pt too wide) in paragraph at lines 38--39
 [][][][][][] 
  []
 
-[29]
+[31]
 Overfull \hbox (43.87502pt too wide) in paragraph at lines 42--43
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -2948,7 +2948,7 @@ Overfull \hbox (240.97661pt too wide) in paragraph at lines 57--58
 [][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[30]
+[32]
 Overfull \hbox (11.02475pt too wide) in paragraph at lines 88--90
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
@@ -2960,7 +2960,7 @@ Overfull \hbox (17.5948pt too wide) in paragraph at lines 118--119
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[31]
+[33]
 Overfull \hbox (4.4547pt too wide) in paragraph at lines 139--141
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
@@ -2978,7 +2978,7 @@ Overfull \hbox (11.02475pt too wide) in paragraph at lines 143--145
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[32]
+[34]
 Overfull \hbox (96.43544pt too wide) in paragraph at lines 179--180
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -3051,7 +3051,7 @@ Overfull \hbox (57.01512pt too wide) in paragraph at lines 201--202
 [][][][][][][][] 
  []
 
-[33]
+[35]
 Overfull \hbox (96.43544pt too wide) in paragraph at lines 202--203
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]
@@ -3174,26 +3174,29 @@ Overfull \hbox (17.5948pt too wide) in paragraph at lines 230--236
 ][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[34]) [35] (./prop-calc.aux) ) 
+[36]) [37] (./prop-calc.aux) ) 
 Here is how much of TeX's memory you used:
- 10070 strings out of 493848
- 156749 string characters out of 1152823
+ 10114 strings out of 493848
+ 157204 string characters out of 1152823
  296373 words of memory out of 3000000
- 13145 multiletter control sequences out of 15000+50000
- 10981 words of font info for 51 fonts, out of 3000000 for 9000
+ 13154 multiletter control sequences out of 15000+50000
+ 13388 words of font info for 71 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 37i,28n,40p,416b,1576s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,28n,40p,581b,1575s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf-texlive/fonts/enc/dvips/base/8r
-.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/
-share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf
--texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fon
-ts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/pu
-blic/amsfonts/cm/cmti12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfon
-ts/symbols/msam10.pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrb8a.
-pfb></usr/share/texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb>
-Output written on prop-calc.pdf (35 pages, 148192 bytes).
+.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf
+-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fo
+nts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/pu
+blic/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10
+.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/
+texmf-texlive/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texmf-texlive/font
+s/type1/urw/courier/ucrr8a.pfb>
+Output written on prop-calc.pdf (37 pages, 192925 bytes).
 PDF statistics:
- 147 PDF objects out of 1000 (max. 8388607)
+ 168 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 8705 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 12289 words of extra memory for PDF output out of 14400 (max. 10000000)
 

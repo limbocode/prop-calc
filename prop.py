@@ -936,71 +936,72 @@ class Confirm:
             
     
 if __name__ == '__main__':
-#    a = Wff("A->B")
-#    b = Wff("~A")
-#    c = Wff("A*B")
-#    print a.form
-#    print b.form
-#    print c.form
-#    a = "A->B"
-#    b = "A"
-#    c = "B"
+    #Tests for Version 3
+    a = Wff("A->B")
+    b = Wff("~A")
+    c = Wff("A*B")
+    print a.form
+    print b.form
+    print c.form
+    a = "A->B"
+    b = "A"
+    c = "B"
     prop = Prop()
-#    print prop.mp(a,b,c)
-#    print prop.mp(b,a,c)
-#    print prop.mp(c,a,c)
-#    print prop.mp(b,a,"B->C")
-#    b = "~B"
-#    c = "~A"
-#    print prop.mt(a,b,c)
-#    b = "B->C"
-#    c = "A->C"
-#    print prop.hs(a,b,c)
-#    print prop.hs(b,a,c)
-#    print prop.hs(b,c,c)
-#    a = "A*B"
-#    b = "A"
-#    c = "B"
-#    print prop.simp(a, b)
-#    print prop.simp(a, c)
-#    a = "A->B"
-#    b = "C->D"
-#    c = "A\\/C"
-#    d = "B\\/D"
-#    print prop.dil(a, b, c, c)
-#    print prop.dil(a, b, c, d)
-#    print prop.dil(b,a, c, d)
-#    print prop.dil(a, b, c, c)
-#    d = "~C"
-#    e = "~A"
-#    print prop.ds(c,d,"A")
-#    print prop.ds(c,d,e)
-#    a = "A"
-#    b = "B"
-#    c = "A\\/B"
-#    print prop.add(a, c)
-#    print prop.add(b,c)
-#    print prop.dn("A","~~A")
-#    print prop.dn("~~A","~~~~A")
-#    print prop.dn("~~A","A")
-#    print prop.dn("~A","A")
-#    
-#    a = 'A'
-#    b = 'A\\/A'
-#    c = 'A*A'
-#    
-#    print prop.dup(a,b)
-#    print prop.dup(a,c)
-#    print prop.dup(b,a)
-#    print prop.dup(c,"B")
-#    
-#    a = 'A\\/B'
-#    b = 'B\\/A'
-#    c = 'A*B'
-#    d = 'B*A'
-#    print prop.comm(a,b)
-#    print prop.comm(c,d)
-#    print prop.comm("A","B")
+    print prop.mp(a,b,c)
+    print prop.mp(b,a,c)
+    print prop.mp(c,a,c)
+    print prop.mp(b,a,"B->C")
+    b = "~B"
+    c = "~A"
+    print prop.mt(a,b,c)
+    b = "B->C"
+    c = "A->C"
+    print prop.hs(a,b,c)
+    print prop.hs(b,a,c)
+    print prop.hs(b,c,c)
+    a = "A*B"
+    b = "A"
+    c = "B"
+    print prop.simp(a, b)
+    print prop.simp(a, c)
+    a = "A->B"
+    b = "C->D"
+    c = "A\\/C"
+    d = "B\\/D"
+    print prop.dil(a, b, c, c)
+    print prop.dil(a, b, c, d)
+    print prop.dil(b,a, c, d)
+    print prop.dil(a, b, c, c)
+    d = "~C"
+    e = "~A"
+    print prop.ds(c,d,"A")
+    print prop.ds(c,d,e)
+    a = "A"
+    b = "B"
+    c = "A\\/B"
+    print prop.add(a, c)
+    print prop.add(b,c)
+    print prop.dn("A","~~A")
+    print prop.dn("~~A","~~~~A")
+    print prop.dn("~~A","A")
+    print prop.dn("~A","A")
+    
+    a = 'A'
+    b = 'A\\/A'
+    c = 'A*A'
+    
+    print prop.dup(a,b)
+    print prop.dup(a,c)
+    print prop.dup(b,a)
+    print prop.dup(c,"B")
+    
+    a = 'A\\/B'
+    b = 'B\\/A'
+    c = 'A*B'
+    d = 'B*A'
+    print prop.comm(a,b)
+    print prop.comm(c,d)
+    print prop.comm("A","B")
 
     a = '((A\/B)\/C)'
     b = '(A\/(B\/C))'
@@ -1041,19 +1042,6 @@ if __name__ == '__main__':
     b = 'A->(B->C)'
     
     print prop.exp(a,b)
-    
-#    tuple_of_form = Prop()
-##    print tuple_of_form.confirm_validity_string(file1)
-##    tuple_of_form.mt("Za->(Ha*Wa)","~(Ha*Wa)","~Za")
-##
-##    file1 = tuple_of_form.prompt_for_file()
-##    print tuple_of_form.confirm_validity(file1)
-#
-##    print tuple_of_form.split_form("(F::G) -> (A -> F )")
-#
-#    file1 = open("proofs/proof14.txt",'r')
-#    print tuple_of_form.confirm_validity(file1)
-
     
         
         
